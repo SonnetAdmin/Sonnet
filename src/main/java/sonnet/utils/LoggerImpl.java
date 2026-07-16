@@ -1,15 +1,13 @@
-package com.risknarrative.qa.automation.playwright.logger;
-
-import com.risknarrative.qa.automation.playwright.utils.Colours;
+package sonnet.utils;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-import static com.risknarrative.qa.automation.playwright.utils.Colours.*;
+import static sonnet.utils.Colours.*;
 
-public class LoggerImpl implements LoggerInterface {
+public class LoggerImpl {
     private static LoggerImpl instance = null;
 
     private static Logger logger = null;
@@ -30,17 +28,14 @@ public class LoggerImpl implements LoggerInterface {
         logger.setUseParentHandlers(false);
     }
 
-    @Override
     public void log(String... args) {
         info(args);
     }
 
-    @Override
     public void log(Colours colour, String text) {
         info(colour, text);
     }
 
-    @Override
     public void warn(String text) {
         logger.warning(text);
     }
