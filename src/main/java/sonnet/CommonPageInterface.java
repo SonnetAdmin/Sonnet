@@ -1,4 +1,4 @@
-package org.sonnet;
+package sonnet;
 
 public interface CommonPageInterface {
     enum Action{
