@@ -1,6 +1,7 @@
-package org.sonnet.junit;
+package sonnet.junit;
 
 import org.junit.jupiter.api.*;
+import sonnet.junit.Calculator;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
