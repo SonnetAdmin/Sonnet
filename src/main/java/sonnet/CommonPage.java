@@ -1,7 +1,8 @@
-package org.sonnet;
+package sonnet;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
+import sonnet.CommonPageInterface;
 
 import java.util.List;
 
