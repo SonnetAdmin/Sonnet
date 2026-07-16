@@ -1,4 +1,4 @@
-package org.sonnet.junit;
+package sonnet.junit;
 
 public class Calculator {
 
