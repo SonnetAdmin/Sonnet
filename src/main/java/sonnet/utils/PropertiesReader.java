@@ -1,6 +1,6 @@
 package sonnet.utils;
 
-import sonnet.logger.Logger;
+import sonnet.utils.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
