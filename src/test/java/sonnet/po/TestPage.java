@@ -2,11 +2,9 @@ package sonnet.po;
 
 import sonnet.CommonPage;
 import sonnet.dto.Interests;
-import sonnet.logger.Logger;
-
+import sonnet.utils.Logger;
 import static sonnet.utils.StringUtils.isTrue;
 import static sonnet.CommonPageInterface.Trait.*;
-
 
 public class TestPage extends CommonPage {
     private final String COOKIES = "#ez-accept-all";
