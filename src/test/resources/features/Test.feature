@@ -6,8 +6,11 @@ Feature: This feature will register and delete an account.
 
   Scenario:
     Given I type the name "Username"
-    When I type the email "emaail@email.com"
+    When I type the email "email@email.com"
     And I type the password "password1234"
-    And I select the country "United Kingdom"
+    And I select the following interests:
+      | sports | music | reading | travel |
+      | Yes    | No    | No      | Yes    |
     And I submit the form
-    Then I verify the login works
+    Then I verify the submission works
+
