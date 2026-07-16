@@ -1,6 +1,5 @@
-package dto.keyvalue;
+package sonnet.dto;
 
-import dto.DTOMap;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
