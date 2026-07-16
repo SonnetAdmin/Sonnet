@@ -2,13 +2,12 @@ package sonnet.steps;
 
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.*;
-import sonnet.dto.DTOMap;
 import sonnet.dto.Interests;
 import sonnet.po.TestPage;
 
 import java.util.List;
 import java.util.Map;
-
+import sonnet.dto.DTOMap;
 
 public class SonnetSteps {
     TestPage testPage = new TestPage();
