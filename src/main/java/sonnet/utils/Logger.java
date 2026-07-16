@@ -1,7 +1,5 @@
-package com.risknarrative.qa.automation.playwright.logger;
+package sonnet.utils;
 
-
-import com.risknarrative.qa.automation.playwright.utils.Colours;
 
 public class Logger {
 
