@@ -1,11 +1,22 @@
-package org.sonnet.steps;
+package sonnet.steps;
 
+import io.cucumber.java.DataTableType;
 import io.cucumber.java.en.*;
-import org.sonnet.po.TestPage;
+import sonnet.dto.DTOMap;
+import sonnet.dto.Interests;
+import sonnet.po.TestPage;
+
+import java.util.List;
+import java.util.Map;
 
 
 public class SonnetSteps {
     TestPage testPage = new TestPage();
+
+    @DataTableType
+    public Interests decodeInterests(Map<String, String> row) {
+        return Interests.decode(new DTOMap(row));
+    }
 
     @Given("I open a browser")
     public void iOpenABrowser() {
@@ -31,7 +42,7 @@ public class SonnetSteps {
     public void iTypeThePassword(String password) {
         testPage.enterPassword(password);
     }
-// TODO printf to truncate
+
     @When("I get the element details")
     public void checkGet() {
         testPage.checkGet();
@@ -47,9 +58,13 @@ public class SonnetSteps {
         testPage.clickSubmit();
     }
 
-    @Then("I verify the login works")
+    @Then("I verify the submission works")
     public void iVerifyTheLoginWorks() {
         testPage.verifyLogin();
     }
 
-}
+    @And("I select the following interests:")
+    public void iSelectTheFollowingInterests(List<Interests> interestList) {
+            testPage.selectInterests(interestList.getFirst());
+        }
+    }
