@@ -2,6 +2,9 @@ package sonnet.junit;
 
 public class Calculator {
 
+    // No Args Constructor
+    public Calculator(){}
+    
     public int add(int a, int b) {
         return a + b;
     }
