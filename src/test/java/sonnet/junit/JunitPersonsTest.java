@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class JunitPersonsTest {
+    private Person p;
 
     @BeforeAll
     public void setUpAll() {
         System.out.println("Setting up resources before all tests");
     }
-    Person p;
 
     @AfterAll
     public void tearDownAll() {
