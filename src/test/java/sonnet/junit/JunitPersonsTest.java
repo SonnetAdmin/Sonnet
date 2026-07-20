@@ -9,15 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class JunitPersonsTest {
 
-    Strings strings;
-    String s1;
-    String s2;
     @BeforeAll
     public void setUpAll() {
-        strings = new Strings();
         System.out.println("Setting up resources before all tests");
     }
-    Person p = new Person("A","B",1);
+    Person p;
 
     @AfterAll
     public void tearDownAll() {
