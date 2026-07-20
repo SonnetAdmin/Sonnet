@@ -24,7 +24,7 @@ public class Person {
     }
 
     public void setFirstName(String fname) {
-        if (fname == null || fname.equals("")){
+        if (fname == null || fname.isEmpty()){
             throw new IllegalArgumentException("First name cannot be null or empty.");
         }
         else {
@@ -34,7 +34,7 @@ public class Person {
     }
 
     public void setLastName(String lname) {
-        if (lname == null || lname.equals("")){
+        if (lname == null || lname.isEmpty()){
             throw new IllegalArgumentException("Last name cannot be null or empty.");
         }
         else {

@@ -33,13 +33,20 @@ public class JunitPersonsTest {
     @Tag("add")
     @DisplayName("Fields test")
     public void fieldsTest() {
-        assertEquals(1, p.getAge());
+        p = new Person("Super", "Man", 21);
+        assertEquals("Super", p.getFirstName());
+        assertTrue(p.getFirstName().equals("Super"));
+        assertEquals("Man", p.getLastName());
+        assertTrue(p.getLastName().equals("Man"));
+        assertEquals(21, p.getAge());
+        assertTrue(p.getAge() == 21);
     }
 
     @Test
     @Tag("add")
     @DisplayName("Null And Empty String test")
     public void nullAndEmptyStringTest() {
+        p = new Person("Spider", "Man", 18);
         try{
             p.setFirstName(null);
         }
@@ -59,6 +66,7 @@ public class JunitPersonsTest {
     @Tag("add")
     @DisplayName("Age Boundaries test")
     public void ageBoundariesTest() {
+        p = new Person("Bat", "Man", 30);
         try {
             p.setAge(-1);
         } catch (IllegalArgumentException iae) {
@@ -66,10 +74,21 @@ public class JunitPersonsTest {
         }
 
         try {
-            p.setAge(150);
+            p.setAge(151);
         } catch (IllegalArgumentException iae) {
             assertEquals("Age must be between 0 and 150.", iae.getMessage());
         }
+
+    }
+    @Test
+    @Tag("add")
+    @DisplayName("Exceptions test")
+    public void exceptionsTest() {
+        p = new Person("Iron", "Man", 22);
+        assertThrows(IllegalArgumentException.class, () -> p.setFirstName(null));
+        assertThrows(IllegalArgumentException.class, () -> p.setLastName(""));
+        assertThrows(IllegalArgumentException.class, () -> p.setAge(-1));
+        assertThrows(IllegalArgumentException.class, () -> p.setAge(151));
 
     }
 
