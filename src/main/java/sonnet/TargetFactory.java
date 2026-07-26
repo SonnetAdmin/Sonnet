@@ -1,9 +1,5 @@
 package sonnet;
 
-import java.util.List;
-
-import static sonnet.Enum.Type.NAME;
-
 public class TargetFactory {
     public Target id(String id) {
         return new Target("#" + id, Enum.Type.ID);
