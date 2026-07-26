@@ -17,7 +17,7 @@ public class Enum {
         NAME,
         PARTIAL_LINK_TEXT,
         PARTIAL_TEXT, //TODO Review
-        PLACEHOLDER,
+        PLACEHOLDER, // DONE
         ROLE,
         ROLE_AND_LABEL,
         ROLE_LITERAL,
@@ -27,7 +27,7 @@ public class Enum {
         STYLE,
         TAG,
         TAG_CONTAINS_TEXT,
-        TAG_WITH_TEXT,
+        TAG_WITH_TEXT, // DONE
         TEST_ID,
         TEXT,
         TITLE,

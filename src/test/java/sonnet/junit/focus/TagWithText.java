@@ -42,5 +42,24 @@ public class TagWithText extends CommonPage {
         assertTrue(get(Trait.TEXT).equals("LabelWithText"));
         assertFalse(get(Trait.TEXT).equals("H1WithText"));
     }
+
+    @Test
+    @Tag("tagwithtext")
+    @DisplayName("checkbox")
+    public void t3() {
+        Target target = tagWithText(sonnet.Enum.HTMLTag.INPUT,"Checkbox");
+        focus(target).click();
+        assertTrue(get(Trait.SELECTED).equals("true"));
+    }
+
+    @Test
+    @Tag("tagwithtext")
+    @DisplayName("button")
+    public void t4() {
+        Target target = tagWithText(sonnet.Enum.HTMLTag.BUTTON,"Button");
+        focus(target).click();
+        assertTrue(get(Trait.ENABLED).equals("true"));
+        assertTrue(get(Trait.TEXT).equals("Button"));
+    }
 }
 

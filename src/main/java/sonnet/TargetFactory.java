@@ -17,9 +17,13 @@ public class TargetFactory {
             sb.append(".");
         }
         sb.deleteCharAt(sb.length() - 1);
-        return new Target(sb.toString(), Enum.Type.CLASS);
+        return new Target(sb.toString(), Enum.Type.CLASSES);
     }
     public Target tagWithText(Enum.HTMLTag tag, String text) {
         return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), " + text + ")]", Enum.Type.TAG_WITH_TEXT);
+    }
+
+    public Target placeholder(String placeholder) {
+        return new Target(placeholder, Enum.Type.PLACEHOLDER);
     }
 }
