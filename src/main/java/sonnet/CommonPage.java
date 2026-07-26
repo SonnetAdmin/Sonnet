@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.sonnet.utils.Print.*;
 
-public class CommonPage implements CommonPageInterface {
+public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     private Page page;
     private Locator currentElement;
@@ -38,28 +38,13 @@ public class CommonPage implements CommonPageInterface {
     }
 
     @Override
-    public CommonPage focus(String locator) {
-        logger.log("focus()\t", locator);
-        List<Locator> elements = page.locator(locator).all();
+    public CommonPage focus(Target target) {
+        logger.log("focus()\t", target.toString());
+        List<Locator> elements = page.locator(target.getSelector()).all();
         if (elements.isEmpty()) {
-            throw new IllegalArgumentException("There is no element with locator " + locator);
+            throw new IllegalArgumentException("There is no element with locator " + target.getSelector());
         }
         currentElement = elements.getFirst();
-        return this;
-    }
-
-    @Override
-    public CommonPage expect(String locator) {
-        logger.log("expect()\t", locator);
-        int attempts = 0;
-        while (attempts++ < 5) {
-            try {
-                focus(locator);
-                break;
-            } catch (IllegalArgumentException e) {
-                sleep(2);
-            }
-        }
         return this;
     }
 

@@ -31,8 +31,7 @@ public interface CommonPageInterface {
     CommonPage collect(String locator);
     CommonPage compose(String text);
     CommonPage compose(Action action);
-    CommonPage expect(String locator);
-    CommonPage focus(String locator);
+    CommonPage focus(Target target);
     String get(Trait trait);
     CommonPage go(String url);
     CommonPage open();

@@ -1,22 +1,23 @@
 package sonnet.po;
 
 import sonnet.CommonPage;
+import sonnet.Target;
 import sonnet.dto.Interests;
 import sonnet.utils.Logger;
 import static sonnet.utils.StringUtils.isTrue;
 import static sonnet.CommonPageInterface.Trait.*;
 
 public class TestPage extends CommonPage {
-    private final String COOKIES = "#ez-accept-all";
-    private final String EMAIL = "#email";
-    private final String USERNAME = "#username";
-    private final String PASSWORD = "#password";
-    private final String SPORTS = "#sports";
-    private final String MUSIC = "#music";
-    private final String READING = "#reading";
-    private final String TRAVEL = "#travel";
-    private final String SUBMIT = "#submit-btn";
-    private final String SUBMITTED = "#form-result";
+    private final Target COOKIES = id("ez-accept-all");
+    private final Target EMAIL = id("email");
+    private final Target USERNAME = id("username");
+    private final Target PASSWORD = id("password");
+    private final Target SPORTS = id("sports");
+    private final Target MUSIC = id("music");
+    private final Target READING = id("reading");
+    private final Target TRAVEL = id("travel");
+    private final Target SUBMIT = id("submit-btn");
+    private final Target SUBMITTED = id("form-result");
 
     Logger logger = new Logger();
     public TestPage() {}
@@ -27,7 +28,6 @@ public class TestPage extends CommonPage {
 
     public void navigate(String url) {
         go(url);
-        expect(COOKIES).click();
     }
 
     public void enterName(String name) {
@@ -54,7 +54,7 @@ public class TestPage extends CommonPage {
     }
 
     public void selectCountry(String country) {
-        focus("#country").click();
+        focus(id("country")).click();
         sleep(2);
         collect("option");
         choose(country);
