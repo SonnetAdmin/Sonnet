@@ -3,6 +3,7 @@ package sonnet;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
 import sonnet.CommonPageInterface;
+import sonnet.utils.Logger;
 
 import java.util.List;
 
@@ -13,10 +14,11 @@ public class CommonPage implements CommonPageInterface {
     private Page page;
     private Locator currentElement;
     private List<Locator> currentElements;
+    private final Logger logger = new Logger();  // This is the logger from sonnet.utils
 
     @Override
     public CommonPage open() {
-        print("open");
+        logger.log("open()\t", "Chrome");
         try {
             Playwright playwright = Playwright.create();
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
@@ -30,14 +32,14 @@ public class CommonPage implements CommonPageInterface {
 
     @Override
     public CommonPage go(String url) {
-        print("go");
+        logger.log("go()\t", url);
         page.navigate(url);
         return this;
     }
 
     @Override
     public CommonPage focus(String locator) {
-        print("find");
+        logger.log("focus()\t", locator);
         List<Locator> elements = page.locator(locator).all();
         if (elements.isEmpty()) {
             throw new IllegalArgumentException("There is no element with locator " + locator);
@@ -48,7 +50,7 @@ public class CommonPage implements CommonPageInterface {
 
     @Override
     public CommonPage expect(String locator) {
-        print("expect");
+        logger.log("expect()\t", locator);
         int attempts = 0;
         while (attempts++ < 5) {
             try {
@@ -63,7 +65,7 @@ public class CommonPage implements CommonPageInterface {
 
     @Override
     public CommonPage sleep(int milliseconds) {
-        print("sleep");
+        logger.log("sleep()\t", "Milliseconds ",String.valueOf(milliseconds));
         try {
             Thread.sleep(milliseconds * 1000L);
         } catch (InterruptedException e) {
@@ -74,14 +76,14 @@ public class CommonPage implements CommonPageInterface {
 
     @Override
     public CommonPage click() {
-        print("click");
+        logger.log("click()\t");
         currentElement.click();
         return this;
     }
 
     @Override
     public CommonPage choose(String name) {
-        print("choose name");
+        logger.log("choose()", "String ", name);
         for (Locator listElement : currentElements) {
             if (listElement.textContent().contains(name)) {
                 currentElement = listElement;
@@ -94,66 +96,43 @@ public class CommonPage implements CommonPageInterface {
 
     @Override
     public CommonPage choose(int index) {
-        print("choose index");
+        logger.log("choose()", "Int ", String.valueOf(index));
         currentElement = currentElements.get(index);
         return this;
     }
 
     @Override
     public CommonPage compose(String text) {
-        print("compose");
+        logger.log("compose()\t", "Text ", text);
         currentElement.fill(text);
         return this;
     }
 
     @Override
     public CommonPage compose(Action action) {
-        print("compose");
+        logger.log("compose()\t", "Action ", action.toString());
         currentElement.fill(action.toString());
         return this;
     }
 
-    @Override
-    public CommonPage printElements() {
-        print("print elements");
-        printPartition();
-        for (Locator listElement : currentElements) {
-            print(listElement.textContent());
-        }
-        return this;
-    }
-
-    @Override
-    public CommonPage printElement() {
-        print("print element");
-        BoundingBox box = currentElement.boundingBox();
-        print("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
-        print("Text: \t\t" + currentElement.textContent());
-        print("Enabled: \t" + currentElement.isEnabled());
-        print("Visible: \t" + currentElement.isVisible());
-        print("Location: \t " + box.x + " " + box.y);
-        print("Dimensions: \t" + box.width + " " + box.height);
-        return this;
-    }
-
-
     // TODO review
     @Override
     public CommonPage submit() {
-        print("submit");
+        logger.log("submit()\t");
         return this;
     }
 
     @Override
     public CommonPage collect(String locator) {
-        print("collect");
+        logger.log("collect()", locator);
         currentElements = currentElement.locator(locator).all();
         return this;
+        //TODO FIX LATER
     }
 
     @Override
     public String get(Trait trait) {
-        print("get " + trait);
+        logger.log("get()\t", trait.name());
         return switch (trait) {
             case TEXT -> currentElement.textContent();
             case TAG -> currentElement.evaluate("el => el.tagName").toString();
@@ -167,6 +146,30 @@ public class CommonPage implements CommonPageInterface {
 
         };
 
+
+    }
+    //////////////////////////
+    /// DIAGNOSTIC METHODS ///
+    //////////////////////////
+
+    public CommonPage printElements() {
+        logger.log("print elements");
+        printPartition();
+        for (Locator listElement : currentElements) {
+            print(listElement.textContent());
+        }
+        return this;
     }
 
+    public CommonPage printElement() {
+        logger.log("print element");
+        BoundingBox box = currentElement.boundingBox();
+        print("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
+        print("Text: \t\t" + currentElement.textContent());
+        print("Enabled: \t" + currentElement.isEnabled());
+        print("Visible: \t" + currentElement.isVisible());
+        print("Location: \t " + box.x + " " + box.y);
+        print("Dimensions: \t" + box.width + " " + box.height);
+        return this;
+    }
 }
