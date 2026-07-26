@@ -40,14 +40,15 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public CommonPage focus(Target target) {
         logger.log("focus()\t", target.toString());
-        List<Locator> elements = page.locator(target.getSelector()).all();
-        if (elements.isEmpty()) {
-            throw new IllegalArgumentException("There is no element with locator " + target.getSelector());
+        switch (target.getType()) {
+            case PLACEHOLDER:
+                currentElement = page.getByPlaceholder(target.getSelector());
+                break;
+            default: {
+                List<Locator> elements = page.locator(target.getSelector()).all();
+                currentElement = elements.getFirst();
+            }
         }
-        if (elements.size() > 1) {
-            logger.warn("There are multiple. Focusing on the first one.");
-        }
-        currentElement = elements.getFirst();
         return this;
     }
 
