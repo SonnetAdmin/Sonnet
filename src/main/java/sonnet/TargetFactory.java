@@ -21,7 +21,7 @@ public class TargetFactory {
             sb.append(".");
         }
         sb.deleteCharAt(sb.length() - 1);
-        return new Target(sb.toString(), Enum.Type.CLASS);
+        return new Target(sb.toString(), Enum.Type.CLASSES);
     }
 
 

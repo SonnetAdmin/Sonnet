@@ -5,16 +5,16 @@ public class Enum {
         ALT,
         ATTRIBUTE,
         ATTRIBUTE_VALUE,
-        CLASS,
-        CLASSES,
+        CLASS, // DONE
+        CLASSES, // DONE
         CSS,
         DATA,
         HREF,
-        ID,
+        ID, // DONE
         LABEL,
         LEAF,
         LINK_TEXT,
-        NAME,
+        NAME, // DONE
         PARTIAL_LINK_TEXT,
         PARTIAL_TEXT, //TODO Review
         PLACEHOLDER,
@@ -27,7 +27,7 @@ public class Enum {
         STYLE,
         TAG,
         TAG_CONTAINS_TEXT,
-        TAG_WITH_TEXT,
+        TAG_WITH_TEXT, // DONE
         TEST_ID,
         TEXT,
         TITLE,
