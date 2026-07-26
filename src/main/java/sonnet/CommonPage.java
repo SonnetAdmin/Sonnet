@@ -44,6 +44,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             case PLACEHOLDER:
                 currentElement = page.getByPlaceholder(target.getSelector());
                 break;
+
             default: {
                 List<Locator> elements = page.locator(target.getSelector()).all();
                 currentElement = elements.getFirst();
