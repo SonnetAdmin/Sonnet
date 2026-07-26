@@ -24,8 +24,15 @@ public class TargetFactory {
         return new Target(sb.toString(), Enum.Type.CLASS);
     }
 
+
     public Target name(String name) {
         return new Target("[name='" + name + "']", Enum.Type.NAME);
         }
+
+
+
+    public Target tagWithText(Enum.HTMLTag tag, String text) {
+        return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), " + text + ")]", Enum.Type.TAG_WITH_TEXT);
     }
+}
 
