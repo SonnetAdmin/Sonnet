@@ -134,9 +134,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             case SELECTED -> String.valueOf(currentElement.isChecked());
 
         };
-
-
     }
+
     //////////////////////////
     /// DIAGNOSTIC METHODS ///
     //////////////////////////
