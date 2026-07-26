@@ -32,3 +32,6 @@ bin/
 build/
 dist/
 *.class
+
+# Test
+src\test\java\sonnet\Test.java
