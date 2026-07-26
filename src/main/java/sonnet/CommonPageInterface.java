@@ -36,8 +36,6 @@ public interface CommonPageInterface {
     String get(Trait trait);
     CommonPage go(String url);
     CommonPage open();
-    CommonPage printElement();
-    CommonPage printElements();
     CommonPage sleep(int milliseconds);
     CommonPage submit();
 

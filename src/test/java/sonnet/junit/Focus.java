@@ -7,30 +7,24 @@ import sonnet.CommonPageInterface;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class Focus {
 
     CommonPage commonPage;
 
-
     @BeforeAll
     public void setUpAll() {
-        System.out.println("Setting up resources before all tests");
         commonPage = new CommonPage();
-        commonPage.open().go("file:///C:/Users/Rio/AppData/Local/Temp/non426C.htm");
+        String home = System.getProperty("user.dir");
+        commonPage.open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\Focus.html");
     }
 
     @AfterAll
-    public void tearDownAll() {
-        System.out.println("Tearing down resources after all tests");
-    }
+    public void tearDownAll() {}
 
     @BeforeEach
-    public void setUp() {
-        System.out.println("Setting up before each test");
-    }
+    public void setUp() {}
 
     @Test
     @Tag("add")
