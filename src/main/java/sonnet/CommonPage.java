@@ -44,6 +44,9 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         if (elements.isEmpty()) {
             throw new IllegalArgumentException("There is no element with locator " + target.getSelector());
         }
+        if (elements.size() > 1) {
+            logger.warn("There are multiple. Focusing on the first one.");
+        }
         currentElement = elements.getFirst();
         return this;
     }

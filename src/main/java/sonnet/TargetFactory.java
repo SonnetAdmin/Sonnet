@@ -9,7 +9,7 @@ public class TargetFactory {
     public Target classname(String classname) {
         return new Target("." + classname, Enum.Type.CLASS);
     }
-    public Target classnames(List<String> classnames) {
+    public Target classnames(String ... classnames) {
         StringBuilder sb = new StringBuilder();
         sb.append(".");
         for (String cls : classnames) {
