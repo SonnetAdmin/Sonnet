@@ -19,4 +19,7 @@ public class TargetFactory {
         sb.deleteCharAt(sb.length() - 1);
         return new Target(sb.toString(), Enum.Type.CLASS);
     }
+    public Target tagWithText(Enum.HTMLTag tag, String text) {
+        return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), " + text + ")]", Enum.Type.TAG_WITH_TEXT);
+    }
 }
