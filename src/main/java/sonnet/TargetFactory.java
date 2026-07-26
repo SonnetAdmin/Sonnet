@@ -2,6 +2,7 @@ package sonnet;
 
 import java.util.List;
 
+import static sonnet.Enum.Type.LINK_TEXT;
 import static sonnet.Enum.Type.NAME;
 
 public class TargetFactory {
@@ -30,10 +31,15 @@ public class TargetFactory {
 
     public Target tagWithText(Enum.HTMLTag tag, String text) {
         return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), " + text + ")]", Enum.Type.TAG_WITH_TEXT);
+        // TODO Review for Tag and Link Text, doesnt work with both
     }
 
     public Target placeholder(String placeholder) {
         return new Target(placeholder, Enum.Type.PLACEHOLDER);
+    }
+
+    public Target linkText(String text) {
+        return new Target("a:text('" + text + "')", LINK_TEXT);
     }
 }
 
