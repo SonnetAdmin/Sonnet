@@ -39,7 +39,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public CommonPage focus(Target target) {
-        logger.log("focus()\t", target.toString());
+        logger.log("focus()\t",target.getType().toString(), target.getValue());
         switch (target.getType()) {
             case PLACEHOLDER:
                 currentElement = page.getByPlaceholder(target.getSelector());

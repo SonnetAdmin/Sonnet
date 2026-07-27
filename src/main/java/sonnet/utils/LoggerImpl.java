@@ -44,8 +44,8 @@ public class LoggerImpl {
     private void info(String... args) {
         if (args != null && args.length > 0) {
             logger.info(GREEN + args[0] + RESET + TAB +
-                    (args.length > 1 ? MAGENTA + args[1] : "") + RESET +
-                    (args.length > 2 ? BLUE + args[2] : "") + RESET +
+                    (args.length > 1 ? MAGENTA + args[1] : "") + RESET + TAB +
+                    (args.length > 2 ? BLUE + args[2] : "") + RESET + TAB +
                     (args.length > 3 ? YELLOW + args[3] : "" + RESET));
         }
     }
