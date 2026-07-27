@@ -6,6 +6,8 @@ import sonnet.CommonPageInterface;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -30,8 +32,8 @@ public class ID extends CommonPage {
     public void t1() {
         Target target = id("text_input");
         focus(target);
-        assertTrue(get(CommonPageInterface.Trait.TAG).equals("INPUT"));
-        assertEquals("INPUT", get(CommonPageInterface.Trait.TAG));
+        assertTrue(get(TAG).equals("INPUT"));
+        assertEquals("INPUT", get(TAG));
 
     }
 
@@ -41,8 +43,8 @@ public class ID extends CommonPage {
     public void t2() {
         Target target = id("text_area");
         focus(target);
-        assertTrue(get(CommonPageInterface.Trait.TAG).equals("TEXTAREA"));
-        assertEquals("TEXTAREA", get(CommonPageInterface.Trait.TAG));
+        assertTrue(get(TAG).equals("TEXTAREA"));
+        assertEquals("TEXTAREA", get(TAG));
 
     }
 
@@ -52,8 +54,8 @@ public class ID extends CommonPage {
     public void t3() {
         Target target = id("radio1");
         focus(target);
-        assertTrue(get(CommonPageInterface.Trait.TAG).equals("INPUT"));
-        assertEquals("INPUT", get(CommonPageInterface.Trait.TAG));
+        assertTrue(get(TAG).equals("INPUT"));
+        assertEquals("INPUT", get(TAG));
 
     }
 
@@ -63,8 +65,8 @@ public class ID extends CommonPage {
     public void t4() {
         Target target = id("checkbox");
         focus(target);
-        assertTrue(get(CommonPageInterface.Trait.TAG).equals("INPUT"));
-        assertEquals("INPUT", get(CommonPageInterface.Trait.TAG));
+        assertTrue(get(TAG).equals("INPUT"));
+        assertEquals("INPUT", get(TAG));
 
     }
 
@@ -74,8 +76,8 @@ public class ID extends CommonPage {
     public void t5() {
         Target target = id("button");
         focus(target);
-        assertTrue(get(CommonPageInterface.Trait.TAG).equals("BUTTON"));
-        assertEquals("BUTTON", get(CommonPageInterface.Trait.TAG));
+        assertTrue(get(TAG).equals("BUTTON"));
+        assertEquals("BUTTON", get(TAG));
 
     }
 }

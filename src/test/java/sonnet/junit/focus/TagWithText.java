@@ -5,6 +5,9 @@ import sonnet.CommonPage;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
+
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -27,39 +30,40 @@ public class TagWithText extends CommonPage {
     @Tag("tagwithtext")
     @DisplayName("h1")
     public void t1() {
-        Target target = tagWithText(sonnet.Enum.HTMLTag.H1,"H1WithText");
+        Target target = tagWithText(H1,"TagWithText Test");
         focus(target);
-        assertTrue(get(Trait.TEXT).equals("H1WithText"));
-        assertFalse(get(Trait.TEXT).equals("LabelWithText"));
+        assertTrue(get(TEXT).equals("TagWithText Test"));
+        assertFalse(get(TEXT).equals("LabelWithText"));
     }
 
     @Test
     @Tag("tagwithtext")
     @DisplayName("label")
     public void t2() {
-        Target target = tagWithText(sonnet.Enum.HTMLTag.LABEL,"LabelWithText");
+        Target target = tagWithText(LABEL,"LabelWithText");
         focus(target);
-        assertTrue(get(Trait.TEXT).equals("LabelWithText"));
-        assertFalse(get(Trait.TEXT).equals("H1WithText"));
+        assertTrue(get(TEXT).equals("LabelWithText"));
+        assertFalse(get(TEXT).equals("TagWithText Test"));
     }
 
     @Test
     @Tag("tagwithtext")
-    @DisplayName("checkbox")
+    @DisplayName("p")
     public void t3() {
-        Target target = tagWithText(sonnet.Enum.HTMLTag.INPUT,"Checkbox");
+        Target target = tagWithText(P,"Hello");
         focus(target).click();
-        assertTrue(get(Trait.SELECTED).equals("true"));
+        assertTrue(get(TEXT).equals("Hello"));
+        assertEquals("Hello", get(TEXT));
     }
 
     @Test
     @Tag("tagwithtext")
     @DisplayName("button")
     public void t4() {
-        Target target = tagWithText(sonnet.Enum.HTMLTag.BUTTON,"Button");
+        Target target = tagWithText(BUTTON,"Button");
         focus(target).click();
-        assertTrue(get(Trait.ENABLED).equals("true"));
-        assertTrue(get(Trait.TEXT).equals("Button"));
+        assertTrue(get(ENABLED).equals("true"));
+        assertTrue(get(TEXT).equals("Button"));
     }
 }
 

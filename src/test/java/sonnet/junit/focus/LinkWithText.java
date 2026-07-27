@@ -4,10 +4,9 @@ import org.junit.jupiter.api.*;
 import sonnet.CommonPage;
 import sonnet.Target;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static sonnet.CommonPageInterface.Trait.TEXT;
-import static sonnet.Enum.HTMLTag.H1;
+import static org.junit.jupiter.api.Assertions.*;
+import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -33,7 +32,6 @@ public class LinkWithText extends CommonPage {
         Target target = linkText("LinkWithText");
         Target targetID = tagWithText(H1, "ID Test");
         focus(target).click();
-
         focus(targetID);
         assertTrue(get(TEXT).equals("ID Test"));
 

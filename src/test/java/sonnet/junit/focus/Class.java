@@ -4,8 +4,9 @@ import org.junit.jupiter.api.*;
 import sonnet.CommonPage;
 import sonnet.Target;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -31,8 +32,8 @@ public class Class extends CommonPage {
     public void t1() {
         Target target = classname("text_input");
         focus(target);
-        assertTrue(get(Trait.TAG).equals("INPUT"));
-        assertEquals("INPUT", get(Trait.TAG));
+        assertTrue(get(TAG).equals("INPUT"));
+        assertEquals("INPUT", get(TAG));
 
     }
 
@@ -42,8 +43,8 @@ public class Class extends CommonPage {
     public void t2() {
         Target target = classname("text_area");
         focus(target);
-        assertTrue(get(Trait.TAG).equals("TEXTAREA"));
-        assertEquals("TEXTAREA", get(Trait.TAG));
+        assertTrue(get(TAG).equals("TEXTAREA"));
+        assertEquals("TEXTAREA", get(TAG));
 
     }
 
@@ -53,8 +54,8 @@ public class Class extends CommonPage {
     public void t3() {
         Target target = classname("radio1");
         focus(target);
-        assertTrue(get(Trait.TAG).equals("INPUT"));
-        assertEquals("INPUT", get(Trait.TAG));
+        assertTrue(get(TAG).equals("INPUT"));
+        assertEquals("INPUT", get(TAG));
 
     }
 
@@ -64,8 +65,8 @@ public class Class extends CommonPage {
     public void t4() {
         Target target = classname("checkbox");
         focus(target);
-        assertTrue(get(Trait.TAG).equals("INPUT"));
-        assertEquals("INPUT", get(Trait.TAG));
+        assertTrue(get(TAG).equals("INPUT"));
+        assertEquals("INPUT", get(TAG));
 
     }
 
@@ -75,8 +76,8 @@ public class Class extends CommonPage {
     public void t5() {
         Target target = classname("button");
         focus(target);
-        assertTrue(get(Trait.TAG).equals("BUTTON"));
-        assertEquals("BUTTON", get(Trait.TAG));
+        assertTrue(get(TAG).equals("BUTTON"));
+        assertEquals("BUTTON", get(TAG));
 
     }
 }

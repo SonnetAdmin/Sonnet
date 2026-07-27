@@ -5,9 +5,9 @@ import org.w3c.dom.Text;
 import sonnet.CommonPage;
 import sonnet.Target;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static sonnet.CommonPageInterface.Trait.TEXT;
+import static org.junit.jupiter.api.Assertions.*;
+import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

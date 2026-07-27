@@ -4,9 +4,9 @@ import org.junit.jupiter.api.*;
 import sonnet.CommonPage;
 import sonnet.Target;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

@@ -1,14 +1,15 @@
 package sonnet;
 
-import static sonnet.Enum.Type.LINK_TEXT;
+import static sonnet.Enum.Type.*;
+
 
 public class TargetFactory {
     public Target id(String id) {
-        return new Target("#" + id, Enum.Type.ID);
+        return new Target("#" + id, ID);
     }
 
     public Target classname(String classname) {
-        return new Target("." + classname, Enum.Type.CLASS);
+        return new Target("." + classname, CLASS);
     }
 
     public Target classnames(String... classnames) {
@@ -19,20 +20,19 @@ public class TargetFactory {
             sb.append(".");
         }
         sb.deleteCharAt(sb.length() - 1);
-        return new Target(sb.toString(), Enum.Type.CLASSES);
+        return new Target(sb.toString(), CLASSES);
     }
 
     public Target name(String name) {
-        return new Target("[name='" + name + "']", Enum.Type.NAME);
+        return new Target("[name='" + name + "']", NAME);
         }
 
     public Target tagWithText(Enum.HTMLTag tag, String text) {
-        return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), " + text + ")]", Enum.Type.TAG_WITH_TEXT);
-        // TODO Review for Tag and Link Text, doesnt work with both
+        return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), '" + text + "')]", TAG_WITH_TEXT);
     }
 
     public Target placeholder(String placeholder) {
-        return new Target(placeholder, Enum.Type.PLACEHOLDER);
+        return new Target(placeholder, PLACEHOLDER);
     }
 
     public Target linkText(String text) {
