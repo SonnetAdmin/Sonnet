@@ -4,18 +4,18 @@ import org.junit.jupiter.api.*;
 import sonnet.CommonPage;
 import sonnet.Target;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static sonnet.CommonPageInterface.Trait.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class Alt extends CommonPage {
+public class Title extends CommonPage {
 
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\Alt.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\Title.html");
     }
 
     @AfterAll
@@ -26,22 +26,22 @@ public class Alt extends CommonPage {
 
     @Test
     @Tag("add")
-    @DisplayName("Alt test with image")
+    @DisplayName("Title test")
     public void t1() {
-        Target target = alt("This is actually a picture of a panda");
-        focus(target);
-        assertEquals("375.0", get(WIDTH));
-        assertEquals("500.0", get(HEIGHT));
-
-    }
-    @Test
-    @Tag("add")
-    @DisplayName("Alt test without image")
-    public void t2() {
-        Target target = alt("This is a picture of a panda");
+        Target target = title("This is a picture of a Raccoon");
         focus(target);
         assertEquals("IMG", get(TAG));
 
+    }
+
+    @Test
+    @Tag("add")
+    @DisplayName("Title test")
+    public void t2() {
+        Target target = title("This is a picture of a Raccoon");
+        focus(target);
+        assertEquals("387.0", get(WIDTH));
+        assertEquals("516.0", get(HEIGHT));
     }
 }
 

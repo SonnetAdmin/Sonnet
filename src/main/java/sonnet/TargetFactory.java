@@ -46,5 +46,9 @@ public class TargetFactory {
     public Target alt(String altText) {
         return new Target(altText ,ALT ,altText);
     }
+
+    public Target title(String title) {
+        return new Target(title ,TITLE ,title);
+    }
 }
 

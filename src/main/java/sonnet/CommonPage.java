@@ -53,6 +53,10 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                 currentElement = page.getByAltText(target.getSelector());
                 break;
 
+            case TITLE:
+                currentElement = page.getByTitle(target.getSelector());
+                break;
+
             default: {
                 List<Locator> elements = page.locator(target.getSelector()).all();
                 currentElement = elements.getFirst();
