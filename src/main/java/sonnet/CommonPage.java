@@ -45,6 +45,10 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                 currentElement = page.getByPlaceholder(target.getSelector());
                 break;
 
+            case LABEL:
+                currentElement = page.getByLabel(target.getValue(), new Page.GetByLabelOptions().setExact(true));
+                break;
+
             default: {
                 List<Locator> elements = page.locator(target.getSelector()).all();
                 currentElement = elements.getFirst();
@@ -73,7 +77,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public CommonPage choose(String name) {
-        logger.log("choose()", "String ", name);
+        logger.log("choose()\t", "String ", name);
         for (Locator listElement : currentElements) {
             if (listElement.textContent().contains(name)) {
                 currentElement = listElement;
@@ -86,21 +90,21 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public CommonPage choose(int index) {
-        logger.log("choose()", "Int ", String.valueOf(index));
+        logger.log("choose()\t", "Int ", String.valueOf(index));
         currentElement = currentElements.get(index);
         return this;
     }
 
     @Override
     public CommonPage compose(String text) {
-        logger.log("compose()\t", "Text ", text);
+        logger.log("compose()", "Text ", text);
         currentElement.fill(text);
         return this;
     }
 
     @Override
     public CommonPage compose(Action action) {
-        logger.log("compose()\t", "Action ", action.toString());
+        logger.log("compose()", "Action ", action.toString());
         currentElement.fill(action.toString());
         return this;
     }

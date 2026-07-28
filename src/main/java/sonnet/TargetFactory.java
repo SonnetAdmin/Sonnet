@@ -38,5 +38,9 @@ public class TargetFactory {
     public Target linkText(String text) {
         return new Target("a:text('" + text + "')" ,LINK_TEXT ,text);
     }
+
+    public Target label(String label) {
+        return new Target(label ,LABEL ,label);
+    }
 }
 
