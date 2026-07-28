@@ -28,7 +28,7 @@ public class TargetFactory {
         }
 
     public Target tagWithText(Enum.HTMLTag tag, String text) {
-        return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), '" + text + "')]" ,TAG_WITH_TEXT , text);
+        return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), '" + text + "')]" ,TAG_WITH_TEXT ,text);
     }
 
     public Target placeholder(String placeholder) {
@@ -41,6 +41,10 @@ public class TargetFactory {
 
     public Target label(String label) {
         return new Target(label ,LABEL ,label);
+    }
+
+    public Target alt(String altText) {
+        return new Target(altText ,ALT ,altText);
     }
 }
 
