@@ -26,16 +26,19 @@ public interface CommonPageInterface {
     }
 
     CommonPage click();
-    CommonPage choose(String name);
     CommonPage choose(int index);
+    CommonPage choose(String name);
     CommonPage collect(String locator);
-    CommonPage compose(String text);
+    CommonPage collect(Target target);
     CommonPage compose(Action action);
+    CommonPage compose(String text);
+    CommonPage end();
     CommonPage focus(Target target);
     String get(Trait trait);
     CommonPage go(String url);
     CommonPage open();
-    CommonPage sleep(int milliseconds);
+    CommonPage probe(Target target);
+    int size();
     CommonPage submit();
 
 }

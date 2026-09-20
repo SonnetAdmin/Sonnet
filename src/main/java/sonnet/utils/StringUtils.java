@@ -5,6 +5,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import java.util.List;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+import static sonnet.utils.Checks.throwOnNullOrEmpty;
 
 
 public class StringUtils {
@@ -90,6 +91,12 @@ public class StringUtils {
 
     public static boolean isNull(String string) {
         return string == null;
+    }
+
+    public static String toCamelCase(String string) {
+        throwOnNullOrEmpty(string);
+        String intermediate = string.toLowerCase();
+        return intermediate.substring(0, 1).toUpperCase() + intermediate.substring(1);
     }
 
 }

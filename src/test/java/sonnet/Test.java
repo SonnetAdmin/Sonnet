@@ -4,7 +4,9 @@ public class Test
 {
     public static void main(String[] args)
     {
-        System.out.println(System.getProperty("user.dir"));
-        System.out.println(System.getProperty("user.home"));
+        String gender = "maLe";
+        String intermediate = gender.toLowerCase();
+        String camelCase = intermediate.substring(0, 1).toUpperCase() + intermediate.substring(1);
+        System.out.println(camelCase);
     }
 }

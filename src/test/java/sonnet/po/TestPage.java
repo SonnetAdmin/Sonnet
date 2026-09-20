@@ -3,9 +3,11 @@ package sonnet.po;
 import sonnet.CommonPage;
 import sonnet.Target;
 import sonnet.dto.Interests;
+import sonnet.testenum.TestEnum;
 import sonnet.utils.Logger;
 import static sonnet.utils.StringUtils.isTrue;
 import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.utils.Time.pause;
 
 public class TestPage extends CommonPage {
     private final Target COOKIES = id("ez-accept-all");
@@ -28,6 +30,10 @@ public class TestPage extends CommonPage {
 
     public void navigate(String url) {
         go(url);
+    }
+
+    public void acceptCookies() {
+        probe(COOKIES).click().end();
     }
 
     public void enterName(String name) {
@@ -55,9 +61,16 @@ public class TestPage extends CommonPage {
 
     public void selectCountry(String country) {
         focus(id("country")).click();
-        sleep(2);
+        pause(2);
         collect("option");
         choose(country);
+        click();
+    }
+
+    public void selectLanguage(String language) {
+        focus(id("languages"));
+        collect("option");
+        choose(language);
         click();
     }
 
@@ -82,5 +95,9 @@ public class TestPage extends CommonPage {
         if (isTrue(interests.getTravel())) {
             focus(TRAVEL).click();
         }
+    }
+
+    public void selectGender(TestEnum.Gender gender) {
+        focus(label(gender.name())).click();
     }
 }
