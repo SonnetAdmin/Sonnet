@@ -1,7 +1,7 @@
 package sonnet.junit.focus;
 
 import org.junit.jupiter.api.*;
-import sonnet.CommonPage;
+import sonnet.CommonPageObject;
 import sonnet.CommonPageInterface;
 import sonnet.Target;
 
@@ -12,7 +12,7 @@ import static sonnet.Enum.HTMLTag.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class ID extends CommonPage {
+public class ID extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {

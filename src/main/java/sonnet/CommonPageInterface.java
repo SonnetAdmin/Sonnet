@@ -25,20 +25,26 @@ public interface CommonPageInterface {
         YPOS;
     }
 
-    CommonPage click();
-    CommonPage choose(int index);
-    CommonPage choose(String name);
-    CommonPage collect(String locator);
-    CommonPage collect(Target target);
-    CommonPage compose(Action action);
-    CommonPage compose(String text);
-    CommonPage end();
-    CommonPage focus(Target target);
+    void box(Target target);
+    void box();
+    void unbox();
+    void click();
+    void choose(int index);
+    void choose(String name);
+    void cognate(Target destination);
+    void cognate(Target origin,Target destination);
+    void collect(String locator);
+    void collect(Target target);
+    void compose(Action action);
+    void compose(String text);
+    void end();
+    void focus(Target target);
     String get(Trait trait);
-    CommonPage go(String url);
-    CommonPage open();
-    CommonPage probe(Target target);
+    void go(String url);
+    void open();
+    void probe(Target target);
     int size();
-    CommonPage submit();
+    void submit();
+    void log(String message);
 
 }

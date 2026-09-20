@@ -10,7 +10,7 @@ Feature: This feature will register and delete an account.
     Given I type the name "Username"
     When I type the email "email@email.com"
     And I type the password "password1234"
-#    And I select the country "United Kingdom"
+    And I select the country "United Kingdom"
     And I select the language "English"
     And I select the following interests:
       | sports | music | reading | travel |

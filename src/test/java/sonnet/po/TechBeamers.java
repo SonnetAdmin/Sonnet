@@ -1,15 +1,16 @@
 package sonnet.po;
 
-import sonnet.CommonPage;
+import sonnet.CommonPageObject;
 import sonnet.Target;
 import sonnet.dto.Interests;
 import sonnet.testenum.TestEnum;
 import sonnet.utils.Logger;
+
+import static sonnet.Enum.HTMLTag.*;
 import static sonnet.utils.StringUtils.isTrue;
 import static sonnet.CommonPageInterface.Trait.*;
-import static sonnet.utils.Time.pause;
 
-public class TestPage extends CommonPage {
+public class TechBeamers extends CommonPageObject {
     private final Target COOKIES = id("ez-accept-all");
     private final Target EMAIL = id("email");
     private final Target USERNAME = id("username");
@@ -20,17 +21,11 @@ public class TestPage extends CommonPage {
     private final Target TRAVEL = id("travel");
     private final Target SUBMIT = id("submit-btn");
     private final Target SUBMITTED = id("form-result");
+    private final Target COUNTRY = id("country");
+    private final Target LANGUAGES = id("languages");
 
-    Logger logger = new Logger();
-    public TestPage() {}
 
-    public void openBrowser() {
-        open();
-    }
-
-    public void navigate(String url) {
-        go(url);
-    }
+    public TechBeamers() {}
 
     public void acceptCookies() {
         probe(COOKIES).click().end();
@@ -49,27 +44,26 @@ public class TestPage extends CommonPage {
     }
 
     public void checkGet() {
-        logger.log(get(TEXT));
-        logger.log(get(TAG));
-        logger.log(get(XPOS));
-        logger.log(get(YPOS));
-        logger.log(get(WIDTH));
-        logger.log(get(HEIGHT));
-        logger.log(get(ENABLED));
-        logger.log(get(VISIBLE));
+        log(get(TEXT));
+        log(get(TAG));
+        log(get(XPOS));
+        log(get(YPOS));
+        log(get(WIDTH));
+        log(get(HEIGHT));
+        log(get(ENABLED));
+        log(get(VISIBLE));
     }
 
     public void selectCountry(String country) {
-        focus(id("country")).click();
-        pause(2);
-        collect("option");
+        focus(COUNTRY).click();
+        collect(tag(OPTION));
         choose(country);
         click();
     }
 
     public void selectLanguage(String language) {
-        focus(id("languages"));
-        collect("option");
+        focus(LANGUAGES);
+        collect(tag(OPTION));
         choose(language);
         click();
     }

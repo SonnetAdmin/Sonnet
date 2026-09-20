@@ -1,7 +1,7 @@
 package sonnet.junit.focus;
 
 import org.junit.jupiter.api.*;
-import sonnet.CommonPage;
+import sonnet.CommonPageObject;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +12,7 @@ import static sonnet.CommonPageInterface.Trait.TEXT;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class Label extends CommonPage {
+public class Label extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {

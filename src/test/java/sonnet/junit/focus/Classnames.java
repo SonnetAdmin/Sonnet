@@ -2,7 +2,7 @@ package sonnet.junit.focus;
 
 import org.junit.jupiter.api.*;
 import org.w3c.dom.Text;
-import sonnet.CommonPage;
+import sonnet.CommonPageObject;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +12,7 @@ import static sonnet.Enum.HTMLTag.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class Classnames extends CommonPage {
+public class Classnames extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {

@@ -2,7 +2,6 @@ package sonnet;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
-import sonnet.CommonPageInterface;
 import sonnet.utils.Logger;
 
 import java.util.List;
@@ -12,111 +11,167 @@ import static sonnet.utils.Time.pause;
 
 public class CommonPage extends TargetFactory implements CommonPageInterface {
 
-    private Page page;
-    private Locator currentElement;
-    private List<Locator> currentElements;
+    static CommonPage commonPage = null;
     private final Logger logger = new Logger(); // This is the logger from sonnet.utils
-    private Boolean execute = true;
-
-    //////////
-    //TIMERS//
-    //////////
 
     private final int DEFAULT_TIMEOUT = 30;
     private final int DEFAULT_PROBE_TIMEOUT = 5;
 
+    private Page page;
+    private Locator currentElement;
+    private List<Locator> currentElements;
+    private Boolean execute = true;
+    private Boolean boxed = false;
+
+    public static CommonPage getInstance() {
+        if (commonPage == null) {
+            commonPage = new CommonPage();
+        }
+        return commonPage;
+    }
+
+    //TODO Box methods need to be implemented. They are currently just placeholders.
     @Override
-    public CommonPage click() {
-        if (!execute) return this;
+    public void box(Target target) {
+        if (!execute) return;
+        logger.log("box()", target.getType().toString(), target.getValue());
+        boxed = true;
+    }
+
+    @Override
+    public void box() {
+        if (!execute) return;
+        logger.log("box()\t");
+        boxed = true;
+    }
+
+    @Override
+    public void unbox() {
+        if (!execute) return;
+        logger.log("unbox()\t");
+        boxed = false;
+    }
+
+    @Override
+    public void click() {
+        if (!execute) return;
         logger.log("click()\t");
         currentElement.click();
-        return this;
     }
 
     @Override
-    public CommonPage choose(int index) {
-        if (!execute) return this;
+    public void choose(int index) {
+        if (!execute) return;
         logger.log("choose()", "Int ", String.valueOf(index));
         currentElement = currentElements.get(index);
-        return this;
     }
 
     @Override
-    public CommonPage choose(String name) {
-        if (!execute) return this;
+    public void choose(String name) {
+        if (!execute) return;
         logger.log("choose()", "String ", name);
         for (Locator listElement : currentElements) {
-            if (listElement.textContent().contains(name)) {
+            String elementText = listElement.textContent();
+            if (elementText.contains(name)) {
                 currentElement = listElement;
                 break;
             }
         }
-        return this;
+
     }
 
     @Override
-    public CommonPage collect(String locator) {
-        if (!execute) return this;
+    public void cognate(Target destination) {
+        if (!execute) return;
+        logger.log("cognate()", destination.getType().toString(), destination.getValue());
+        boolean found = false;
+        while (!found) {
+            currentElements = currentElement.locator(destination.getSelector()).all();
+            if (currentElements.isEmpty()) {
+                if (currentElement.evaluate("el => el.tagName").toString().equalsIgnoreCase("html")) {
+                    throw new IllegalArgumentException("Failed to cognate to destination: " + destination);
+                }
+                currentElement = currentElement.locator("..");
+            }
+            else  {
+                found = true;
+                currentElement = currentElements.getFirst();
+            }
+        }
+    }
+
+    @Override
+    public void cognate(Target origin, Target destination) {
+        if (!execute) return;
+        logger.log("cognate()", origin.getType().toString(), origin.getValue(), destination.getType().toString(), destination.getValue());
+        decode(origin);
+        cognate(destination);
+    }
+
+    @Override
+    public void collect(String locator) {
+        if (!execute) return;
         logger.log("collect()", locator);
         currentElements = currentElement.locator(locator).all();
-        return this;
+
         //TODO FIX LATER
     }
 
     @Override
-    public CommonPage collect(Target target) {
-        if (!execute) return this;
+    public void collect(Target target) {
+        if (!execute) return;
         logger.log("collect()", target.getType().toString(), target.getValue());
         final int ITERATIONS = 5;
         final int STABLE_COUNT = 3;
         int stableCount = 0;
         int count = 0;
-        int currentCount = 0;
+        int currentSize = 0;
         for (int i = 0; i < ITERATIONS; i++) {
             currentElements = currentElement.locator(target.getSelector()).all();
-            currentCount = currentElements.size();
-            if (currentCount == count) {
-                stableCount++;
-            }
-            else {
+            count = currentElements.size();
+            if (currentSize == count) {
+                if (++stableCount == STABLE_COUNT) break;
+            } else {
                 stableCount = 0;
+                currentSize = count;
             }
-            count = currentCount;
             pause(1);
         }
+        logger.log("collect()", "Found: " + currentSize + " elements for target: ", target.toString());
+        if (stableCount < STABLE_COUNT)
+            throw new IllegalStateException("Failed to collect elements after " + ITERATIONS + " iterations");
 
-        return this;
     }
 
     @Override
-    public CommonPage compose(Action action) {
-        if (!execute) return this;
+    public void compose(Action action) {
+        if (!execute) return;
         logger.log("compose()", "Action ", action.toString());
         currentElement.fill(action.toString());
-        return this;
+
     }
 
     @Override
-    public CommonPage compose(String text) {
-        if (!execute) return this;
+    public void compose(String text) {
+        if (!execute) return;
         logger.log("compose()", "", text);
         currentElement.fill(text);
-        return this;
+
     }
 
     @Override
-    public CommonPage end() {
+    public void end() {
         logger.log("end()\t");
         execute = true;
-        return this;
+
     }
 
     @Override
-    public CommonPage focus(Target target) {
-        if (!execute) return this;
-        logger.log("focus()\t",target.getType().toString(), target.getValue());
+    public void focus(Target target) {
+        if (!execute) return;
+        logger.log("focus()\t", target.getType().toString(), target.getValue());
         decode(target);
-        return this;
+
     }
 
     @Override
@@ -137,14 +192,14 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
-    public CommonPage go(String url) {
+    public void go(String url) {
         logger.log("go()\t", url);
         page.navigate(url);
-        return this;
+
     }
 
     @Override
-    public CommonPage open() {
+    public void open() {
         logger.log("open()\t", "Chrome");
         try {
             Playwright playwright = Playwright.create();
@@ -154,16 +209,16 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             print("Playwright Exception" + pe.getMessage());
 
         }
-        return this;
+
     }
 
     @Override
-    public CommonPage probe(Target target) {
-        logger.log("probe()\t",target.getType().toString(), target.getValue());
+    public void probe(Target target) {
+        logger.log("probe()\t", target.getType().toString(), target.getValue());
         setTimeout(DEFAULT_PROBE_TIMEOUT);
         if (!decode(target)) execute = false;
         setTimeout(DEFAULT_TIMEOUT);
-        return this;
+
     }
 
     @Override
@@ -174,35 +229,40 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     // TODO review
     @Override
-    public CommonPage submit() {
-        if (!execute) return this;
+    public void submit() {
+        if (!execute) return;
         logger.log("submit()\t");
-        return this;
+
     }
 
-    //////////////////////////
-    /// DIAGNOSTIC METHODS ///
-    //////////////////////////
+    @Override
+    public void log(String message) {
+        logger.log(message);
+    }
 
-    public CommonPage printElements() {
+    /// ///////////////////////
+    /// DIAGNOSTIC METHODS ///
+    /// ///////////////////////
+
+    public void printElements() {
         logger.log("print elements");
         printPartition();
         for (Locator listElement : currentElements) {
             print(listElement.textContent());
         }
-        return this;
+
     }
 
-    public CommonPage printElement() {
+    public void printElement() {
         logger.log("print element");
         BoundingBox box = currentElement.boundingBox();
         print("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
         print("Text: \t\t" + currentElement.textContent());
         print("Enabled: \t" + currentElement.isEnabled());
         print("Visible: \t" + currentElement.isVisible());
-        print("Location: \t " + box.x + " " + box.y);
-        print("Dimensions: \t" + box.width + " " + box.height);
-        return this;
+//        print("Location: \t " + box.x + " " + box.y);
+//        print("Dimensions: \t" + box.width + " " + box.height);
+
     }
 
     private boolean decode(Target target) {
@@ -230,9 +290,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                     currentElement = elements.getFirst();
                 }
             }
-        }
-        catch (PlaywrightException pe) {
-            logger.log("decode() failed for target: " + target.toString());
+        } catch (PlaywrightException pe) {
+            logger.log("decode() failed for target: " + target);
             found = false;
         }
         return found;
@@ -241,4 +300,6 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     private void setTimeout(int seconds) {
         page.setDefaultTimeout(seconds * 1000);
     }
+
+
 }

@@ -50,5 +50,9 @@ public class TargetFactory {
     public Target title(String title) {
         return new Target(title ,TITLE ,title);
     }
+
+    public Target tag(Enum.HTMLTag tag) {
+        return new Target(tag.name().toLowerCase() ,TAG ,tag.name().toLowerCase());
+    }
 }
 
