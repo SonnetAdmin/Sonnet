@@ -154,8 +154,26 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void compose(String text) {
         if (!execute) return;
-        logger.log("compose()", "", text);
+        if (currentElement.getAttribute("type").equals("password")) {
+            logger.log("compose()", "Password", text.replaceAll(".", "*"));
+        } else {
+            logger.log("compose()", "Text", text);
+        }
         currentElement.fill(text);
+
+    }
+
+    @Override
+    public void compose(int number) {
+        if (!execute) return;
+        if (currentElement.getAttribute("type").equals("number")) {
+            logger.log("compose()", "Number", String.valueOf(number));
+//            currentElement.fill(number);
+        } else {
+            logger.log("compose()", "Text", String.valueOf(number));
+            currentElement.fill(String.valueOf(number));
+        }
+
 
     }
 

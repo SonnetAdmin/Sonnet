@@ -37,6 +37,7 @@ public interface CommonPageInterface {
     void collect(Target target);
     void compose(Action action);
     void compose(String text);
+    void compose(int number);
     void end();
     void focus(Target target);
     String get(Trait trait);

@@ -3,7 +3,7 @@ package sonnet;
 import static sonnet.Enum.Type.*;
 
 
-public class TargetFactory {
+public abstract class TargetFactory {
     public Target id(String id) {
         return new Target("#" + id ,ID ,id);
     }
@@ -54,5 +54,6 @@ public class TargetFactory {
     public Target tag(Enum.HTMLTag tag) {
         return new Target(tag.name().toLowerCase() ,TAG ,tag.name().toLowerCase());
     }
+
 }
 

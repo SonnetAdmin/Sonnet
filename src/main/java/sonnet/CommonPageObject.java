@@ -34,7 +34,6 @@ public class CommonPageObject extends TargetFactory {
 
     public CommonPageObject choose(String name) {
         commonPage.choose(name);
-        log("lines --------------");
         commonPage.printElement();
         return this;
     }
@@ -67,6 +66,11 @@ public class CommonPageObject extends TargetFactory {
 
     public CommonPageObject compose(String text) {
         commonPage.compose(text);
+        return this;
+    }
+
+    public CommonPageObject compose(int number) {
+        commonPage.compose(number);
         return this;
     }
 
