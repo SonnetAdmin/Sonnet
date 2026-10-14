@@ -45,18 +45,10 @@ public class JCompose extends CommonPageObject {
         focus(target).compose("MyEmail");
     }
 
-//    @Test
-//    @Tag("add")
-//    @DisplayName("Number test")
-//    public void t4() {
-//        Target target = id("number");
-//        focus(target).compose("MyNumber");
-//    }
-
     @Test
     @Tag("add")
     @DisplayName("URL test")
-    public void t5() {
+    public void t4() {
         Target target = id("url");
         focus(target).compose("MyURL");
     }

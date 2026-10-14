@@ -69,11 +69,6 @@ public class CommonPageObject extends TargetFactory {
         return this;
     }
 
-    public CommonPageObject compose(int number) {
-        commonPage.compose(number);
-        return this;
-    }
-
     public CommonPageObject end() {
         commonPage.end();
         return this;
