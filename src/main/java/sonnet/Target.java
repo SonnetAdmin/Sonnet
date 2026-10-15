@@ -17,6 +17,7 @@ public class Target {
     public Target(AriaRole ariaRole, Enum.Type type) {
         this.ariaRole = ariaRole;
         this.type = type;
+        this.value = ariaRole.toString();
     }
 
 
