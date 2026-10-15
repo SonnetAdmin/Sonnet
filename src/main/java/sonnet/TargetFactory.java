@@ -1,6 +1,7 @@
 package sonnet;
 
 import static sonnet.Enum.Type.*;
+import com.microsoft.playwright.options.AriaRole;
 
 
 public abstract class TargetFactory {
@@ -54,6 +55,11 @@ public abstract class TargetFactory {
     public Target tag(Enum.HTMLTag tag) {
         return new Target(tag.name().toLowerCase() ,TAG ,tag.name().toLowerCase());
     }
+
+    protected static Target ariaRole(AriaRole ariaRole) {
+        return new Target(ariaRole, ROLE);
+    }
+
 
 }
 

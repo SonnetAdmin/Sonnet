@@ -5,6 +5,7 @@ import com.microsoft.playwright.options.BoundingBox;
 import sonnet.utils.Logger;
 
 import java.util.List;
+import java.util.Objects;
 
 import static org.sonnet.utils.Print.*;
 import static sonnet.utils.Time.pause;
@@ -182,18 +183,27 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public String get(Trait trait) {
         logger.log("get()\t", trait.name());
         return switch (trait) {
-            case TEXT -> currentElement.textContent();
+            case ALT, CLASS, CONTENT, HREF, ID, LANG,
+                 NAME, PLACEHOLDER, STYLE, TITLE, TYPE ->
+                    Objects.toString(currentElement.getAttribute(trait.name().toLowerCase()), "");
+//            case ATTRIBUTES -> getAllAttributes();
+            case DISPLAYED -> String.valueOf(currentElement.isVisible());
+            case ENABLED -> String.valueOf(currentElement.isEnabled());
+            case HEIGHT -> String.valueOf(currentElement.boundingBox().height);
+            case REQUIRED -> currentElement.getAttribute("required") != null ? "true" : "";
+            case SELECTED -> String.valueOf(currentElement.isChecked());
             case TAG -> currentElement.evaluate("el => el.tagName").toString();
+            case TEXT -> Objects.toString(currentElement.textContent(), "");
+            case TEXT_TRIMMED -> Objects.toString(currentElement.textContent().trim(), "");
+            case VALUE -> currentElement.getAttribute("value");
+            case VISIBLE -> String.valueOf(currentElement.isVisible());
+            case WIDTH -> String.valueOf(currentElement.boundingBox().width);
             case XPOS -> String.valueOf(currentElement.boundingBox().x);
             case YPOS -> String.valueOf(currentElement.boundingBox().y);
-            case WIDTH -> String.valueOf(currentElement.boundingBox().width);
-            case HEIGHT -> String.valueOf(currentElement.boundingBox().height);
-            case ENABLED -> String.valueOf(currentElement.isEnabled());
-            case VISIBLE -> String.valueOf(currentElement.isVisible());
-            case SELECTED -> String.valueOf(currentElement.isChecked());
-
         };
     }
+
+
 
     @Override
     public void go(String url) {
@@ -287,6 +297,10 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
                 case TITLE:
                     currentElement = page.getByTitle(target.getSelector());
+                    break;
+
+                case ROLE:
+                    currentElement = page.getByRole(target.getAriaRole());
                     break;
 
                 default: {

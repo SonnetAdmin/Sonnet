@@ -1,7 +1,7 @@
 package sonnet;
 
 public interface CommonPageInterface {
-    enum Action{
+    enum Action {
         BACKSPACE,
         DOWN,
         ENTER,
@@ -13,12 +13,28 @@ public interface CommonPageInterface {
         UP;
     }
 
-    enum Trait{
+    enum Trait {
+        ALT,
+//        ATTRIBUTES,
+        CLASS,
+        CONTENT,
+        DISPLAYED,
         ENABLED,
         HEIGHT,
+        HREF,
+        ID,
+        LANG,
+        NAME,
+        PLACEHOLDER,
+        REQUIRED,
         SELECTED,
+        STYLE,
         TAG,
         TEXT,
+        TEXT_TRIMMED,
+        TITLE,
+        TYPE,
+        VALUE,
         VISIBLE,
         WIDTH,
         XPOS,
@@ -27,25 +43,23 @@ public interface CommonPageInterface {
 
     void box(Target target);
     void box();
-    void unbox();
-    void click();
     void choose(int index);
     void choose(String name);
+    void click();
     void cognate(Target destination);
-    void cognate(Target origin,Target destination);
+    void cognate(Target origin, Target destination);
     void collect(String locator);
     void collect(Target target);
     void compose(Action action);
     void compose(String text);
-    void compose(int number);
     void end();
     void focus(Target target);
     String get(Trait trait);
     void go(String url);
+    void log(String message);
     void open();
     void probe(Target target);
     int size();
     void submit();
-    void log(String message);
-
+    void unbox();
 }
