@@ -20,6 +20,12 @@ public class Target {
         this.value = ariaRole.toString();
     }
 
+    public Target(AriaRole ariaRole, String label, Enum.Type type) {
+        this.ariaRole = ariaRole;
+        this.value = label;
+        this.type = type;
+    }
+
 
     public Enum.Type getType() {
         return type;

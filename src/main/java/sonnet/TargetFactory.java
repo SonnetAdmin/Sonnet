@@ -60,6 +60,10 @@ public abstract class TargetFactory {
         return new Target(ariaRole, ROLE);
     }
 
+    protected static Target ariaRole(AriaRole ariaRole, String label) {
+        return new Target(ariaRole, label, ROLE_AND_LABEL);
+    }
+
 
 }
 

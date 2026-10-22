@@ -2,6 +2,7 @@ package sonnet;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
+import com.microsoft.playwright.options.*;
 import sonnet.utils.Logger;
 
 import java.util.List;
@@ -301,6 +302,10 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
                 case ROLE:
                     currentElement = page.getByRole(target.getAriaRole());
+                    break;
+
+                case ROLE_AND_LABEL:
+                    currentElement = page.getByRole(target.getAriaRole(), new Page.GetByRoleOptions().setName(target.getValue()));
                     break;
 
                 default: {
