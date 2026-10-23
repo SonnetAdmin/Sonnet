@@ -2,49 +2,132 @@
 <html lang="en">
 <head>
     <link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" rel="stylesheet">
-    <title>Template</title>
+    <title>Test Site</title>
 </head>
 <body>
-<h1>Template</h1>
+<h1>Test Site</h1>
+<form>
+    <div>
+        <label>Inputs:</label>
+        <br>
 
-<label>I am a label</label> <br>
+        <label for="text_input">Text Input:</label>
+        <input class="text_input" id="text_input" name="text_input" placeholder="type here...">
+        <br>
 
-<button id="button">I am a button</button> <br>
+        <label>Radio Buttons:</label>
+        <div>
+            <input id="radio1" name="radio" type="radio" value="radio1">
+            <label for="radio1">Option 1</label>
+        </div>
+        <div>
+            <input id="radio2" name="radio" type="radio" value="radio2">
+            <label for="radio2">Option 2</label>
+        </div>
+        <div>
+            <input id="radio3" name="radio" type="radio" value="radio3">
+            <label for="radio3">Option 3</label>
+        </div>
 
-<div id="inputs">
-    <input id="text" type="text" placeholder="I am a text input"> <br>
-    <input id="radio" type="radio" placeholder="I am a radio input"> <br>
-    <input id="checkbox" type="checkbox" placeholder="I am a checkbox input"> <br>
-    <input id="date" type="date" placeholder="I am a date input"> <br>
-    <input id="password" type="password" placeholder="I am a password input"> <br>
-</div>
+        <label for="checkbox">Checkbox:</label>
+        <input id="checkbox" name="checkbox" type="checkbox">
+        <br>
 
-<textarea id="textarea" placeholder="I am a textarea"></textarea> <br>
+        <label for="date">Date:</label>
+        <input id="date" name="date" type="date">
+        <br>
 
-<select id="select">
-    <option value="option1">Option 1</option>
-    <option value="option2">Option 2</option>
-</select> <br>
+        <label for="password">Password:</label>
+        <input id="password" name="password" type="password">
+        <br>
 
-<datalist id="datalist">
-    <option value="Option 1">
-    <option value="Option 2">
-</datalist> <br>
+    </div>
 
-<a href="https://example.com">I am a link</a> <br>
+    <label for="button">Button:</label>
+    <button id="button" name="button" type="button"></button>
+    <br>
 
-<table>
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-    </tr>
-    <tr>
-        <td>Row 1, Cell 1</td>
-        <td>Row 1, Cell 2</td>
-    </tr>
-</table> <br>
+    <label for="text_area">Text Area:</label>
+    <textarea id="text_area" name="text_area"></textarea>
+    <br>
 
-<form action=""></form> <br>
+    <label for="select">Select:</label>
+    <select id="select" name="select">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+        <option value="option4">Option 4</option>
+    </select>
+    <br>
 
+    <label for="datalist">Datalist:</label>
+    <input list="datalists" name="datalist" id="datalist">
+    <datalist id="datalists">
+        <option value="option1">
+        <option value="option2">
+        <option value="option3">
+        <option value="option4">
+    </datalist>
+    <br>
+
+    <a href="https://example.com">Link</a>
+    <br>
+
+    <table>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+        </tr>
+        <tr>
+            <td>Row 1, Cell 1</td>
+            <td>Row 1, Cell 2</td>
+        </tr>
+        <tr>
+            <td>Row 2, Cell 1</td>
+            <td>Row 2, Cell 2</td>
+        </tr>
+        <tr>
+            <td>Row 3, Cell 1</td>
+            <td>Row 3, Cell 2</td>
+        </tr>
+    </table>
+    <br>
+
+    <label for="form">--------Form--------</label>
+    <form id="form" name="form">
+        <br>
+        <label for="form_text_area">Text Area:</label>
+        <textarea id="form_text_area" name="form_text_area"></textarea>
+        <br>
+
+        <label>Radio Buttons:</label>
+        <div>
+            <input id="form_radio1" name="form_radio" type="radio" value="form_radio">
+            <label for="form_radio1">Option 1</label>
+        </div>
+        <div>
+            <input id="form_radio2" name="form_radio" type="radio" value="form_radio">
+            <label for="form_radio2">Option 2</label>
+        </div>
+        <div>
+            <input id="form_radio3" name="form_radio" type="radio" value="form_radio">
+            <label for="form_radio3">Option 3</label>
+        </div>
+        <br>
+
+        <label for="form_checkbox">Checkbox:</label>
+        <input id="form_checkbox" name="form_checkbox" type="checkbox">
+        <br>
+
+        <label for="submit">Button:</label>
+        <button id="submit" name="submit" type="submit"></button>
+        <br>
+
+    </form>
+    <br>
+
+</form>
 </body>
 </html>
+
+
