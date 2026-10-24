@@ -4,6 +4,8 @@ import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static sonnet.CommonPageInterface.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
@@ -64,6 +66,28 @@ public class TagWithText extends CommonPageObject {
         focus(target).click();
         assertTrue(get(ENABLED).equals("true"));
         assertTrue(get(TEXT).equals("Button"));
+    }
+
+    @Test
+    @Tag("tagwithtext")
+    @DisplayName("nested text")
+    public void t5() {
+        focus(tag(H2));
+        String text = get(TEXT);
+        assertTrue(text.contains("Div"));
+        assertFalse(text.contains("Nested Element"));
+        assertFalse(text.contains("Child Label"));
+    }
+
+    @Test
+    @Tag("tagwithtext")
+    @DisplayName("nested tag with text")
+    public void t6() {
+        focus(tagWithText(H2,"Div"));
+        assertTrue(get(ID).equals("top"));
+        assertFalse(get(TEXT).equals("Nested Element"));
+        assertThrows(NoSuchElementException.class, () -> focus(tagWithText(H2,"Nested Element")));
+
     }
 }
 

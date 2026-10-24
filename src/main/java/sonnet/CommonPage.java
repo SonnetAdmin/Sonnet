@@ -2,13 +2,11 @@ package sonnet;
 
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
-import com.microsoft.playwright.options.*;
 import sonnet.utils.Logger;
 
 import java.util.List;
-import java.util.Objects;
 
-import static org.sonnet.utils.Print.*;
+import static sonnet.utils.Checks.throwOnZeroOrMinus;
 import static sonnet.utils.Time.pause;
 
 public class CommonPage extends TargetFactory implements CommonPageInterface {
@@ -22,6 +20,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     private Page page;
     private Locator currentElement;
     private List<Locator> currentElements;
+    private int currentListIndex;
     private Boolean execute = true;
     private Boolean boxed = false;
 
@@ -64,8 +63,56 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void choose(int index) {
         if (!execute) return;
-        logger.log("choose()", "Int ", String.valueOf(index));
-        currentElement = currentElements.get(index);
+        throwOnZeroOrMinus(index);
+        logger.log("choose()", "Int ", String.valueOf(index - 1));
+        currentElement = currentElements.get(index - 1);
+    }
+
+    @Override
+    public void choose(Enum.Index index) {
+        if (!execute) return;
+        logger.log("choose()", "Index ", index.name());
+        currentElement = currentElements.get(index.ordinal());
+    }
+
+    @Override
+    public void choose(Enum.ListIndex index) {
+        if (!execute) return;
+        logger.log("choose()", "ListIndex ", index.name());
+        switch (index) {
+            case NOSE:
+                currentElement = currentElements.getFirst();
+                currentListIndex = 0;
+                break;
+
+            case TAIL:
+                currentElement = currentElements.getLast();
+                currentListIndex = currentElements.size() - 1;
+                break;
+
+            case NEXT:
+                if (++currentListIndex == currentElements.size()) {
+                    logger.log("choose()", "NEXT : ", "List pointer already at the end of collection");
+                    currentElement = currentElements.getLast();
+                    currentListIndex--;
+                } else {
+                    currentElement = currentElements.get(currentListIndex);
+                }
+                break;
+
+            case PREVIOUS:
+                if (--currentListIndex < 0) {
+                    logger.log("choose()", "PREVIOUS : ", "List pointer already at the beginning of collection");
+                    currentElement = currentElements.getFirst();
+                    currentListIndex++;
+                } else {
+                    currentElement = currentElements.get(currentListIndex);
+                }
+                break;
+
+            default:
+                throw new IllegalArgumentException("Invalid list index: " + index);
+        }
     }
 
     @Override
@@ -94,8 +141,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                     throw new IllegalArgumentException("Failed to cognate to destination: " + destination);
                 }
                 currentElement = currentElement.locator("..");
-            }
-            else  {
+            } else {
                 found = true;
                 currentElement = currentElements.getFirst();
             }
@@ -108,15 +154,6 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         logger.log("cognate()", origin.getType().toString(), origin.getValue(), destination.getType().toString(), destination.getValue());
         decode(origin);
         cognate(destination);
-    }
-
-    @Override
-    public void collect(String locator) {
-        if (!execute) return;
-        logger.log("collect()", locator);
-        currentElements = currentElement.locator(locator).all();
-
-        //TODO FIX LATER
     }
 
     @Override
@@ -185,8 +222,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         logger.log("get()\t", trait.name());
         return switch (trait) {
             case ALT, CLASS, CONTENT, HREF, ID, LANG,
-                 NAME, PLACEHOLDER, STYLE, TITLE, TYPE ->
-                    Objects.toString(currentElement.getAttribute(trait.name().toLowerCase()), "");
+                 NAME, PLACEHOLDER, STYLE, TITLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
 //            case ATTRIBUTES -> getAllAttributes();
             case DISPLAYED -> String.valueOf(currentElement.isVisible());
             case ENABLED -> String.valueOf(currentElement.isEnabled());
@@ -194,8 +230,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             case REQUIRED -> currentElement.getAttribute("required") != null ? "true" : "";
             case SELECTED -> String.valueOf(currentElement.isChecked());
             case TAG -> currentElement.evaluate("el => el.tagName").toString();
-            case TEXT -> Objects.toString(currentElement.textContent(), "");
-            case TEXT_TRIMMED -> Objects.toString(currentElement.textContent().trim(), "");
+            case TEXT -> currentElement.textContent();
+            case TEXT_TRIMMED -> currentElement.textContent().trim();
             case VALUE -> currentElement.getAttribute("value");
             case VISIBLE -> String.valueOf(currentElement.isVisible());
             case WIDTH -> String.valueOf(currentElement.boundingBox().width);
@@ -203,7 +239,6 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             case YPOS -> String.valueOf(currentElement.boundingBox().y);
         };
     }
-
 
 
     @Override
@@ -221,7 +256,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
             page = browser.newPage();
         } catch (PlaywrightException pe) {
-            print("Playwright Exception" + pe.getMessage());
+            logger.log("Playwright Exception" + pe.getMessage());
 
         }
 
@@ -261,9 +296,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     public void printElements() {
         logger.log("print elements");
-        printPartition();
         for (Locator listElement : currentElements) {
-            print(listElement.textContent());
+            logger.log(listElement.textContent());
         }
 
     }
@@ -271,12 +305,12 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void printElement() {
         logger.log("print element");
         BoundingBox box = currentElement.boundingBox();
-        print("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
-        print("Text: \t\t" + currentElement.textContent());
-        print("Enabled: \t" + currentElement.isEnabled());
-        print("Visible: \t" + currentElement.isVisible());
-//        print("Location: \t " + box.x + " " + box.y);
-//        print("Dimensions: \t" + box.width + " " + box.height);
+        logger.log("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
+        logger.log("Text: \t\t" + currentElement.textContent());
+        logger.log("Enabled: \t" + currentElement.isEnabled());
+        logger.log("Visible: \t" + currentElement.isVisible());
+//        logger.log("Location: \t " + box.x + " " + box.y);
+//        logger.log("Dimensions: \t" + box.width + " " + box.height);
 
     }
 
