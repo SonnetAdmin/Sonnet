@@ -6,6 +6,7 @@ import sonnet.utils.Logger;
 
 import java.util.List;
 
+import static sonnet.utils.Checks.throwOnNull;
 import static sonnet.utils.Checks.throwOnZeroOrMinus;
 import static sonnet.utils.Time.pause;
 
@@ -312,6 +313,20 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 //        logger.log("Location: \t " + box.x + " " + box.y);
 //        logger.log("Dimensions: \t" + box.width + " " + box.height);
 
+    }
+
+    @Override
+    public <T extends Performable> void perform(T runner) {
+        if (!execute) {
+            return;
+        }
+        throwOnNull(runner, "Performable runner");
+        logger.log("Perform()", runner.getDescription());
+        runner.run();
+    }
+
+    protected Page getPage() {
+        return page;
     }
 
     private boolean decode(Target target) {

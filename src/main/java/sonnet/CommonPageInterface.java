@@ -197,4 +197,11 @@ public interface CommonPageInterface {
      * Removes the current highlight or active selection from the page.
      */
     void unbox();
+
+    /**
+     * Executes the provided performable task.
+     *
+     * @param runner the performable task to execute
+     */
+    <T extends Performable> void perform(T runner);
 }
