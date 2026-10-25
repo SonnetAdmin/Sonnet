@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <style media="screen">body {
+        font-family: sans-serif;
+    }</style>
+    <link href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css" rel="stylesheet">
+    <title>HTML Attribute Examples</title>
+</head>
+<body>
+<h1>HTML Attribute Examples</h1>
+
+<h2>Forms and inputs</h2>
+<form accept-charset="UTF-8" action="/subscribe" autocomplete="on" enctype="multipart/form-data" id="subscription"
+      method="post" name="subscription" novalidate>
+    <label for="email">Email address:</label>
+    <input accesskey="e" autocomplete="email" autofocus dirname="email.dir" form="subscription"
+           id="email" maxlength="254" name="email" placeholder="name@example.com" required
+           size="30" type="email" value="reader@example.com">
+    <input accept="image/png,image/jpeg" type="file">
+    <input pattern="[A-Z]{2}[0-9]{4}" type="text" value="AB1234">
+    <input max="12" min="1" step="1" type="number" value="3">
+    <input checked type="checkbox">
+    <input readonly type="text" value="Generated automatically">
+    <input disabled type="text" value="Unavailable">
+    <input list="cities" type="text">
+    <datalist id="cities">
+        <option value="London">
+        <option value="Tokyo">
+    </datalist>
+    <textarea cols="40" rows="4" spellcheck="true" wrap="soft">A short message</textarea>
+    <select multiple size="3">
+        <option selected value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+    </select>
+    <button formaction="/subscribe/preview" type="submit">Preview submission</button>
+    <button tabindex="0" type="button">Save draft</button>
+</form>
+
+<h2>Links and text</h2>
+<a download="example-homepage.html" href="https://example.com/" hreflang="en" rel="external"
+   target="_blank" title="Visit the example site">Example site</a>
+<p class="notice" contenteditable="true" draggable="true" spellcheck="true"
+   style="color: darkgreen" title="Editable notice">Drag or edit this notice.</p>
+<p align="center">Centered text using the legacy align attribute.</p>
+<blockquote cite="https://example.com/articles/reading">A cited quotation.</blockquote>
+<time datetime="2026-10-25">October 25, 2026</time>
+<p dir="rtl">A short right-to-left direction example.</p>
+<p role="status">Your preferences have been saved.</p>
+<div hidden>This optional detail is currently hidden.</div>
+<div id="attribute-reference">This element has an identifier.</div>
+
+<h2>Images and embedded content</h2>
+<a href="https://example.com/map">
+    <img alt="Map of the campus" height="400" ismap sizes="(max-width: 640px) 100vw, 640px"
+         src="images/campus-map.png" srcset="images/campus-map.png 640w"
+         usemap="#campus-map" width="640">
+</a>
+<map name="campus-map">
+    <area alt="Library entrance" coords="20,20,180,120" href="https://example.com/library"
+          shape="rect">
+</map>
+<object data="documents/guide.pdf" height="480" type="application/pdf" width="640">
+    <p>Open the <a href="documents/guide.pdf">visitor guide</a>.</p>
+</object>
+<iframe sandbox="allow-same-origin" srcdoc="<p>Embedded welcome message</p>"
+        title="Welcome message"></iframe>
+
+<h2>Media</h2>
+<video autoplay controls height="360" loop muted poster="images/orientation-poster.jpg"
+       preload="metadata" src="media/orientation.mp4" width="640">
+    <track default kind="captions" label="English" src="media/orientation-en.vtt"
+           srclang="en">
+    Your browser does not support the video element.
+</video>
+<audio controls preload="none" src="media/announcement.mp3">
+    Your browser does not support the audio element.
+</audio>
+<script async src="scripts/async-example.js"></script>
+<script defer src="scripts/deferred-example.js"></script>
+
+<h2>Tables and lists</h2>
+<table>
+    <colgroup span="2"></colgroup>
+    <tr>
+        <th id="plan" scope="col">Plan</th>
+        <th scope="col">Price</th>
+    </tr>
+    <tr>
+        <td colspan="2" headers="plan" rowspan="2">Standard membership</td>
+    </tr>
+</table>
+<ol reversed start="3">
+    <li>Review the guide</li>
+    <li>Choose a plan</li>
+    <li>Submit the form</li>
+</ol>
+<details open>
+    <summary>Additional information</summary>
+    <p>Membership can be changed at any time.</p>
+</details>
+<meter high="80" low="30" max="100" min="0" optimum="100" value="72">72%</meter>
+<progress max="100" value="65">65%</progress>
+<select>
+    <optgroup label="Popular destinations">
+        <option value="london">London</option>
+    </optgroup>
+</select>
+</body>
+</html>
