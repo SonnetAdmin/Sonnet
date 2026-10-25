@@ -60,8 +60,8 @@ public class Enum {
     }
 
     public enum ListIndex {
-        FIRST,
-        LAST,
+        NOSE,
+        TAIL,
         NEXT,
         PREVIOUS;
     }

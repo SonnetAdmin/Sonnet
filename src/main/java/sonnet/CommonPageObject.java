@@ -32,6 +32,16 @@ public class CommonPageObject extends TargetFactory {
         return this;
     }
 
+    public CommonPageObject choose(Enum.Index index) {
+        commonPage.choose(index);
+        return this;
+    }
+
+    public CommonPageObject choose(Enum.ListIndex index) {
+        commonPage.choose(index);
+        return this;
+    }
+
     public CommonPageObject choose(String name) {
         commonPage.choose(name);
         commonPage.printElement();
@@ -45,11 +55,6 @@ public class CommonPageObject extends TargetFactory {
 
     public CommonPageObject cognate(Target origin, Target destination) {
         commonPage.cognate(origin, destination);
-        return this;
-    }
-
-    public CommonPageObject collect(String locator) {
-        commonPage.collect(locator);
         return this;
     }
 
