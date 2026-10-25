@@ -98,6 +98,11 @@ public class CommonPageObject extends TargetFactory {
         return this;
     }
 
+    public CommonPageObject perform(Performable runner) {
+        commonPage.perform(runner);
+        return this;
+    }
+
     public CommonPageObject printElement() {
         commonPage.printElement();
         return this;
