@@ -68,6 +68,8 @@ public abstract class TargetFactory {
         return new Target(ariaRole, label, ROLE_AND_LABEL);
     }
 
-
+    protected static Target attribute(Html.Attribute attribute, String value) {
+        return new Target("[" + attribute.name() + "='" + value + "']", HTML_ATTRIBUTE_VALUE, value);
+    }
 }
 

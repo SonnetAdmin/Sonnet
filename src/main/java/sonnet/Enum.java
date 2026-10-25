@@ -10,6 +10,7 @@ public class Enum {
         CSS,
         DATA,
         HREF,
+        HTML_ATTRIBUTE_VALUE,
         ID, // DONE
         LABEL,
         LEAF,
