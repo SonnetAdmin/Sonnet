@@ -342,9 +342,14 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                     currentElement = page.getByRole(target.getAriaRole(), new Page.GetByRoleOptions().setName(target.getValue()));
                     break;
 
-                default: {
+                case ATTRIBUTE, ATTRIBUTE_VALUE, CLASS, CLASSES, CSS, DATA, HREF, ID, LEAF, LINK_TEXT, NAME,
+                     PARTIAL_LINK_TEXT, PARTIAL_TEXT, ROLE_LITERAL, ROOT, SPLICE, SRC, STYLE, TAG, TAG_CONTAINS_TEXT,
+                     TAG_WITH_TEXT, TEST_ID, TEXT, TYPE, VALUE, XPATH:
                     List<Locator> elements = page.locator(target.getSelector()).all();
                     currentElement = elements.getFirst();
+
+                default: {
+
                 }
             }
         } catch (PlaywrightException pe) {

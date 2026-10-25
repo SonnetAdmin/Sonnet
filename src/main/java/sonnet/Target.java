@@ -26,6 +26,11 @@ public class Target {
         this.type = type;
     }
 
+        public Target(String selector, String prefix, String suffix, Enum.Type type) {
+        this.selector = selector;
+        this.type = type;
+        this.value = "(Prefix: "+prefix +") (Suffix: " + suffix+")";
+    }
 
     public Enum.Type getType() {
         return type;
