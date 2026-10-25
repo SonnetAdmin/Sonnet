@@ -32,6 +32,10 @@ public abstract class TargetFactory {
         return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), '" + text + "')]" ,TAG_WITH_TEXT ,text);
     }
 
+    public static Target splice(String prefix, String suffix) {
+        return new Target("//*[starts-with(text(), '" + prefix + "') and contains(text(), '" + suffix + "')]", prefix, suffix, SPLICE);
+    }
+
     public Target placeholder(String placeholder) {
         return new Target(placeholder ,PLACEHOLDER ,placeholder);
     }
