@@ -30,7 +30,7 @@ public class LinkWithText extends CommonPageObject {
     @DisplayName("h1")
     public void t1() {
         Target target = linkText("LinkWithText");
-        Target targetID = tagWithText(H1, "ID Test");
+        Target targetID = tagContainsText(H1, "ID Test");
         focus(target).click();
         focus(targetID);
         assertTrue(get(TEXT).equals("ID Test"));

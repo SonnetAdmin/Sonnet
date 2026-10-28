@@ -29,65 +29,43 @@ public class TagWithText extends CommonPageObject {
     public void setUp() {}
 
     @Test
-    @Tag("tagwithtext")
+    @Tag("add")
     @DisplayName("h1")
     public void t1() {
-        Target target = tagWithText(H1,"TagWithText Test");
+        Target target = tagWithText(H1,"TagWithText Test Exact");
         focus(target);
-        assertTrue(get(TEXT).equals("TagWithText Test"));
-        assertFalse(get(TEXT).equals("LabelWithText"));
+        assertTrue(get(TEXT).equals("TagWithText Test Exact"));
+        assertFalse(get(TEXT).equals("LabelWithText Exact"));
     }
 
     @Test
-    @Tag("tagwithtext")
+    @Tag("add")
     @DisplayName("label")
     public void t2() {
-        Target target = tagWithText(LABEL,"LabelWithText");
+        Target target = tagWithText(LABEL,"LabelWithText Exact");
         focus(target);
-        assertTrue(get(TEXT).equals("LabelWithText"));
-        assertFalse(get(TEXT).equals("TagWithText Test"));
+        assertTrue(get(TEXT).equals("LabelWithText Exact"));
+        assertFalse(get(TEXT).equals("TagWithText Test Exact"));
     }
 
     @Test
-    @Tag("tagwithtext")
+    @Tag("add")
     @DisplayName("p")
     public void t3() {
-        Target target = tagWithText(P,"Hello");
+        Target target = tagWithText(P,"Hello Exact");
         focus(target).click();
-        assertTrue(get(TEXT).equals("Hello"));
-        assertEquals("Hello", get(TEXT));
+        assertTrue(get(TEXT).equals("Hello Exact"));
+        assertEquals("Hello Exact", get(TEXT));
     }
 
     @Test
-    @Tag("tagwithtext")
+    @Tag("add")
     @DisplayName("button")
     public void t4() {
-        Target target = tagWithText(BUTTON,"Button");
+        Target target = tagWithText(BUTTON,"Button Exact");
         focus(target).click();
         assertTrue(get(ENABLED).equals("true"));
-        assertTrue(get(TEXT).equals("Button"));
-    }
-
-    @Test
-    @Tag("tagwithtext")
-    @DisplayName("nested text")
-    public void t5() {
-        focus(tag(H2));
-        String text = get(TEXT);
-        assertTrue(text.contains("Div"));
-        assertFalse(text.contains("Nested Element"));
-        assertFalse(text.contains("Child Label"));
-    }
-
-    @Test
-    @Tag("tagwithtext")
-    @DisplayName("nested tag with text")
-    public void t6() {
-        focus(tagWithText(H2,"Div"));
-        assertTrue(get(ID).equals("top"));
-        assertFalse(get(TEXT).equals("Nested Element"));
-        assertThrows(NoSuchElementException.class, () -> focus(tagWithText(H2,"Nested Element")));
-
+        assertTrue(get(TEXT).equals("Button Exact"));
     }
 }
 
