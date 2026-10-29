@@ -28,7 +28,12 @@ public abstract class TargetFactory {
         return new Target("[name='" + name + "']",NAME ,name);
         }
 
+
     public Target tagWithText(Enum.HTMLTag tag, String text) {
+        return new Target("//" + tag.name().toLowerCase() + "[text()='" + text + "']" ,TAG_WITH_TEXT ,text);
+    }
+
+    public Target tagContainsText(Enum.HTMLTag tag, String text) {
         return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), '" + text + "')]" ,TAG_WITH_TEXT ,text);
     }
 

@@ -1,4 +1,4 @@
-package sonnet.junit.focus;
+package sonnet.junit;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
@@ -11,15 +11,14 @@ import static sonnet.CommonPageInterface.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
 
 
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class TagWithText extends CommonPageObject {
+public class JTagContainsText extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\TagWithText.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\TagConatinsText.html");
     }
 
     @AfterAll
@@ -32,7 +31,7 @@ public class TagWithText extends CommonPageObject {
     @Tag("tagwithtext")
     @DisplayName("h1")
     public void t1() {
-        Target target = tagWithText(H1,"TagWithText Test");
+        Target target = tagContainsText(H1,"TagWithText Test");
         focus(target);
         assertTrue(get(TEXT).equals("TagWithText Test"));
         assertFalse(get(TEXT).equals("LabelWithText"));
@@ -42,7 +41,7 @@ public class TagWithText extends CommonPageObject {
     @Tag("tagwithtext")
     @DisplayName("label")
     public void t2() {
-        Target target = tagWithText(LABEL,"LabelWithText");
+        Target target = tagContainsText(LABEL,"LabelWithText");
         focus(target);
         assertTrue(get(TEXT).equals("LabelWithText"));
         assertFalse(get(TEXT).equals("TagWithText Test"));
@@ -52,7 +51,7 @@ public class TagWithText extends CommonPageObject {
     @Tag("tagwithtext")
     @DisplayName("p")
     public void t3() {
-        Target target = tagWithText(P,"Hello");
+        Target target = tagContainsText(P,"Hello");
         focus(target).click();
         assertTrue(get(TEXT).equals("Hello"));
         assertEquals("Hello", get(TEXT));
@@ -62,7 +61,7 @@ public class TagWithText extends CommonPageObject {
     @Tag("tagwithtext")
     @DisplayName("button")
     public void t4() {
-        Target target = tagWithText(BUTTON,"Button");
+        Target target = tagContainsText(BUTTON,"Button");
         focus(target).click();
         assertTrue(get(ENABLED).equals("true"));
         assertTrue(get(TEXT).equals("Button"));
@@ -83,10 +82,10 @@ public class TagWithText extends CommonPageObject {
     @Tag("tagwithtext")
     @DisplayName("nested tag with text")
     public void t6() {
-        focus(tagWithText(H2,"Div"));
+        focus(tagContainsText(H2,"Div"));
         assertTrue(get(ID).equals("top"));
         assertFalse(get(TEXT).equals("Nested Element"));
-        assertThrows(NoSuchElementException.class, () -> focus(tagWithText(H2,"Nested Element")));
+        assertThrows(NoSuchElementException.class, () -> focus(tagContainsText(H2,"Nested Element")));
 
     }
 }
