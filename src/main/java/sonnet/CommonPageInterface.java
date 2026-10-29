@@ -204,4 +204,15 @@ public interface CommonPageInterface {
      * @param runner the performable task to execute
      */
     <T extends Performable> void perform(T runner);
+
+    /**
+     * Stores a value associated with the provided key.
+     */
+    void store(String key, String value);
+
+
+    /**
+     * Retrieves the value associated with the provided key.
+     */
+    String retrieve(String key);
 }

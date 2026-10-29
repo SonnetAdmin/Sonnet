@@ -131,4 +131,13 @@ public class CommonPageObject extends TargetFactory {
         commonPage.log(message);
         return this;
     }
+
+    public CommonPageObject store(String key, String value) {
+        commonPage.store(key, value);
+        return this;
+    }
+
+    public String retrieve(String key) {
+        return commonPage.retrieve(key);
+    }
 }

@@ -4,7 +4,9 @@ import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.BoundingBox;
 import sonnet.utils.Logger;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static sonnet.utils.Checks.throwOnNull;
 import static sonnet.utils.Checks.throwOnZeroOrMinus;
@@ -325,6 +327,16 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         runner.run();
     }
 
+    @Override
+    public void store(String key, String value) {
+        sessionMap.put(key, value);
+    }
+
+    @Override
+    public String retrieve(String key) {
+        return sessionMap.get(key);
+    }
+
     protected Page getPage() {
         return page;
     }
@@ -378,5 +390,6 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         page.setDefaultTimeout(seconds * 1000);
     }
 
+    private static final Map<String, String> sessionMap = new HashMap<>();
 
 }
