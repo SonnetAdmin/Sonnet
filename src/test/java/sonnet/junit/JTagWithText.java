@@ -1,20 +1,18 @@
-package sonnet.junit.focus;
+package sonnet.junit;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 
-import java.util.NoSuchElementException;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.CommonPageInterface.Trait.ENABLED;
+import static sonnet.CommonPageInterface.Trait.TEXT;
 import static sonnet.Enum.HTMLTag.*;
-
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class TagWithText extends CommonPageObject {
+public class JTagWithText extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {

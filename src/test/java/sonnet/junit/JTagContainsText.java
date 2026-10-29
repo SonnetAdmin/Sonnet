@@ -1,4 +1,4 @@
-package sonnet.junit.focus;
+package sonnet.junit;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
@@ -13,7 +13,7 @@ import static sonnet.Enum.HTMLTag.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class TagContainsText extends CommonPageObject {
+public class JTagContainsText extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {
