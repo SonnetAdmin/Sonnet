@@ -1,15 +1,18 @@
 package sonnet.performables;
 
+import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
-import sonnet.Enum;
 import sonnet.Performable;
 
-import static sonnet.CommonPageInterface.Action.ENTER;
+import static sonnet.CommonPageInterface.Action.Enter;
+import static sonnet.Enum.HTMLTag.DIV;
 
 public class SearchGoogle extends Performable {
     private final String URL = "https://www.google.com";
     private String criteria;
+
+    public SearchGoogle() {}
 
     public SearchGoogle(String criteria) {
         this.criteria = criteria;
@@ -20,12 +23,13 @@ public class SearchGoogle extends Performable {
         open();
         Page page = getPage();
         page.navigate(URL);
-        probe(ariaRole(AriaRole.NONE, "Reject all"));
-        click();                //TODO FIX LATER
+        focus(tagWithText(DIV, "Accept all"));
+        click();
         end();
         focus(ariaRole(AriaRole.COMBOBOX));
-        compose(criteria);
-        compose(ENTER);
+        click();
+        compose(criteria);          //TODO CHECK COMMON-PAGE
+        compose(Enter);             //TODO CHECK COMMON-PAGE-INTERFACE
         System.out.println("");
     }
 
