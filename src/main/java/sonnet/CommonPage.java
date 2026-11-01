@@ -378,9 +378,10 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                      TAG_WITH_TEXT, TEST_ID, TEXT, TYPE, VALUE, XPATH:
                     List<Locator> elements = page.locator(target.getSelector()).all();
                     currentElement = elements.getFirst();
+                    break;
 
                 default: {
-                    throw new IllegalArgumentException("Unsupported target type: " + target.getType());
+                    logger.log("decode() failed for target");
                 }
             }
         } catch (PlaywrightException pe) {
