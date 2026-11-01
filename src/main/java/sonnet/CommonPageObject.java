@@ -64,7 +64,7 @@ public class CommonPageObject extends TargetFactory {
         return this;
     }
 
-    public CommonPageObject compose(CommonPageInterface.Action action) {
+    public CommonPageObject compose(Enum.Action action) {
         commonPage.compose(action);
         return this;
     }
@@ -84,7 +84,7 @@ public class CommonPageObject extends TargetFactory {
         return this;
     }
 
-    public String get(CommonPageInterface.Trait trait) {
+    public String get(Enum.Trait trait) {
         return commonPage.get(trait);
     }
 

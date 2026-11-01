@@ -6,7 +6,7 @@ import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static sonnet.CommonPageInterface.Trait.TEXT;
+import static sonnet.Enum.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
 
 

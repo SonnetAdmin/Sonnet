@@ -6,9 +6,6 @@ import sonnet.CommonPageObject;
 import sonnet.performables.DoComplexStuff;
 import sonnet.performables.SearchGoogle;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class JPerform extends CommonPageObject {

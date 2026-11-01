@@ -210,4 +210,44 @@ public class Enum {
         EDGE,
         SAFARI;
     }
+
+    public enum Trait {
+        ALT,
+        //        ATTRIBUTES,
+        CLASS,
+        CONTENT,
+        DISPLAYED,
+        ENABLED,
+        HEIGHT,
+        HREF,
+        ID,
+        LANG,
+        NAME,
+        PLACEHOLDER,
+        REQUIRED,
+        SELECTED,
+        STYLE,
+        TAG,
+        TEXT,
+        TEXT_TRIMMED,
+        TITLE,
+        TYPE,
+        VALUE,
+        VISIBLE,
+        WIDTH,
+        XPOS,
+        YPOS;
+    }
+
+    public enum Action {
+        Backspace,
+        Down,
+        Enter,              //TODO LET JOHN CHECK IF BETTER OPTION
+        Home,
+        Left,
+        Right,
+        Space,
+        Tab,
+        Up;
+    }
 }

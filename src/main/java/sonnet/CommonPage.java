@@ -187,7 +187,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
-    public void compose(Action action) {
+    public void compose(Enum.Action action) {
         if (!execute) return;
         logger.log("compose()", "Action ", action.toString());
         currentElement.press("Enter");
@@ -225,7 +225,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
-    public String get(Trait trait) {
+    public String get(Enum.Trait trait) {
         logger.log("get()\t", trait.name());
         return switch (trait) {
             case ALT, CLASS, CONTENT, HREF, ID, LANG,
@@ -373,14 +373,14 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                     currentElement = page.getByRole(target.getAriaRole(), new Page.GetByRoleOptions().setName(target.getValue()));
                     break;
 
-                case ATTRIBUTE, ATTRIBUTE_VALUE, CLASS, CLASSES, CSS, DATA, HREF, ID, LEAF, LINK_TEXT, NAME,
+                case ATTRIBUTE, ATTRIBUTE_VALUE, CLASS, CLASSES, CSS, DATA, HREF, HTML_ATTRIBUTE_VALUE, ID, LEAF, LINK_TEXT, NAME,
                      PARTIAL_LINK_TEXT, PARTIAL_TEXT, ROLE_LITERAL, ROOT, SPLICE, SRC, STYLE, TAG, TAG_CONTAINS_TEXT,
                      TAG_WITH_TEXT, TEST_ID, TEXT, TYPE, VALUE, XPATH:
                     List<Locator> elements = page.locator(target.getSelector()).all();
                     currentElement = elements.getFirst();
 
                 default: {
-
+                    throw new IllegalArgumentException("Unsupported target type: " + target.getType());
                 }
             }
         } catch (PlaywrightException pe) {

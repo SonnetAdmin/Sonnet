@@ -9,52 +9,6 @@ package sonnet;
  */
 public interface CommonPageInterface {
     /**
-     * Represents keyboard actions that can be applied to a page or input field.
-     */
-    enum Action {
-        Backspace,
-        Down,
-        Enter,              //TODO LET JOHN CHECK IF BETTER OPTION
-        Home,
-        Left,
-        Right,
-        Space,
-        Tab,
-        Up;
-    }
-
-    /**
-     * Represents supported element traits that can be queried from a page.
-     */
-    enum Trait {
-        ALT,
-//        ATTRIBUTES,
-        CLASS,
-        CONTENT,
-        DISPLAYED,
-        ENABLED,
-        HEIGHT,
-        HREF,
-        ID,
-        LANG,
-        NAME,
-        PLACEHOLDER,
-        REQUIRED,
-        SELECTED,
-        STYLE,
-        TAG,
-        TEXT,
-        TEXT_TRIMMED,
-        TITLE,
-        TYPE,
-        VALUE,
-        VISIBLE,
-        WIDTH,
-        XPOS,
-        YPOS;
-    }
-
-    /**
      * Highlights the specified target on the page.
      *
      * @param target the element or area to highlight
@@ -126,7 +80,7 @@ public interface CommonPageInterface {
      *
      * @param action the action to perform
      */
-    void compose(Action action);
+    void compose(Enum.Action action);
 
     /**
      * Enters the provided text into the current active input element.
@@ -153,7 +107,7 @@ public interface CommonPageInterface {
      * @param trait the trait to retrieve
      * @return the trait value as a string, or {@code null} if unavailable
      */
-    String get(Trait trait);
+    String get(Enum.Trait trait);
 
     /**
      * Opens the provided URL.

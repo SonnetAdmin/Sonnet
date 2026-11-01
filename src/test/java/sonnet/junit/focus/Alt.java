@@ -5,7 +5,7 @@ import sonnet.CommonPageObject;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.Trait.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
