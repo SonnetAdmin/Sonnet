@@ -65,6 +65,10 @@ public abstract class TargetFactory {
         return new Target(tag.name().toLowerCase() ,TAG ,tag.name().toLowerCase());
     }
 
+    protected static Target button(String button) {
+        return new Target(AriaRole.BUTTON, button, ROLE_AND_LABEL);
+    }
+
     protected static Target ariaRole(AriaRole ariaRole) {
         return new Target(ariaRole, ROLE);
     }
