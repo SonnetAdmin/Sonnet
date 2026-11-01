@@ -4,7 +4,7 @@ import static sonnet.Enum.Type.*;
 import com.microsoft.playwright.options.AriaRole;
 
 
-public abstract class TargetFactory {
+public abstract class TargetFactory implements Targets {
     public Target id(String id) {
         return new Target("#" + id ,ID ,id);
     }
@@ -37,7 +37,7 @@ public abstract class TargetFactory {
         return new Target("//" + tag.name().toLowerCase() + "[contains(normalize-space(text()), '" + text + "')]" ,TAG_WITH_TEXT ,text);
     }
 
-    public static Target splice(String prefix, String suffix) {
+    public Target splice(String prefix, String suffix) {
         return new Target("//*[starts-with(text(), '" + prefix + "') and contains(text(), '" + suffix + "')]", prefix, suffix, SPLICE);
     }
 
@@ -65,23 +65,23 @@ public abstract class TargetFactory {
         return new Target(tag.name().toLowerCase() ,TAG ,tag.name().toLowerCase());
     }
 
-    protected static Target button(String button) {
+    public Target button(String button) {
         return new Target(AriaRole.BUTTON, button, ROLE_AND_LABEL);
     }
 
-    protected static Target link(String link) {
+    public Target link(String link) {
         return new Target(AriaRole.LINK, link, ROLE_AND_LABEL);
     }
 
-    protected static Target ariaRole(AriaRole ariaRole) {
+    public Target ariaRole(AriaRole ariaRole) {
         return new Target(ariaRole, ROLE);
     }
 
-    protected static Target ariaRole(AriaRole ariaRole, String label) {
+    public Target ariaRole(AriaRole ariaRole, String label) {
         return new Target(ariaRole, label, ROLE_AND_LABEL);
     }
 
-    protected static Target attribute(Html.Attribute attribute, String value) {
+    public Target attribute(Html.Attribute attribute, String value) {
         return new Target("[" + attribute.name() + "='" + value + "']", HTML_ATTRIBUTE_VALUE, value);
     }
 }
