@@ -12,15 +12,15 @@ public interface CommonPageInterface {
      * Represents keyboard actions that can be applied to a page or input field.
      */
     enum Action {
-        BACKSPACE,
-        DOWN,
-        ENTER,
-        HOME,
-        LEFT,
-        RIGHT,
-        SPACE,
-        TAB,
-        UP;
+        Backspace,
+        Down,
+        Enter,              //TODO LET JOHN CHECK IF BETTER OPTION
+        Home,
+        Left,
+        Right,
+        Space,
+        Tab,
+        Up;
     }
 
     /**

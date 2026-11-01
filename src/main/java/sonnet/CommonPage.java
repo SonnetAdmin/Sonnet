@@ -1,6 +1,7 @@
 package sonnet;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.BoundingBox;
 import sonnet.utils.Logger;
 
@@ -189,13 +190,16 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void compose(Action action) {
         if (!execute) return;
         logger.log("compose()", "Action ", action.toString());
-        currentElement.fill(action.toString());
+        currentElement.press("Enter");
 
     }
 
     @Override
     public void compose(String text) {
         if (!execute) return;
+        if (currentElement.getByRole(AriaRole.COMBOBOX) != null) {
+            logger.log("compose()", "ComboBox", text);      //TODO LET JOHN CHECK LATER
+        } else
         if (currentElement.getAttribute("type").equals("password")) {
             logger.log("compose()", "Password", text.replaceAll(".", "*"));
         } else {

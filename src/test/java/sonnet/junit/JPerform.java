@@ -37,7 +37,7 @@ public class JPerform extends CommonPageObject {
     @Tag("performable")
     @DisplayName("Performable Check URL Test")
     public void t3() {
-        perform(new SearchGoogle("https://www.google.com"));
+        perform(new SearchGoogle("Test"));
     }
 }
 
