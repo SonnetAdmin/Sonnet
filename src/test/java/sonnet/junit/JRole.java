@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sonnet.Enum.Trait.*;
@@ -85,6 +86,22 @@ public class JRole extends CommonPageObject {
     public void t7() {
         Target target = ariaRole(AriaRole.LINK, "Russia Today,");
         assertEquals("rt", focus(target).get(ID));
+    }
+
+    @Test
+    @Tag("add")
+    @DisplayName("Button with label test")
+    public void t8() {
+        Target target = button("Cancel");
+        assertEquals("cancel", focus(target).get(ID));
+    }
+
+    @Test
+    @Tag("add")
+    @DisplayName("Button with label test")
+    public void t9() {
+        Target target = button("Save");
+        assertNotEquals("cancel", focus(target).get(ID));;
     }
 }
 
