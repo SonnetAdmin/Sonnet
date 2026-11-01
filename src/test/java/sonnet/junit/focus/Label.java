@@ -6,8 +6,7 @@ import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static sonnet.CommonPageInterface.Trait.TAG;
-import static sonnet.CommonPageInterface.Trait.TEXT;
+import static sonnet.Enum.Trait.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

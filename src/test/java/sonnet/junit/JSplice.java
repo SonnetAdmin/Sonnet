@@ -8,7 +8,7 @@ import sonnet.Target;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sonnet.CommonPageInterface.Trait.ID;
+import static sonnet.Enum.Trait.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)

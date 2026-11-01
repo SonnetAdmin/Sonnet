@@ -7,7 +7,7 @@ import sonnet.Target;
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
 
 
@@ -18,7 +18,7 @@ public class JTagContainsText extends CommonPageObject {
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\TagConatinsText.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\TagContainsText.html");
     }
 
     @AfterAll
@@ -28,23 +28,23 @@ public class JTagContainsText extends CommonPageObject {
     public void setUp() {}
 
     @Test
-    @Tag("tagwithtext")
+    @Tag("tagcontainstext")
     @DisplayName("h1")
     public void t1() {
-        Target target = tagContainsText(H1,"TagWithText Test");
+        Target target = tagContainsText(H1,"TagContainsText Test");
         focus(target);
-        assertTrue(get(TEXT).equals("TagWithText Test"));
-        assertFalse(get(TEXT).equals("LabelWithText"));
+        assertTrue(get(TEXT).equals("TagContainsText Test"));
+        assertFalse(get(TEXT).equals("LabelContainsText"));
     }
 
     @Test
-    @Tag("tagwithtext")
+    @Tag("tagcontainstext")
     @DisplayName("label")
     public void t2() {
-        Target target = tagContainsText(LABEL,"LabelWithText");
+        Target target = tagContainsText(LABEL,"LabelContainsText");
         focus(target);
-        assertTrue(get(TEXT).equals("LabelWithText"));
-        assertFalse(get(TEXT).equals("TagWithText Test"));
+        assertTrue(get(TEXT).equals("LabelContainsText"));
+        assertFalse(get(TEXT).equals("TagContainsText Test"));
     }
 
     @Test

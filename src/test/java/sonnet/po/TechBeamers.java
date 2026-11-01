@@ -8,7 +8,7 @@ import sonnet.utils.Logger;
 
 import static sonnet.Enum.HTMLTag.*;
 import static sonnet.utils.StringUtils.isTrue;
-import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.Trait.*;
 
 public class TechBeamers extends CommonPageObject {
     private final Target COOKIES = id("ez-accept-all");

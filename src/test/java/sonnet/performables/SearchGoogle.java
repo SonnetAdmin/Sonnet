@@ -5,7 +5,7 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import sonnet.Performable;
 
-import static sonnet.CommonPageInterface.Action.Enter;
+import static sonnet.Enum.Action.Enter;
 import static sonnet.Enum.HTMLTag.DIV;
 
 public class SearchGoogle extends Performable {

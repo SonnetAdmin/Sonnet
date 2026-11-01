@@ -5,8 +5,7 @@ import sonnet.CommonPageObject;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sonnet.CommonPageInterface.Trait.ENABLED;
-import static sonnet.CommonPageInterface.Trait.TEXT;
+import static sonnet.Enum.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
 
 

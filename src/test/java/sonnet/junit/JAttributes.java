@@ -7,7 +7,7 @@ import sonnet.Html;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.Trait.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -30,8 +30,7 @@ public class JAttributes extends CommonPageObject {
     @Tag("add")
     @DisplayName("Max test")
     public void t1() {
-        Target target = attribute(Html.Attribute.MAX, "12");
-        focus(target);
+        focus(attribute(Html.Attribute.MAX, "12"));
         assertEquals("3", get(VALUE));
     }
 
@@ -39,8 +38,8 @@ public class JAttributes extends CommonPageObject {
     @Tag("add")
     @DisplayName("Cols test")
     public void t2() {
-        Target target = attribute(Html.Attribute.COLS, "40");
-        focus(target);
+        focus(attribute(Html.Attribute.COLS, "40"));
+
         assertEquals("A short message", get(TEXT));
     }
 

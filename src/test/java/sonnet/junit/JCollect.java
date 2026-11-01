@@ -7,7 +7,7 @@ import sonnet.Target;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sonnet.CommonPageInterface.Trait.*;
+import static sonnet.Enum.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
 import static sonnet.Enum.Index.*;
 import static sonnet.Enum.ListIndex.*;
