@@ -103,5 +103,15 @@ public class JRole extends CommonPageObject {
         Target target = button("Save");
         assertNotEquals("cancel", focus(target).get(ID));;
     }
+
+    @Test
+    @Tag("add")
+    @DisplayName("Link with label test")
+    public void t10() {
+        Target target = link("Russia Today,");
+        assertEquals("rt", focus(target).get(ID));
+    }
+
+
 }
 

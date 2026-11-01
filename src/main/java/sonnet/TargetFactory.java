@@ -69,6 +69,10 @@ public abstract class TargetFactory {
         return new Target(AriaRole.BUTTON, button, ROLE_AND_LABEL);
     }
 
+    protected static Target link(String link) {
+        return new Target(AriaRole.LINK, link, ROLE_AND_LABEL);
+    }
+
     protected static Target ariaRole(AriaRole ariaRole) {
         return new Target(ariaRole, ROLE);
     }
