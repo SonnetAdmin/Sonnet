@@ -16,7 +16,7 @@
     <playwright.version>1.60.0</playwright.version>
     <selenium.version>4.52.0</selenium.version>
     <lombok.version>1.18.46</lombok.version>
-    <maven.compiler.release>17</maven.compiler.release>
+    <maven.compiler.release>25</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -67,6 +67,11 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-api</artifactId>
       <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-devtools-v134</artifactId>
+      <version>4.32.0</version>
     </dependency>
   </dependencies>
 
