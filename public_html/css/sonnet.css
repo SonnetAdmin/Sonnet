@@ -19,18 +19,18 @@
 
 /* --- Global Framework Layout --- */
 body {
-  background-color: var(--bg-outer-parchment);
-  color: var(--color-ink-dark);
-  font-family: "Georgia", "Times New Roman", serif;
-  margin: 0;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  box-sizing: border-box;
-  position: relative;
+    background-color: var(--bg-outer-parchment);
+    color: var(--color-ink-dark);
+    font-family: "Georgia", "Times New Roman", serif;
+    margin: 0;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    box-sizing: border-box;
+    position: relative;
 }
 
 /* --- Content Layers & Scoping --- */
@@ -71,11 +71,27 @@ h3 {
     font-size: 1.5rem;
 }
 
-h4{
+h4 {
     margin-top: 0rem;
 }
-h5{
-  margin-top: 0rem;
+
+h5 {
+    margin-top: 0rem;
+}
+
+.sublabel {
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.center {
+    text-align: center;
+}
+
+.divider {
+    margin-top: 30px;
 }
 
 p {
@@ -105,8 +121,7 @@ a:hover {
 form {
     background-color: var(--bg-inner-page);
     min-height: 400px;
-    max-height: 800px;
-    min-width: 500px;
+    min-width: 600px;
     max-width: 600px;
     padding: 60px 60px 80px 60px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15),
@@ -117,33 +132,36 @@ form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 60px;
+}
 
+.flow {
+    display: flow;
 }
 
 form::before {
-  content: "";
-  position: absolute;
-  top: 20px;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  border: 1px solid var(--border-accent);
-  pointer-events: none;
-  opacity: 0.6;
+    content: "";
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    border: 1px solid var(--border-accent);
+    pointer-events: none;
+    opacity: 0.6;
 }
 
 form::after {
-  content: "—  Sonnet  —";
-  position: absolute;
-  bottom: 35px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 0.95rem;
-  color: var(--color-ink-footer);
-  letter-spacing: 0.1em;
-  font-family: "Georgia", serif;
-  pointer-events: none;
+    content: "—  Sonnet  —";
+    position: absolute;
+    bottom: 35px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--color-ink-footer);
+    letter-spacing: 0.1em;
+    font-family: "Georgia", serif;
+    pointer-events: none;
 }
 
 .left-column {
@@ -185,12 +203,12 @@ label {
 }
 
 .error {
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
-  margin-top: 5px;
-  color: var(--color-error-red);
-  display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    margin-top: 5px;
+    color: var(--color-error-red);
+    display: block;
 }
 
 
@@ -372,9 +390,10 @@ img {
 
 /* --- Mobile Fallback Responsiveness --- */
 @media (max-width: 1000px) {
-    body{
+    body {
         width: 100%;
     }
+
     form {
         min-width: 70vw;
         grid-template-columns: 1fr;

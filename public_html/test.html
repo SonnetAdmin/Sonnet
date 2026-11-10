@@ -1,17 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="css/sonnet.css" rel="stylesheet">
-        <title>Sonnet - Contact Us</title>
+        <title>Test Site</title>
     </head>
     <body>
-        <div class="book-page">
-            <header>
-                <h1>Message Received</h1>
-                <h4>Thank you for your interest. We will be in touch presently.</h4>
-            </header>
-        </div>
+        <p class="book page">
+        <header>
+            <h1>Test Site</h1>
+        </header>
+        <main class="content">
+            <form class="flow">
+                <h4 class="center">Form</h4>
+                <p>
+                    <label for="text_input">Text Input:</label>
+                    <input class="text_input" id="text_input" name="text_input" placeholder="type here..." type="text">
+                </p>
+
+                <p class="divider">
+                    <label>Radio Buttons:</label>
+                    <label class="sublabel" for="radio1">Option 1 <input id="radio1" name="radio" type="radio" value="radio1"></label>
+                    <label class="sublabel" for="radio2">Option 2 <input id="radio2" name="radio" type="radio" value="radio2"></label>
+                    <label class="sublabel" for="radio3">Option 3 <input id="radio3" name="radio" type="radio" value="radio3"></label>
+                <p>
+
+                <p class="divider">
+                    <label for="checkbox">Checkbox: <input id="checkbox" name="checkbox" type="checkbox"></label>
+                </p>
+
+                <p class="divider">
+                    <label for="date">Date:</label>
+                    <input id="date" name="date" type="date">
+                </p>
+
+                <p class="divider">
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" type="password">
+                </p>
+
+                <p class="divider">
+                    <label for="button">Button:</label>
+                    <button id="button" name="button" type="button">Button</button>
+                </p>
+
+                <p class="divider">
+                    <label for="text_area">Text Area:</label>
+                    <textarea id="text_area" name="text_area"></textarea>
+                </p>
+
+                <p class="divider">
+                    <label for="select">Select:</label>
+                    <select id="select" name="select">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                        <option value="option4">Option 4</option>
+                    </select>
+                </p>
+
+                <p class="divider">
+                    <label for="datalist">Datalist:</label>
+                    <input id="datalist" list="datalists" name="datalist">
+                    <datalist id="datalists">
+                        <option value="option1">
+                        <option value="option2">
+                        <option value="option3">
+                        <option value="option4">
+                    </datalist>
+                </p>
+
+                <p class="divider">
+                    <a href="https://example.com">Link</a>
+                </p>
+
+                <p class="divider">
+                <table>
+                    <tr>
+                        <th>Column 1</th>
+                        <th>Column 2</th>
+                    </tr>
+                    <tr>
+                        <td>Row 1, Cell 1</td>
+                        <td>Row 1, Cell 2</td>
+                    </tr>
+                    <tr>
+                        <td>Row 2, Cell 1</td>
+                        <td>Row 2, Cell 2</td>
+                    </tr>
+                    <tr>
+                        <td>Row 3, Cell 1</td>
+                        <td>Row 3, Cell 2</td>
+                    </tr>
+                </table>
+                </p>
+            </form>
+        </main>
     </body>
 </html>
+
+
