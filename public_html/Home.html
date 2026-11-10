@@ -1,14 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" oncontextmenu="limit()">
     <head>
         <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link href="css/sonnet.css" rel="stylesheet">
-        <title>Sonnet Home</title>
+        <title>Sonnet - Home</title>
     </head>
     <body>
-        <p>Sonnet Home</p>
-        <img src="src/test_staff_cover.jpg"> <br> <br>
-        <a id="contact_us" role="button" class="button" href="ContactUs.html">Contact Us</a> <br>
+        <div class="book-page">
+            <header>
+                <h1>Sonnet - Home</h1>
+            </header>
+
+            <main class="content">
+                <form action="ContactUs.html" method="post">
+                    <button class="button" id="contact_us" role="button" type="submit">Contact Us</button>
+                </form>
+            </main>
+        </div>
 
     </body>
+    <script>
+        document.addEventListener('keydown', function (e) {
+            // Block F12
+            if (event.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'U') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
 </html>
