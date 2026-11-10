@@ -15,12 +15,11 @@ import static sonnet.utils.Time.pause;
 
 public class CommonPage extends TargetFactory implements CommonPageInterface {
 
+    private static final Map<String, String> sessionMap = new HashMap<>();
     static CommonPage commonPage = null;
     private final Logger logger = new Logger(); // This is the logger from sonnet.utils
-
     private final int DEFAULT_TIMEOUT = 30;
     private final int DEFAULT_PROBE_TIMEOUT = 5;
-
     private Page page;
     private Locator currentElement;
     private List<Locator> currentElements;
@@ -199,8 +198,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         if (!execute) return;
         if (currentElement.getByRole(AriaRole.COMBOBOX) != null) {
             logger.log("compose()", "ComboBox", text);      //TODO LET JOHN CHECK LATER
-        } else
-        if (currentElement.getAttribute("type").equals("password")) {
+        } else if (currentElement.getAttribute("type").equals("password")) {
             logger.log("compose()", "Password", text.replaceAll(".", "*"));
         } else {
             logger.log("compose()", "Text", text);
@@ -246,7 +244,6 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             case YPOS -> String.valueOf(currentElement.boundingBox().y);
         };
     }
-
 
     @Override
     public void go(String url) {
@@ -373,7 +370,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                     currentElement = page.getByRole(target.getAriaRole(), new Page.GetByRoleOptions().setName(target.getValue()));
                     break;
 
-                case ATTRIBUTE, ATTRIBUTE_VALUE, CLASS, CLASSES, CSS, DATA, HREF, HTML_ATTRIBUTE_VALUE, ID, LEAF, LINK_TEXT, NAME,
+                case ATTRIBUTE, ATTRIBUTE_VALUE, CLASS, CLASSES, CSS, DATA, HREF, HTML_ATTRIBUTE_VALUE, ID, LEAF,
+                     LINK_TEXT, NAME,
                      PARTIAL_LINK_TEXT, PARTIAL_TEXT, ROLE_LITERAL, ROOT, SPLICE, SRC, STYLE, TAG, TAG_CONTAINS_TEXT,
                      TAG_WITH_TEXT, TEST_ID, TEXT, TYPE, VALUE, XPATH:
                     List<Locator> elements = page.locator(target.getSelector()).all();
@@ -394,7 +392,5 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     private void setTimeout(int seconds) {
         page.setDefaultTimeout(seconds * 1000);
     }
-
-    private static final Map<String, String> sessionMap = new HashMap<>();
 
 }
