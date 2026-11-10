@@ -369,3 +369,40 @@ img {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-accent);
 }
+
+/* --- Mobile Fallback Responsiveness --- */
+@media (max-width: 1000px) {
+    body{
+        width: 100%;
+    }
+    form {
+        min-width: 70vw;
+        grid-template-columns: 1fr;
+    }
+
+    .left-column {
+        grid-column: 1;
+        order: 1;
+    }
+
+    .right-column {
+        grid-column: 1;
+        order: 1;
+    }
+
+    .bottom-row {
+        grid-column: 1;
+        order: 3;
+    }
+
+    .button, button[type="submit"] {
+        grid-column: 1;
+        order: 3;
+    }
+
+    #error_message {
+        grid-column: 1;
+        order: 4;
+    }
+}
+
