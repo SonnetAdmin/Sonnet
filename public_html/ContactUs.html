@@ -26,6 +26,11 @@
                     </p>
 
                     <p class="bottom-row">
+                        <label for="contact_option">Contact By Phone: <input type="checkbox" id="contact_option" onclick="contact_by_phone()"> </label>
+                        <input id="phone" name="phone" required type="tel" maxlength="11" placeholder="Enter your number" hidden>
+                    </p>
+
+                    <p class="bottom-row">
                         <label for="message">Message:</label>
                         <textarea id="message" name="message" required rows="4" onkeypress="dynamic_check()" placeholder="Enter your message"></textarea>
                         <label class="error" for="message" id="error_message_message"></label>
@@ -40,29 +45,6 @@
 
     </body>
     <script>
-        document.addEventListener('keydown', function (e) {
-            // Block F12
-            if (event.key === 'F12') {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+U (View Source)
-            if (e.ctrlKey && e.key === 'U') {
-                e.preventDefault();
-                return false;
-            }
-        });
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-
         function check_contact_form() {
             var username = document.getElementById("name").value;
             var message = document.getElementById("message").value;
@@ -110,5 +92,42 @@
             }
 
         }
+
+        function contact_by_phone(){
+            if (document.getElementById("phone").hidden === true){
+                document.getElementById("phone").hidden = false;
+            }
+            else{
+                document.getElementById("phone").hidden = true;
+            }
+
+        }
+
+
+
+
+        // User Limiting //
+        document.addEventListener('keydown', function (e) {
+            // Block F12
+            if (event.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'U') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
     </script>
 </html>
