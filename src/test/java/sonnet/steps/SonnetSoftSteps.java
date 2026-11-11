@@ -49,8 +49,19 @@ public class SonnetSoftSteps {
         sonnetSoft.inputContactInfo(sonnetContactInfo.getFirst());
     }
 
+    @And("I click the contact by phone checkbox")
+    public void iClickTheContactByPhoneCheckbox() {
+        sonnetSoft.clickContactCheckbox();
+    }
+
+    @And("I input the phone number {string}")
+    public void iInputThePhoneNumber(String number) {
+        sonnetSoft.inputPhoneNumber(number);
+    }
+
     @And("I click Submit")
     public void iClickSubmit() {
         sonnetSoft.clickSubmit();
     }
+
 }

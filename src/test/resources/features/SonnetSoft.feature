@@ -17,5 +17,7 @@ Feature: This feature will login to the SonnetSoft website.
     And I input the following contact details:
       | fullName   | email        | message                               |
       | A Customer | me@there.com | I have a question about your product. |
+    And I click the contact by phone checkbox
+    And I input the phone number "01234567890"
     And I click Submit
     Then I check the title is "Message Received"

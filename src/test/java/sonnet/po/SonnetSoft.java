@@ -22,8 +22,9 @@ public class SonnetSoft extends CommonPageObject {
     private final Target FULL_NAME = (label("Full Name:"));
     private final Target EMAIL = (label("Email:"));
     private final Target MESSAGE = (label("Message:"));
+    private final Target PHONE_CHECKBOX = (label("Contact By Phone:"));
+    private final Target PHONE_NUMBER = (id("phone"));
     private final Target SUBMIT = (ariaRole(AriaRole.BUTTON, "Submit"));
-    private final Target MESSAGE_RECEIVED = tagWithText(H1, "Message Received");
 
 
 
@@ -53,7 +54,17 @@ public class SonnetSoft extends CommonPageObject {
         focus(MESSAGE).compose(info.getMessage());
     }
 
+    public void clickContactCheckbox() {
+        focus(PHONE_CHECKBOX).click();
+    }
+
+    public void inputPhoneNumber(String number) {
+        focus(PHONE_NUMBER).compose(number);
+    }
+
     public void clickSubmit() {
         focus(SUBMIT).click();
     }
+
+
 }
