@@ -9,6 +9,7 @@ import sonnet.dto.SonnetSoftInfo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static sonnet.Enum.Direction.*;
 import static sonnet.Enum.HTMLTag.*;
 import static sonnet.Enum.Trait.TEXT;
 
@@ -67,4 +68,15 @@ public class SonnetSoft extends CommonPageObject {
     }
 
 
+    public void goBack() {
+        go(BACK);
+    }
+
+    public void goForward() {
+        go(FORWARD);
+    }
+
+    public void refresh() {
+        go(REFRESH);
+    }
 }

@@ -249,7 +249,27 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void go(String url) {
         logger.log("go()\t", url);
         page.navigate(url);
+    }
 
+    @Override
+    public void go(Enum.Direction direction) {
+        throwOnNull(direction, "Direction");
+        logger.log("go()\t", direction.name());
+        switch (direction){
+            case BACK:
+                if(page.goBack() == null){
+                    logger.log("go(BACK)", "no previous page found");
+                }
+                break;
+            case FORWARD:
+                if(page.goForward() == null){
+                    logger.log("go(FORWARD)", "no next page found");
+                }
+                break;
+            case REFRESH:
+                logger.log("refresh()", "refreshing page");
+                page.reload();
+        }
     }
 
     @Override
@@ -392,5 +412,4 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     private void setTimeout(int seconds) {
         page.setDefaultTimeout(seconds * 1000);
     }
-
 }

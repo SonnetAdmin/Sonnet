@@ -250,4 +250,10 @@ public class Enum {
         Tab,
         Up;
     }
+
+    public enum Direction {
+        BACK,
+        FORWARD,
+        REFRESH
+    }
 }

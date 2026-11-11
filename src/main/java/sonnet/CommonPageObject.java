@@ -1,6 +1,10 @@
 package sonnet;
 
-public class CommonPageObject extends TargetFactory {
+import sonnet.reference.playwright.Enums;
+
+import java.util.List;
+
+public class CommonPageObject extends TargetFactory implements DOMUtilsInterface {
     CommonPage commonPage;
 
     public CommonPageObject() {
@@ -21,6 +25,7 @@ public class CommonPageObject extends TargetFactory {
         commonPage.unbox();
         return this;
     }
+
 
     public CommonPageObject click() {
         commonPage.click();
@@ -88,8 +93,14 @@ public class CommonPageObject extends TargetFactory {
         return commonPage.get(trait);
     }
 
+
     public CommonPageObject go(String url) {
         commonPage.go(url);
+        return this;
+    }
+
+    public CommonPageObject go(Enum.Direction direction) {
+        commonPage.go(direction);
         return this;
     }
 
@@ -118,10 +129,6 @@ public class CommonPageObject extends TargetFactory {
         return this;
     }
 
-    public int size() {
-        return commonPage.size();
-    }
-
     public CommonPageObject submit() {
         commonPage.submit();
         return this;
@@ -140,4 +147,208 @@ public class CommonPageObject extends TargetFactory {
     public String retrieve(String key) {
         return commonPage.retrieve(key);
     }
+
+    ///////////////
+    // DOM UTILS //
+    ///////////////
+
+    @Override
+    public CommonPageObject urlEquals(String url) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject urlContains(String url) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject urlStartsWith(String url) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject urlEndsWith(String url) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject titleEquals(String title) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject titleContains(String title) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject titleStartsWith(String title) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject titleEndsWith(String title) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textEquals(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textDiffers(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textContains(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textStartsWith(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textEndsWith(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textPresent() {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textPresent(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textNotPresent() {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textNotPresent(String text) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject textHasLength(int length) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject attributeEquals(Enums.ElementTrait attribute, String value) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject attributeContains(Enums.ElementTrait attribute, String value) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject attributeStartsWith(Enums.ElementTrait attribute, String value) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject elementPresent(Target target) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject elementNotPresent(Target target) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionPresent() {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionNotPresent() {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionHasSize(int size) {
+        return null;
+    }
+
+    public int size() {
+        return commonPage.size();
+    }
+
+    @Override
+    public CommonPageObject collectionLargerThan(int size) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionSmallerThan(int size) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionIs(List<String> expected) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionIs(List<String> expected, boolean strict) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionContains(String item) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionContains(List<String> items) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionDoesNotContain(String item) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionDoesNotContain(List<String> items) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject tagIs(Enums.Tag tag) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject tagIsNot(Enums.Tag tag) {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject elementPrint() {
+        return null;
+    }
+
+    @Override
+    public CommonPageObject collectionPrint() {
+        return null;
+    }
+
 }
