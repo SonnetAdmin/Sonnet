@@ -117,6 +117,11 @@ public interface CommonPageInterface {
     void go(String url);
 
     /**
+     * Goes back, forward or refreshes a page.
+     */
+    void go(Enum.Direction direction);
+
+    /**
      * Logs the specified message for debugging or test reporting.
      *
      * @param message the message to log

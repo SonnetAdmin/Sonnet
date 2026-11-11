@@ -64,4 +64,18 @@ public class SonnetSoftSteps {
         sonnetSoft.clickSubmit();
     }
 
+    @Then("I go back")
+    public void iGoBack() {
+        sonnetSoft.goBack();
+    }
+
+    @And("I go forward")
+    public void iGoForward() {
+        sonnetSoft.goForward();
+    }
+
+    @And("I refresh")
+    public void iRefresh() {
+        sonnetSoft.refresh();
+    }
 }

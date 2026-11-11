@@ -21,3 +21,19 @@ Feature: This feature will login to the SonnetSoft website.
     And I input the phone number "01234567890"
     And I click Submit
     Then I check the title is "Message Received"
+
+  Scenario: Page Navigation
+    When I check the title is "Sonnet - Login"
+    And I input the following username and password:
+      | username | password |
+      | admin    | pass     |
+    And I click login
+    Then I check the title is "Sonnet - Home"
+    And I click Contact Us
+    Then I check the title is "Sonnet - Contact Us"
+    And I go back
+    Then I check the title is "Sonnet - Home"
+    And I go forward
+    Then I check the title is "Sonnet - Contact Us"
+    And I refresh
+    Then I check the title is "Sonnet - Contact Us"
