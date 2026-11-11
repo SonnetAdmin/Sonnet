@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="css/sonnet.css" rel="stylesheet">
+        <title>Sonnet - Installation</title>
+    </head>
+    <body>
+        <header>
+            <h3>Installation</h3>
+            <p class="paragraph">
+                lorem ipsum dolor sit amet consectetur adipiscing elit et pariatur magna in voluptatum assumenda
+                dolor commodo accusamus id ex in voluptate id qui do fugiat libero est qui incididunt distinctio
+                tempor illum quis sit deserunt anim est repellendus non ut vero do officia culpa soluta ea
+                consequatur excepteur elit soluta.
+            </p>
+            <h3>Installation 2</h3>
+            <p class="paragraph">
+                lorem ipsum dolor sit amet consectetur adipiscing elit sit deserunt distinctio provident aliquip
+                pariatur officia deserunt repellendus illum veniam lorem sint assumenda officia quos aute dolore nostrud
+                quos pariatur laborum dolorum fuga sit non occaecat eos blanditiis non consequat et facilis laboris
+                cupidatat eiusmod qui quis praesentium deserunt pariatur vero labore provident vero corrupti magna
+                pariatur sunt lorem sed dignissimos voluptatum dolore ipsum harum ut est excepturi dolores cum eligendi
+            </p>
+            <h3>Installation 3</h3>
+            <p class="paragraph">
+                lorem ipsum dolor sit amet consectetur adipiscing elit dolor dolore laborum sunt ut occaecat optio
+                cupidatat quo in nostrud officia iusto et ut tempore voluptas at fuga illum voluptas rerum occaecat quod
+                et dolore libero ut laborum et quod repellendus officia quis ducimus possimus excepturi commodo
+                cupiditate eum non deserunt sit sunt rerum tempor enim nihil in omnis mollit et id facilis laborum
+                laborum nihil
+            </p>
+<!--            <button class="fixed-button" id="windowclose" onclick="closewin()" role="button">Close</button>-->
+
+        </header>
+
+
+    </body>
+
+
+    <script>
+        function closewin() {
+            window.close();
+        }
+
+        /// User limiting ///
+        document.addEventListener('keydown', function (e) {
+            // Block F12
+            if (event.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'U') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</html>

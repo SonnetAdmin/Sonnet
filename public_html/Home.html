@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"">
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -7,20 +7,24 @@
         <title>Sonnet - Home</title>
     </head>
     <body>
-        <div class="book-page">
-            <header>
-                <h1>Sonnet - Home</h1>
-            </header>
-
-            <main class="content">
-                <form action="ContactUs.html" method="post">
-                    <button class="button" id="contact_us" role="button" type="submit">Contact Us</button>
-                </form>
-            </main>
-        </div>
+        <header>
+            <h1>Sonnet - Home</h1>
+        </header>
+        <form>
+            <button class="button" id="about" onclick="openwin()" role="button">About</button>
+            <button class="button" id="code_examples" role="button">Code Examples</button>
+            <button class="button" id="benefits" role="button">Benefits</button>
+            <button class="button" id="installation" role="button">Installation</button>
+            <a class="button" href="ContactUs.html" id="contact_us" role="button">Contact Us</a>
+        </form>
 
     </body>
     <script>
+        function openwin() {
+            window.open("About.html", "popup", "titlebar=0,menubar=0,status=0,scrollbars=0,resizable=0,width=800,height=800,location=1,left=902");
+        }
+
+        /// User limiting ///
         document.addEventListener('keydown', function (e) {
             // Block F12
             if (event.key === 'F12') {

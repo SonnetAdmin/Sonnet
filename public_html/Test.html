@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="css/sonnet.css" rel="stylesheet">
+        <title>Test</title>
+    </head>
+    <body>
+        <dialog class="book-modal" id="pageModal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <button class="close-modal-btn" onclick="closePopup()" type="button">Close ✕</button>
+            </div>
+            <iframe class="modal-frame" id="modalFrame" src="" title="Embedded Page"></iframe>
+        </dialog>
+
+        <header>
+            <h1>Modal Test</h1>
+        </header>
+
+        <form>
+            <button class="button" id="about_modal" role=button onclick="openPopup('About.html', 'Sonnet - About')" type="button">About</button>
+            <button class="button" id="code_examples" role="button" onclick="openPopup('CodeExamples.html', 'Sonnet - Examples')" type="button">Code Examples</button>
+            <button class="button" id="benefits" role="button" onclick="openPopup('Benefits.html', 'Sonnet - Benefits')" type="button">Benefits</button>
+            <button class="button" id="installation" role="button" onclick="openPopup('Installation.html', 'Sonnet - Installation')" type="button">Installation</button>
+            <button class="button" id="contact_us_modal" onclick="openPopup('ContactUs.html', 'Sonnet - Contact Us')" type="button">Contact Us</button>
+            <a class="button" href="ContactUs.html" id="contact_us" role="button">Contact Us</a>
+        </form>
+
+    </body>
+
+
+    <script>
+
+        const modal = document.getElementById("pageModal");
+        const modalFrame = document.getElementById("modalFrame");
+        const modalTitle = document.getElementById("modalTitle");
+
+        function openPopup(pageUrl, titleText) {
+            modalFrame.src = pageUrl;
+            modalTitle.textContent = titleText || "Sonnet";
+            modal.showModal();
+        }
+
+        function closePopup() {
+            modal.close();
+            modalFrame.src = "";
+        }
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closePopup();
+            }
+        });
+
+        // User limiting
+        document.addEventListener('keydown', function (e) {
+            // Block F12
+            if (event.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'U') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</html>
+
+
