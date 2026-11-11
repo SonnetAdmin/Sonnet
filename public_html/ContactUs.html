@@ -7,41 +7,46 @@
         <title>Sonnet - Contact Us</title>
     </head>
     <body>
-        <div class="book-page">
-            <header>
-                <h1>Sonnet - Contact Us</h1>
-                <h4>Please feel free to reach out to us with any questions or feedback.</h4>
-            </header>
-            <main class="content">
-                <form action="MessageReceived.html" method="post">
-                    <p class="left-column">
-                        <label for="name">Full Name:</label>
-                        <input id="name" name="name" required type="text" onkeypress="dynamic_check()" placeholder="Enter your full name">
-                        <label class="error" for="name" id="error_message_name"></label>
-                    </p>
+        <header>
+            <h1>Sonnet - Contact Us</h1>
+            <h4>Please feel free to reach out to us with any questions or feedback.</h4>
+        </header>
+        <main class="content">
+            <form action="MessageReceived.html" method="post">
+                <p class="left-column">
+                    <label for="name">Full Name:</label>
+                    <input id="name" name="name" onkeypress="dynamic_check()" placeholder="Enter your full name"
+                           required
+                           type="text">
+                    <label class="error" for="name" id="error_message_name"></label>
+                </p>
 
-                    <p class="right-column">
-                        <label for="email">Email:</label>
-                        <input id="email" name="email" required type="email" placeholder="Enter your email">
-                    </p>
+                <p class="right-column">
+                    <label for="email">Email:</label>
+                    <input id="email" name="email" placeholder="Enter your email" required type="email">
+                </p>
 
-                    <p class="bottom-row">
-                        <label for="contact_option">Contact By Phone:<input type="checkbox" id="contact_option" onclick="contact_by_phone()"> </label>
-                        <input id="phone" name="phone" type="tel" maxlength="11" placeholder="Enter your number" hidden>
-                    </p>
+                <p class="bottom-row">
+                    <label for="contact_option">Contact By Phone:<input id="contact_option" onclick="contact_by_phone()"
+                                                                        type="checkbox"> </label>
+                    <input hidden id="phone" maxlength="11" name="phone" placeholder="Enter your number" type="tel">
+                </p>
 
-                    <p class="bottom-row">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" required rows="4" onkeypress="dynamic_check()" placeholder="Enter your message"></textarea>
-                        <label class="error" for="message" id="error_message_message"></label>
-                    </p>
-                    <button class="button" id="submit" onclick="check_contact_form()" role="button" type="submit">Submit</button>
+                <p class="bottom-row">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" onkeypress="dynamic_check()" placeholder="Enter your message"
+                              required
+                              rows="4"></textarea>
+                    <label class="error" for="message" id="error_message_message"></label>
+                </p>
+                <button class="button" id="submit" onclick="check_contact_form()" role="button" type="submit">Submit
+                </button>
 
-                    <button class="button" hidden id="reset" onclick="reset_form()" role="button" type="reset">Reset Form</button>
-                    <label class="error" id="error_message"></label>
-                </form>
-            </main>
-        </div>
+                <button class="button" hidden id="reset" onclick="reset_form()" role="button" type="reset">Reset Form
+                </button>
+                <label class="error" id="error_message"></label>
+            </form>
+        </main>
 
     </body>
     <script>
@@ -93,17 +98,14 @@
 
         }
 
-        function contact_by_phone(){
-            if (document.getElementById("phone").hidden === true){
+        function contact_by_phone() {
+            if (document.getElementById("phone").hidden === true) {
                 document.getElementById("phone").hidden = false;
-            }
-            else{
+            } else {
                 document.getElementById("phone").hidden = true;
             }
 
         }
-
-
 
 
         // User Limiting //

@@ -7,29 +7,29 @@
         <title>Sonnet - Login</title>
     </head>
     <body>
-        <div class="book-page">
-            <header>
-                <h1>Sonnet - Login</h1>
-            </header>
 
-            <main class="content">
-                <form action="Home.html" method="post">
-                    <p class="left-column">
-                        <label for="username">Username:</label>
-                        <input id="username" placeholder="Enter Username" required type="text">
-                    </p>
-                    <p class="right-column">
-                        <label for="password">Password:</label>
-                        <input id="password" placeholder="Enter Password" required type="password">
-                    </p>
-                    <button class="button" id="login" onclick="check_details()" role="button" type="submit">Login</button>
+        <header>
+            <h1>Sonnet - Login</h1>
+        </header>
 
-                    <button class="button" hidden id="reset" onclick="reset_form()" role="button" type="reset">Reset Form</button>
+        <main class="content">
+            <form action="Home.html" method="post">
+                <p class="left-column">
+                    <label for="username">Username:</label>
+                    <input id="username" placeholder="Enter Username" required type="text">
+                </p>
+                <p class="right-column">
+                    <label for="password">Password:</label>
+                    <input id="password" placeholder="Enter Password" required type="password">
+                </p>
+                <button class="button" id="login" onclick="check_details()" role="button" type="submit">Login</button>
 
-                    <div class="error" id="error_message"></div>
-                </form>
-            </main>
-        </div>
+                <button class="button" hidden id="reset" onclick="reset_form()" role="button" type="reset">Reset Form
+                </button>
+
+                <div class="error" id="error_message"></div>
+            </form>
+        </main>
 
     </body>
     <script>

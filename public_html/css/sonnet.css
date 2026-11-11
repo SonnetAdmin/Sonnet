@@ -86,6 +86,13 @@ h5 {
     margin-top: 0px;
 }
 
+.paragraph {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.005em;
+    font-size: 0.9rem;
+}
+
 .center {
     text-align: center;
 }
@@ -108,8 +115,7 @@ a {
 }
 
 a:hover {
-    color: var(--color-oxblood-dark);
-    border-bottom-style: solid;
+    background-color: var(--color-oxblood-dark);
 }
 
 ::selection {
@@ -132,6 +138,7 @@ form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 60px;
+    align-content: start;
 }
 
 .flow {
@@ -179,7 +186,7 @@ form::after {
     order: 3;
 }
 
-.button, button[type="submit"] {
+.button, button[type="submit"], a.button, .fixed-button {
     grid-column: span 2;
     order: 3;
 }
@@ -189,9 +196,12 @@ form::after {
     order: 4;
 }
 
-form > br {
-    display: none;
+
+form > div {
+    grid-column: span 2;
+    order: 1;
 }
+
 
 label {
     font-size: 1.05rem;
@@ -233,6 +243,7 @@ textarea {
     color: var(--color-ink-dark);
     box-sizing: border-box;
     transition: all 0.3s ease;
+    margin-bottom: 10px;
 }
 
 input:focus, select:focus, textarea:focus {
@@ -282,7 +293,42 @@ input[type="reset"] {
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.2s ease;
+}
 
+a.button {
+    width: 94%;
+    max-height: 50px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 14px;
+    background-color: var(--color-oxblood-red);
+    color: var(--bg-inner-page);
+    border: 1px solid var(--color-oxblood-dark);
+    font-family: "Times New Roman", serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.fixed-button {
+    width: 450px;
+    max-height: 50px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 14px;
+    background-color: var(--color-oxblood-red);
+    color: var(--bg-inner-page);
+    border: 1px solid var(--color-oxblood-dark);
+    font-family: "Times New Roman", serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 button:hover,
@@ -387,6 +433,93 @@ img {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--border-accent);
 }
+
+/* Popup css */
+
+dialog.book-modal::backdrop {
+    background-color: rgba(24, 18, 12, 0.75);
+    backdrop-filter: blur(2px);
+}
+
+
+dialog.book-modal {
+    background-color: var(--bg-inner-page);
+    color: var(--color-ink-dark);
+    border: 2px solid var(--border-main);
+    border-radius: 6px;
+    padding: 25px;
+    width: 85vw;
+    max-width: 850px;
+    height: 80vh;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+    inset 0 0 80px rgba(214, 187, 135, 0.25);
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+
+dialog.book-modal::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    border: 1px solid var(--border-accent);
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border-main);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.modal-title {
+    font-family: "Times New Roman", serif;
+    font-size: 1.4rem;
+    color: var(--color-oxblood-red);
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+
+.close-modal-btn {
+    width: auto;
+    margin: 0;
+    padding: 6px 14px;
+    font-size: 0.95rem;
+    background-color: var(--color-oxblood-red);
+    color: var(--bg-inner-page);
+    border: 1px solid var(--color-oxblood-dark);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close-modal-btn:hover {
+    background-color: var(--color-oxblood-dark);
+}
+
+
+.modal-frame {
+    width: 100%;
+    height: calc(100% - 55px);
+    border: 1px solid var(--border-input);
+    background-color: var(--bg-input-field);
+    border-radius: 4px;
+    position: relative;
+    z-index: 2;
+}
+
 
 /* --- Mobile Fallback Responsiveness --- */
 @media (max-width: 1000px) {

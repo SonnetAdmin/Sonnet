@@ -7,19 +7,21 @@
         <title>Message Received</title>
     </head>
     <body>
-        <div class="book-page">
-            <header>
-                <h1>Message Received</h1>
-                <h4>Thank you for your interest. We will be in touch presently.</h4>
-                <h5>-SonnetSoft</h5>
-            </header>
-        </div>
-        <main class="content">
-            <br>
-            <a class="button" href="Home.html" id="back" role="button">Home</a>
-        </main>
+        <header>
+            <h1>Message Received</h1>
+            <h4>Thank you for your interest. We will be in touch presently.</h4>
+            <h5>-SonnetSoft</h5>
+        </header>
+        <br>
+<!--        <a class="fixed-button" href="Home.html" id="back" role="button">Home</a>-->
+<!--        <button class="fixed-button" id="windowclose" onclick="closewin()" role="button">Close</button>-->
+
     </body>
     <script>
+        function closewin(){
+            window.close();
+        }
+
         document.addEventListener('keydown', function (e) {
             // Block F12
             if (event.key === 'F12') {
