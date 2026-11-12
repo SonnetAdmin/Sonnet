@@ -202,6 +202,11 @@ form > div {
     order: 1;
 }
 
+form > iframe {
+    grid-column: span 2;
+    order: 3;
+}
+
 
 label {
     font-size: 1.05rem;
@@ -413,6 +418,74 @@ img {
     max-width: 100%;
     height: auto;
     border-radius: 4px;
+}
+
+.vintage-frame {
+    display: inline-block;
+    background-color: var(--bg-input-field);
+    border: 2px solid var(--border-main);
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: 0 6px 18px rgba(43, 37, 29, 0.18),
+    inset 0 0 25px rgba(214, 187, 135, 0.35);
+    position: relative;
+    box-sizing: border-box;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+.vintage-frame{
+    display: block;
+    background-color: var(--bg-input-field);
+    border: 2px solid var(--border-main);
+    border-radius: 4px;
+    padding: 12px;
+    box-shadow: 0 6px 18px rgba(43, 37, 29, 0.18),
+    inset 0 0 25px rgba(214, 187, 135, 0.35);
+    position: relative;
+    box-sizing: border-box;
+    margin: 20px auto;
+    max-width: 100%;
+}
+
+.vintage-frame::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    border: 1px solid var(--border-accent);
+    border-radius: 2px;
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+.vintage-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-input);
+    border-radius: 2px;
+    box-sizing: border-box;
+    filter: sepia(18%) contrast(96%);
+    transition: filter 0.3s ease;
+}
+
+.vintage-frame:hover img {
+    filter: sepia(0%) contrast(100%);
+}
+
+.vintage-caption {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-main);
+    text-align: center;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    letter-spacing: 0.04em;
 }
 
 /* --- Scrollbar Styling --- */
