@@ -12,7 +12,7 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
                 <button class="close-modal-btn" onclick="closePopup()" type="button">Close ✕</button>
             </div>
-            <iframe class="modal-frame" id="modalFrame" src="" title="Embedded Page"></iframe>
+            <iframe class="modal-frame" id="modalFrame" title="Embedded Page"></iframe>
         </dialog>
 
         <header>
@@ -25,7 +25,6 @@
             <button class="button" id="benefits" role="button" onclick="openPopup('Benefits.html', 'Sonnet - Benefits')" type="button">Benefits</button>
             <button class="button" id="installation" role="button" onclick="openPopup('Installation.html', 'Sonnet - Installation')" type="button">Installation</button>
             <button class="button" id="contact_us_modal" onclick="openPopup('ContactUs.html', 'Sonnet - Contact Us')" type="button">Contact Us</button>
-            <a class="button" href="ContactUs.html" id="contact_us" role="button">Contact Us</a>
         </form>
 
     </body>
@@ -45,7 +44,6 @@
 
         function closePopup() {
             modal.close();
-            modalFrame.src = "";
         }
 
         modal.addEventListener("click", (event) => {
