@@ -203,7 +203,7 @@ form > div {
 }
 
 form > iframe {
-    grid-column: span 2;
+    grid-column: span 1;
     order: 3;
 }
 
