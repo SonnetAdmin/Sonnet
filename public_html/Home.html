@@ -7,24 +7,51 @@
         <title>Sonnet - Home</title>
     </head>
     <body>
+        <dialog class="book-modal" id="pageModal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <button class="close-modal-btn" onclick="closePopup()" type="button">Close ✕</button>
+            </div>
+            <iframe class="modal-frame" id="modalFrame" title="Embedded Page"></iframe>
+        </dialog>
+
         <header>
             <h1>Sonnet - Home</h1>
         </header>
+
         <form>
-            <button class="button" id="about" onclick="openwin()" role="button">About</button>
-            <button class="button" id="code_examples" role="button">Code Examples</button>
-            <button class="button" id="benefits" role="button">Benefits</button>
-            <button class="button" id="installation" role="button">Installation</button>
-            <a class="button" href="ContactUs.html" id="contact_us" role="button">Contact Us</a>
+            <button class="button" id="about_modal" role=button onclick="openPopup('About.html', 'Sonnet - About')" type="button">About</button>
+            <button class="button" id="code_examples" role="button" onclick="openPopup('CodeExamples.html', 'Sonnet - Examples')" type="button">Code Examples</button>
+            <button class="button" id="benefits" role="button" onclick="openPopup('Benefits.html', 'Sonnet - Benefits')" type="button">Benefits</button>
+            <button class="button" id="installation" role="button" onclick="openPopup('Installation.html', 'Sonnet - Installation')" type="button">Installation</button>
+            <button class="button" id="contact_us_modal" onclick="openPopup('ContactUs.html', 'Sonnet - Contact Us')" type="button">Contact Us</button>
         </form>
 
     </body>
+
+
     <script>
-        function openwin() {
-            window.open("About.html", "popup", "titlebar=0,menubar=0,status=0,scrollbars=0,resizable=0,width=800,height=800,location=1,left=902");
+        const modal = document.getElementById("pageModal");
+        const modalFrame = document.getElementById("modalFrame");
+        const modalTitle = document.getElementById("modalTitle");
+
+        function openPopup(pageUrl, titleText) {
+            modalFrame.src = pageUrl;
+            modalTitle.textContent = titleText || "Sonnet";
+            modal.showModal();
         }
 
-        /// User limiting ///
+        function closePopup() {
+            modal.close();
+        }
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closePopup();
+            }
+        });
+
+        // User limiting
         document.addEventListener('keydown', function (e) {
             // Block F12
             if (event.key === 'F12') {
@@ -49,3 +76,5 @@
         });
     </script>
 </html>
+
+

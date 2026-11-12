@@ -426,15 +426,15 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--border-main);
+    background: var(--bg-outer-parchment);
     border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--border-accent);
+    background: var(--bg-outer-parchment);
 }
 
-/* Popup css */
+/* Modal css */
 
 dialog.book-modal::backdrop {
     background-color: rgba(24, 18, 12, 0.75);
