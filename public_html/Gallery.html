@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <link href="css/sonnet.css" rel="stylesheet">
+        <title>Sonnet - Gallery</title>
+    </head>
+    <body>
+        <header>
+            <h3>Sonnet - Gallery</h3>
+            <p>
+                <label class="vintage-caption">2015 European Software Testing Awards</label>
+                <img class="vintage-frame" src="src/2015Awards.png">
+                <label class="vintage-caption">2015 European Software Testing Award</label>
+                <img class="vintage-frame" src="src/2015Award.png">
+                <label class="vintage-caption">2015 European Software Testing Ranorex Award Trophy</label>
+                <img class="vintage-frame" src="src/RanorexBestTest.png">
+                <label class="vintage-caption">2015 European Software Testing Ranorex Award Trophy</label>
+                <img class="vintage-frame" src="src/Trophy.png">
+                <label class="vintage-caption">2015 European Software Testing Certificate</label>
+                <img class="vintage-frame" src="src/Certificate.png">
+            </p>
+        </header>
+
+
+    </body>
+
+
+    <script>
+        /// User limiting ///
+        document.addEventListener('keydown', function (e) {
+            // Block F12
+            if (event.key === 'F12') {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Block Ctrl+U (View Source)
+            if (e.ctrlKey && e.key === 'U') {
+                e.preventDefault();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</html>
