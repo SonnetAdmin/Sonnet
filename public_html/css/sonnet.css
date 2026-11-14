@@ -141,7 +141,7 @@ form {
     align-content: start;
 }
 
-.flow {
+form.flow {
     display: flow;
 }
 
@@ -318,6 +318,10 @@ a.button {
     transition: background-color 0.2s ease;
 }
 
+a.img:hover {
+    background-color: var(--bg-inner-page);
+}
+
 .fixed-button {
     width: 450px;
     max-height: 50px;
@@ -415,7 +419,7 @@ hr {
 }
 
 img {
-    max-width: 100%;
+    max-width: 850vw;
     height: auto;
     border-radius: 4px;
 }
@@ -432,6 +436,10 @@ img {
     box-sizing: border-box;
     margin: 20px auto;
     max-width: 100%;
+}
+
+.vintage-frame:hover{
+    border: 2px solid var(--color-oxblood-red);
 }
 
 .vintage-frame{
