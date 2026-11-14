@@ -34,4 +34,5 @@ dist/
 *.class
 
 # Test
-src\test\java\sonnet\Test.java
+src/test/java/sonnet/Test.java
+src/main/java/sonnet/reference
