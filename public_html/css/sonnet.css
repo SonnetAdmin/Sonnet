@@ -142,6 +142,14 @@ form {
     align-content: start;
 }
 
+form.gallery{
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: none;
+    align-items: start;
+}
+
+
+
 form.flow {
     display: flow;
 }
@@ -331,6 +339,11 @@ a.button {
     transition: background-color 0.2s ease;
 }
 
+a.img{
+    width:75%;
+    max-height:100%;
+}
+
 a.img:hover {
     background-color: var(--bg-inner-page);
 }
@@ -453,20 +466,6 @@ img {
 
 .vintage-frame:hover{
     border: 2px solid var(--color-oxblood-red);
-}
-
-.vintage-frame{
-    display: block;
-    background-color: var(--bg-input-field);
-    border: 2px solid var(--border-main);
-    border-radius: 4px;
-    padding: 12px;
-    box-shadow: 0 6px 18px rgba(43, 37, 29, 0.18),
-    inset 0 0 25px rgba(214, 187, 135, 0.35);
-    position: relative;
-    box-sizing: border-box;
-    margin: 20px auto;
-    max-width: 100%;
 }
 
 .vintage-frame::before {
