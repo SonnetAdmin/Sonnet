@@ -5,6 +5,9 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link rel="icon" type="image/x-icon" href="src/SonnetIcon.ico">
         <link href="css/sonnet.css" rel="stylesheet">
+        <script src="js/jquery-4.0.0.min.js"></script>
+        <script src="js/jquery.js"></script>
+        <script src="js/modal.js"></script>
         <title>Message Received</title>
     </head>
     <body>
@@ -14,36 +17,5 @@
             <h5>-SonnetSoft</h5>
         </header>
         <br>
-<!--        <a class="fixed-button" href="Home.html" id="back" role="button">Home</a>-->
-<!--        <button class="fixed-button" id="windowclose" onclick="closewin()" role="button">Close</button>-->
-
     </body>
-    <script>
-        function closewin(){
-            window.close();
-        }
-
-        document.addEventListener('keydown', function (e) {
-            // Block F12
-            if (event.key === 'F12') {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Selector)
-            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) {
-                e.preventDefault();
-                return false;
-            }
-
-            // Block Ctrl+U (View Source)
-            if (e.ctrlKey && e.key === 'U') {
-                e.preventDefault();
-                return false;
-            }
-        });
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-        });
-    </script>
 </html>
