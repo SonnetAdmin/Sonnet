@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="css/sonnet.css" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/jquery-4.0.0.min.js"></script>
+        <title>JQuery</title>
+    </head>
+    <body>
+        <dialog class="book-modal" id="pageModal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <button class="close-modal-btn" id="close" type="button">Close ✕</button>
+            </div>
+            <iframe class="modal-frame" id="modalFrame" title="Embedded Page"></iframe>
+        </dialog>
+        <table id="table">
+            <tr>
+                <th>Column 1</th>
+                <th>Column 2</th>
+                <th>Column 2</th>
+                <th>Column 2</th>
+            </tr>
+            <tr>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 2, Cell 1</td>
+                <td>Row 2, Cell 2</td>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 3, Cell 1</td>
+                <td>Row 3, Cell 2</td>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 3, Cell 1</td>
+                <td>Row 3, Cell 2</td>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+            </tr>
+            <tr>
+                <td>Row 3, Cell 1</td>
+                <td>Row 3, Cell 2</td>
+                <td>Row 1, Cell 1</td>
+                <td>Row 1, Cell 2</td>
+            </tr>
+        </table>
+        <button class="red" id="red" role=button type="button">Red</button>
+        <button class="blue" id="blue" role=button type="button">Blue</button>
+        <img src="src/Trophy.png" hidden id="image">
+        <img src="src/Trophy.png"  id="image2">
+        <button id="fade-in" role="button" type="button">Fade Image</button>
+        <button id="flip" role="button" type="button">Flip Image</button>
+    </body>
+    <script>
+        // Onload Event
+        $(function () {
+            const modal = document.getElementById("pageModal");
+            const modalFrame = document.getElementById("modalFrame");
+            const modalTitle = document.getElementById("modalTitle");
+
+            $(".display").click(function () {
+                var id = $(this).attr("id");
+                switch (id){
+                    case "about_modal":
+                        modalFrame.src = "About.html";
+                        modalTitle.textContent = "Sonnet - About";
+                        modal.showModal();
+                        break;
+
+                    case "code_examples":
+                        modalFrame.src = "CodeExamples.html";
+                        modalTitle.textContent = "Sonnet - Code Examples";
+                        modal.showModal();
+                        break;
+
+                    case "benefits":
+                        modalFrame.src = "Benefits.html";
+                        modalTitle.textContent = "Sonnet - Benefits";
+                        modal.showModal();
+                        break;
+
+                    case "installation":
+                        modalFrame.src = "Installation.html";
+                        modalTitle.textContent = "Sonnet - Installation";
+                        modal.showModal();
+                        break;
+
+                    case "contact_us_modal":
+                        modalFrame.src = "ContactUs.html"
+                        modalTitle.textContent = "Sonnet - ContactUs";
+                        modal.showModal();
+                        break;
+                }
+            });
+            $("#close").click(function () {
+                modal.close();
+            });
+
+            $("#fade-in").click(function () {
+                var pic = document.getElementById("image");
+                $(pic).fadeIn(3000);
+            });
+
+            $("#flip").click(function () {
+                var pic = document.getElementById("image2");
+                $(pic).attr("src", "src/Trophyupsidedown.png");
+            });
+        });
+    </script>
+</html>

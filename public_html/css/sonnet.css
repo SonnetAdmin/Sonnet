@@ -15,6 +15,7 @@
     --color-error-red: #ff0000;
     --color-oxblood-red: #5c1e16;
     --color-oxblood-dark: #42140f;
+    --color-pure-blue: #0000ff
 }
 
 /* --- Global Framework Layout --- */
@@ -186,7 +187,7 @@ form::after {
     order: 3;
 }
 
-.button, button[type="submit"], a.button, .fixed-button {
+.button, button[type="submit"], a.button, .fixed-button, .blue {
     grid-column: span 2;
     order: 3;
 }
@@ -298,6 +299,18 @@ input[type="reset"] {
     text-transform: uppercase;
     cursor: pointer;
     transition: background-color 0.2s ease;
+}
+
+.blue{
+    background-color: var(--color-pure-blue);
+}
+
+.red{
+    background-color: var(--color-error-red);
+}
+
+.display{
+
 }
 
 a.button {
