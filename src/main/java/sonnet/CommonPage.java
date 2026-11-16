@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 import static sonnet.utils.Checks.throwOnNull;
 import static sonnet.utils.Checks.throwOnZeroOrMinus;
 import static sonnet.utils.Time.pause;
@@ -205,6 +206,40 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         }
         currentElement.fill(text);
 
+    }
+
+    @Override
+    public void check() {
+        currentElement.check();
+        logger.log("check()");
+    }
+
+    @Override
+    public void uncheck() {
+        currentElement.uncheck();
+        logger.log("uncheck()");
+    }
+
+    @Override
+    public void checked() {
+        if (!execute) return;
+        try {
+            assertThat(currentElement).isChecked();
+            logger.log("checked()");
+        } catch (PlaywrightException | AssertionError e) {
+            throw new IllegalStateException("The element " + currentElement + " is not selected", e);
+        }
+    }
+
+    @Override
+    public void unchecked() {
+        if (!execute) return;
+        try {
+            assertThat(currentElement).not().isChecked();
+            logger.log("unchecked()");
+        } catch (PlaywrightException | AssertionError e) {
+            throw new IllegalStateException("The element " + currentElement + " was expected to be unselected", e);
+        }
     }
 
     @Override
