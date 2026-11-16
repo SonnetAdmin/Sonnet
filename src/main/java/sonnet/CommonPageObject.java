@@ -1,6 +1,6 @@
 package sonnet;
 
-import sonnet.reference.playwright.Enums;
+//import sonnet.reference.playwright.Enums;
 
 import java.util.List;
 
@@ -76,6 +76,26 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
 
     public CommonPageObject compose(String text) {
         commonPage.compose(text);
+        return this;
+    }
+
+    public CommonPageObject check() {
+        commonPage.check();
+        return this;
+    }
+
+    public CommonPageObject uncheck() {
+        commonPage.uncheck();
+        return this;
+    }
+
+    public CommonPageObject checked() {
+        commonPage.checked();
+        return this;
+    }
+
+    public CommonPageObject unchecked() {
+        commonPage.unchecked();
         return this;
     }
 
@@ -242,25 +262,25 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return null;
     }
 
-    @Override
-    public CommonPageObject attributeEquals(Enums.ElementTrait attribute, String value) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject attributeContains(Enums.ElementTrait attribute, String value) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject attributeStartsWith(Enums.ElementTrait attribute, String value) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value) {
-        return null;
-    }
+//    @Override
+//    public CommonPageObject attributeEquals(Enums.ElementTrait attribute, String value) {
+//        return null;
+//    }
+//
+//    @Override
+//    public CommonPageObject attributeContains(Enums.ElementTrait attribute, String value) {
+//        return null;
+//    }
+//
+//    @Override
+//    public CommonPageObject attributeStartsWith(Enums.ElementTrait attribute, String value) {
+//        return null;
+//    }
+//
+//    @Override
+//    public CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value) {
+//        return null;
+//    }
 
     @Override
     public CommonPageObject elementPresent(Target target) {
@@ -331,15 +351,15 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return null;
     }
 
-    @Override
-    public CommonPageObject tagIs(Enums.Tag tag) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject tagIsNot(Enums.Tag tag) {
-        return null;
-    }
+//    @Override
+//    public CommonPageObject tagIs(Enums.Tag tag) {
+//        return null;
+//    }
+//
+//    @Override
+//    public CommonPageObject tagIsNot(Enums.Tag tag) {
+//        return null;
+//    }
 
     @Override
     public CommonPageObject elementPrint() {

@@ -1,6 +1,6 @@
 package sonnet;
 
-import sonnet.reference.playwright.Enums;
+//import sonnet.reference.playwright.Enums;
 
 import java.util.List;
 
@@ -41,13 +41,13 @@ public interface DOMUtilsInterface {
 
     CommonPageObject textHasLength(int length);
 
-    CommonPageObject attributeEquals(Enums.ElementTrait attribute, String value);
-
-    CommonPageObject attributeContains(Enums.ElementTrait attribute, String value);
-
-    CommonPageObject attributeStartsWith(Enums.ElementTrait attribute, String value);
-
-    CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value);
+//    CommonPageObject attributeEquals(Enums.ElementTrait attribute, String value);
+//
+//    CommonPageObject attributeContains(Enums.ElementTrait attribute, String value);
+//
+//    CommonPageObject attributeStartsWith(Enums.ElementTrait attribute, String value);
+//
+//    CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value);
 
     CommonPageObject elementPresent(Target target);
 
@@ -77,9 +77,9 @@ public interface DOMUtilsInterface {
 
     CommonPageObject collectionDoesNotContain(List<String> items);
 
-    CommonPageObject tagIs(Enums.Tag tag);
-
-    CommonPageObject tagIsNot(Enums.Tag tag);
+//    CommonPageObject tagIs(Enums.Tag tag);
+//
+//    CommonPageObject tagIsNot(Enums.Tag tag);
 
     CommonPageObject elementPrint();
 

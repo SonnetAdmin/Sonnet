@@ -51,4 +51,5 @@ public class Target {
     public AriaRole getAriaRole() {
         return ariaRole;
     }
+
 }

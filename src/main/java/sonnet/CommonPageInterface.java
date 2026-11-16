@@ -90,6 +90,26 @@ public interface CommonPageInterface {
     void compose(String text);
 
     /**
+     * tests if a checkbox is checked- if it is not - checks it.
+     */
+    void check();
+
+    /**
+     * tests if a checkbox is uncchecked- if it is - checks it.
+     */
+    void uncheck();
+
+    /**
+     * tests if a checkbox is checked.
+     */
+    void checked();
+
+    /**
+     * tests if a checkbox is unchecked.
+     */
+    void unchecked();
+
+    /**
      * Ends the current interaction or context.
      */
     void end();
