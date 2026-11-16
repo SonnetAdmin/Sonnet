@@ -29,6 +29,11 @@ public class SonnetSoftSteps {
         sonnetSoft.checkTitle(title);
     }
 
+    @Then("I check the modal is {string}")
+    public void iCheckTheModalIs(String modal) {
+        sonnetSoft.checkModal(modal);
+    }
+
     @And("I input the following username and password:")
     public void iInputTheFollowingUsernameAndPassword(List<SonnetSoftInfo> sonnetInfo) {
         sonnetSoft.inputInfo(sonnetInfo.getFirst());
@@ -78,4 +83,6 @@ public class SonnetSoftSteps {
     public void iRefresh() {
         sonnetSoft.refresh();
     }
+
+
 }

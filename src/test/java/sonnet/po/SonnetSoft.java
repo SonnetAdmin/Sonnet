@@ -11,12 +11,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static sonnet.Enum.Direction.*;
 import static sonnet.Enum.HTMLTag.*;
-import static sonnet.Enum.Trait.TEXT;
+import static sonnet.Enum.Trait.*;
+import static sonnet.utils.Time.pause;
 
 
 public class SonnetSoft extends CommonPageObject {
     private final Target TITLE = (tag(Enum.HTMLTag.TITLE));
-    private final Target USERNAME = (label("Username:"));
+    private final Target MODAL = (id("modalTitle"));
+    private final Target USERNAME = (focus(MODAL).label("Username:"));
     private final Target PASSWORD = (label("Password:"));
     private final Target LOGIN = (ariaRole(AriaRole.BUTTON, "Login"));
     private final Target CONTACT_US = (ariaRole(AriaRole.BUTTON, "Contact Us"));
@@ -34,6 +36,11 @@ public class SonnetSoft extends CommonPageObject {
     public void checkTitle(String title) {
         focus(TITLE);
         assertEquals(title, get(TEXT));
+    }
+
+    public void checkModal(String modal) {
+        focus(MODAL);
+        assertEquals(modal, get(TEXT));
     }
 
     public void inputInfo(SonnetSoftInfo info) {
