@@ -284,8 +284,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void go(String url) {
         logger.log("go()\t", url);
         page.navigate(url);
-        page.waitForURL(url);
-        logger.log("Loaded()\t", url);
+        this.page.waitForURL(url);
+        logger.log("Loaded()", url);
     }
 
     @Override
