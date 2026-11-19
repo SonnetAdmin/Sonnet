@@ -171,10 +171,19 @@ public interface CommonPageInterface {
      */
     void submit();
 
+    /**
+     * Scrolls to the target when it is already focused.
+     */
     void scroll();
 
+    /**
+     * Scrolls to the target and focuses it.
+     */
     void scroll(Target target);
 
+    /**
+     * Scrolls the inputed direction (UP and DOWN) or root (HOME and END).
+     */
     void scroll(Enum.Scroll direction);
 
     /**

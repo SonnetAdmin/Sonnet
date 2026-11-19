@@ -53,7 +53,7 @@ public class JScroll extends CommonPageObject {
 
     @Test
     @Tag("add")
-    @DisplayName("Scrolling End and Home")
+    @DisplayName("Scrolling to focused target")
     public void t4() {
         Target target = tagWithText(H4,"Practice Test Automation WebSite for Web UI and Rest API");
         focus(target);
