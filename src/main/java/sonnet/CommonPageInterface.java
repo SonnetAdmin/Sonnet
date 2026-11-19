@@ -20,6 +20,16 @@ public interface CommonPageInterface {
     void box();
 
     /**
+     * Tests if a checkbox is checked; if it is not, checks it.
+     */
+    void check();
+
+    /**
+     * Tests if a checkbox is checked.
+     */
+    void checked();
+
+    /**
      * Selects an element by its index within the current set of options or items.
      *
      * @param index the zero-based index to choose
@@ -53,19 +63,19 @@ public interface CommonPageInterface {
     void click();
 
     /**
-     * Navigates to a target destination from the current context.
-     *
-     * @param destination the target destination
-     */
-    void cognate(Target destination);
-
-    /**
      * Navigates from one target to another.
      *
      * @param origin the source target
      * @param destination the destination target
      */
     void cognate(Target origin, Target destination);
+
+    /**
+     * Navigates to a target destination from the current context.
+     *
+     * @param destination the target destination
+     */
+    void cognate(Target destination);
 
     /**
      * Collects the value associated with the provided target.
@@ -87,26 +97,6 @@ public interface CommonPageInterface {
      * @param text the text to type
      */
     void compose(String text);
-
-    /**
-     * tests if a checkbox is checked- if it is not - checks it.
-     */
-    void check();
-
-    /**
-     * tests if a checkbox is uncchecked- if it is - checks it.
-     */
-    void uncheck();
-
-    /**
-     * tests if a checkbox is checked.
-     */
-    void checked();
-
-    /**
-     * tests if a checkbox is unchecked.
-     */
-    void unchecked();
 
     /**
      * Ends the current interaction or context.
@@ -153,11 +143,23 @@ public interface CommonPageInterface {
     void open();
 
     /**
+     * Executes the provided performable task.
+     *
+     * @param runner the performable task to execute
+     */
+    <T extends Performable> void perform(T runner);
+
+    /**
      * Probes the specified target to inspect its state.
      *
      * @param target the target to inspect
      */
     void probe(Target target);
+
+    /**
+     * Retrieves the value associated with the provided key.
+     */
+    String retrieve(String key);
 
     /**
      * Finds the indexed previous sibling of the current element
@@ -170,21 +172,14 @@ public interface CommonPageInterface {
     void reverse(Enum.NodeEnum index);
 
     /**
-     * Returns the number of items currently represented by the page object.
-     *
-     * @return the size of the current collection or page context
-     */
-    int size();
-
-    /**
-     * Submits the current form or action.
-     */
-    void submit();
-
-    /**
      * Scrolls to the target when it is already focused.
      */
     void scroll();
+
+    /**
+     * Scrolls the inputed direction (UP and DOWN) or root (HOME and END).
+     */
+    void scroll(Enum.Scroll direction);
 
     /**
      * Scrolls to the target and focuses it.
@@ -192,9 +187,21 @@ public interface CommonPageInterface {
     void scroll(Target target);
 
     /**
-     * Scrolls the inputed direction (UP and DOWN) or root (HOME and END).
+     * Returns the number of items currently represented by the page object.
+     *
+     * @return the size of the current collection or page context
      */
-    void scroll(Enum.Scroll direction);
+    int size();
+
+    /**
+     * Stores a value associated with the provided key.
+     */
+    void store(String key, String value);
+
+    /**
+     * Submits the current form or action.
+     */
+    void submit();
 
     /**
      * Finds the indexed sibling of the current element
@@ -212,20 +219,12 @@ public interface CommonPageInterface {
     void unbox();
 
     /**
-     * Executes the provided performable task.
-     *
-     * @param runner the performable task to execute
+     * Tests if a checkbox is unchecked; if it is, checks it.
      */
-    <T extends Performable> void perform(T runner);
+    void uncheck();
 
     /**
-     * Stores a value associated with the provided key.
+     * Tests if a checkbox is unchecked.
      */
-    void store(String key, String value);
-
-
-    /**
-     * Retrieves the value associated with the provided key.
-     */
-    String retrieve(String key);
+    void unchecked();
 }

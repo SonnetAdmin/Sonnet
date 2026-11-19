@@ -1,5 +1,6 @@
 package sonnet.performables;
 
+import com.microsoft.playwright.Page;
 import sonnet.Performable;
 
 import java.net.URL;
@@ -20,7 +21,7 @@ public class DoComplexStuff extends Performable {
 
     @Override
     public void run() {
-//        Page page = getPage();
+        Page page = getPage();
         System.out.println("Hello World from Performable?");
     }
 

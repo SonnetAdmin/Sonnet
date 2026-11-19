@@ -5,8 +5,8 @@ import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 import sonnet.Performable;
 
-import static sonnet.Enum.Action.Enter;
-import static sonnet.Enum.HTMLTag.DIV;
+import static sonnet.Enum.Action.*;
+import static sonnet.Enum.HTMLTag.*;
 
 public class SearchGoogle extends Performable {
     private final String URL = "https://www.google.com";
@@ -30,7 +30,6 @@ public class SearchGoogle extends Performable {
         click();
         compose(criteria);          //TODO CHECK COMMON-PAGE
         compose(Enter);             //TODO CHECK COMMON-PAGE-INTERFACE
-        System.out.println("");
     }
 
     @Override
