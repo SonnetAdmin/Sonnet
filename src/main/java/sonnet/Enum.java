@@ -255,5 +255,13 @@ public class Enum {
         BACK,
         FORWARD,
         REFRESH
+
+    }
+
+    public enum Scroll {
+        UP,
+        DOWN,
+        HOME,
+        END
     }
 }

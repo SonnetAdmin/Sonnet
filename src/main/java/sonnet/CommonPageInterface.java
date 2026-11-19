@@ -1,5 +1,4 @@
 package sonnet;
-
 /**
  * Defines the common page-object operations used across the framework.
  * <p>
@@ -171,6 +170,12 @@ public interface CommonPageInterface {
      * Submits the current form or action.
      */
     void submit();
+
+    void scroll();
+
+    void scroll(Target target);
+
+    void scroll(Enum.Scroll direction);
 
     /**
      * Removes the current highlight or active selection from the page.
