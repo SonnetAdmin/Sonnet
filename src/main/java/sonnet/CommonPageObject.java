@@ -159,6 +159,16 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return this;
     }
 
+    public CommonPageObject reverse(int index){
+        commonPage.reverse(index);
+        return this;
+    }
+
+    public CommonPageObject reverse(Enum.NodeEnum index){
+        commonPage.reverse(index);
+        return this;
+    }
+
     public CommonPageObject store(String key, String value) {
         commonPage.store(key, value);
         return this;
