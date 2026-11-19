@@ -18,11 +18,18 @@
     --color-pure-blue: #0000ff;
 }
 
+@font-face {
+    font-family: "Great Vibes";
+    src: url("Font/GreatVibes-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* --- Global Framework Layout --- */
 body {
     background-color: var(--bg-outer-parchment);
     color: var(--color-ink-dark);
-    font-family: "Georgia", "Times New Roman", serif;
+    font-family: "Georgia", "Lora", "Times New Roman", serif;
     margin: 0;
     padding: 40px 20px;
     display: flex;
@@ -94,6 +101,55 @@ h5 {
     font-size: 0.9rem;
 }
 
+.about_block{
+    margin-left: 60px;
+    margin-top: 25px;
+    width: 100%;
+    display: block;
+    align-items: center;
+}
+
+.about_inline{
+    margin-top: 25px;
+    margin-left: 10px;
+    display: inline;
+    width: 80%;
+    float: left;
+
+}
+
+.small-thumbnail{
+    margin-right: 15px;
+    display: inline;
+    float: left;
+    height: 125px;
+    width: 150px;
+    max-width: 30%;
+}
+
+.fancy {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--color-ink-dark);
+    text-align: left;
+}
+
+.fancy::first-letter {
+    font-family: "Great Vibes", cursive;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: var(--color-oxblood-red);
+    line-height: 0.65;
+    padding-right: 4px;
+}
+
+.fancy b {
+    font-weight: bold;
+    color: var(--color-oxblood-red);
+}
+
+
 .center {
     text-align: center;
 }
@@ -142,12 +198,11 @@ form {
     align-content: start;
 }
 
-form.gallery{
+form.gallery {
     grid-template-columns: 1fr 1fr 1fr;
     max-width: none;
     align-items: start;
 }
-
 
 
 form.flow {
@@ -309,15 +364,15 @@ input[type="reset"] {
     transition: background-color 0.2s ease;
 }
 
-.blue{
+.blue {
     background-color: var(--color-pure-blue);
 }
 
-.red{
+.red {
     background-color: var(--color-error-red);
 }
 
-.display{
+.display {
 
 }
 
@@ -339,9 +394,9 @@ a.button {
     transition: background-color 0.2s ease;
 }
 
-a.img{
-    width:75%;
-    max-height:100%;
+a.img {
+    width: 75%;
+    max-height: 100%;
 }
 
 a.img:hover {
@@ -429,7 +484,7 @@ pre code {
 }
 
 /* --- Blockquotes & Miscellany --- */
-blockquote {
+.blockquote {
     font-style: italic;
     color: var(--color-ink-muted);
     border-left: 4px solid var(--border-main);
@@ -464,7 +519,7 @@ img {
     max-width: 100%;
 }
 
-.vintage-frame:hover{
+.vintage-frame:hover {
     border: 2px solid var(--color-oxblood-red);
 }
 
@@ -613,16 +668,17 @@ dialog.book-modal::before {
     z-index: 2;
 }
 
-.viewbox-container{
+.viewbox-container {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, .5);
     z-index: 700;
 }
-.viewbox-body{
+
+.viewbox-body {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -637,7 +693,8 @@ dialog.book-modal::before {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     overflow: auto;
 }
-.viewbox-header{
+
+.viewbox-header {
     padding: 10px 0 0;
     margin: 0 10px;
     overflow: hidden;
@@ -645,12 +702,14 @@ dialog.book-modal::before {
     white-space: nowrap;
     max-width: 100%;
 }
-.viewbox-content{
+
+.viewbox-content {
     margin: 10px;
     width: 300px;
     height: 300px;
 }
-.viewbox-footer{
+
+.viewbox-footer {
     padding: 0 0 10px;
     margin: 0 10px;
     overflow: hidden;
@@ -658,18 +717,20 @@ dialog.book-modal::before {
     white-space: nowrap;
     max-width: 100%;
 }
-.viewbox-content .viewbox-image{
+
+.viewbox-content .viewbox-image {
     width: 100%;
     height: 100%;
 }
 
 /* buttons */
-.viewbox-button-default{
+.viewbox-button-default {
     cursor: pointer;
     height: 64px;
     width: 64px;
 }
-.viewbox-button-default > svg{
+
+.viewbox-button-default > svg {
     width: 100%;
     height: 100%;
     background: inherit;
@@ -677,78 +738,91 @@ dialog.book-modal::before {
     pointer-events: none;
     transform: translateX(0px);
 }
-.viewbox-button-default{
+
+.viewbox-button-default {
     fill: #999;
 }
-.viewbox-button-default:hover{
+
+.viewbox-button-default:hover {
     fill: #fff;
 }
 
-.viewbox-button-close{
-    position:absolute;
-    top:10px;
+.viewbox-button-close {
+    position: absolute;
+    top: 10px;
     right: 10px;
-    z-index:9;
+    z-index: 9;
 }
-.viewbox-button-full-screen{
-    position:absolute;
-    top:84px;
+
+.viewbox-button-full-screen {
+    position: absolute;
+    top: 84px;
     right: 10px;
-    z-index:9;
+    z-index: 9;
 }
+
 .viewbox-button-next,
-.viewbox-button-prev{
-    position:absolute;
+.viewbox-button-prev {
+    position: absolute;
     top: 50%;
     height: 128px;
     width: 128px;
     margin: -64px 0 0;
-    z-index:9;
+    z-index: 9;
 }
-.viewbox-button-next{
+
+.viewbox-button-next {
     right: 10px;
 }
-.viewbox-button-prev{
+
+.viewbox-button-prev {
     left: 10px;
 }
+
 @media (max-width: 480px) {
-    .viewbox-button-close{
+    .viewbox-button-close {
         top: 0;
         right: 0;
     }
+
     .viewbox-button-next,
-    .viewbox-button-prev{
+    .viewbox-button-prev {
         height: 81px;
         width: 81px;
         margin-top: -40px;
     }
-    .viewbox-button-next{
-        right:-15px;
+
+    .viewbox-button-next {
+        right: -15px;
     }
-    .viewbox-button-prev{
-        left:-15px;
+
+    .viewbox-button-prev {
+        left: -15px;
     }
 }
 
 /* loader */
-.viewbox-container .loader{
+.viewbox-container .loader {
     position: absolute;
     left: 50%;
     top: 50%;
-    margin:-25px 0 0 -25px;
+    margin: -25px 0 0 -25px;
 }
-.viewbox-container .loader *{
+
+.viewbox-container .loader * {
     margin: 0;
     padding: 0;
 }
-.viewbox-container .loader .spinner{
+
+.viewbox-container .loader .spinner {
     width: 50px;
     height: 50px;
     position: relative;
     margin: 0 auto;
 }
+
 .viewbox-container .loader .double-bounce1,
-.viewbox-container .loader .double-bounce2{
+.viewbox-container .loader .double-bounce2 {
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -760,23 +834,30 @@ dialog.book-modal::before {
     -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
     animation: sk-bounce 2.0s infinite ease-in-out;
 }
+
 .viewbox-container .loader .double-bounce2 {
     -webkit-animation-delay: -1.0s;
     animation-delay: -1.0s;
 }
-@-webkit-keyframes sk-bounce{
-    0%, 100% { -webkit-transform: scale(0.0) }
-    50% { -webkit-transform: scale(1.0) }
+
+@-webkit-keyframes sk-bounce {
+    0%, 100% {
+        -webkit-transform: scale(0.0)
+    }
+    50% {
+        -webkit-transform: scale(1.0)
+    }
 }
 
-@keyframes sk-bounce{
+@keyframes sk-bounce {
     0%, 100% {
         transform: scale(0.0);
         -webkit-transform: scale(0.0);
-    } 50% {
-          transform: scale(1.0);
-          -webkit-transform: scale(1.0);
-      }
+    }
+    50% {
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
 }
 
 
@@ -816,4 +897,3 @@ dialog.book-modal::before {
         order: 4;
     }
 }
-
