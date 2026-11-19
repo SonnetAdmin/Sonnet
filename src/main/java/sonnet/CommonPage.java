@@ -333,6 +333,16 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
+    public void reverse(int index) {
+        selectPreviousSibling(index);
+    }
+
+    @Override
+    public void reverse(Enum.NodeEnum index) {
+        selectPreviousSibling(index.getValue());
+    }
+
+    @Override
     public int size() {
         logger.log("size()\t");
         return currentElements.size();
@@ -494,6 +504,16 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             logger.log("traverse to following sibling failed");
         }
     }
+
+    private void selectPreviousSibling(int index) {
+        try {
+            logger.log("reverse() ", "Previous Sibling - Index: " +index);
+            currentElement = currentElement.locator("xpath=./preceding-sibling::*[" + index + "]");
+        } catch (PlaywrightException pe) {
+            logger.log("reverse to preceding sibling failed");
+        }
+    }
+
 
     private void setTimeout(int seconds) {
         page.setDefaultTimeout(seconds * 1000);

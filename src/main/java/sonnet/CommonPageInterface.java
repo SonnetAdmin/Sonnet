@@ -160,6 +160,16 @@ public interface CommonPageInterface {
     void probe(Target target);
 
     /**
+     * Finds the indexed previous sibling of the current element
+     */
+    void reverse(int index);
+
+    /**
+     * Finds the enumerated indexed previous sibling of the current element
+     */
+    void reverse(Enum.NodeEnum index);
+
+    /**
      * Returns the number of items currently represented by the page object.
      *
      * @return the size of the current collection or page context
