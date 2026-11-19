@@ -67,6 +67,42 @@ public class Enum {
         PREVIOUS;
     }
 
+    public enum NodeType {
+        CHILDREN,
+        SIBLINGS
+
+    }
+
+    public enum Relation {
+        CHILD,
+        GRANDPARENT,
+        PARENT,
+        SIBLING
+    }
+
+    public enum NodeEnum {
+        FIRST(1),
+        SECOND(2),
+        THIRD(3),
+        FOURTH(4),
+        FIFTH(5),
+        SIXTH(6),
+        SEVENTH(7),
+        EIGHTH(8),
+        NINTH(9),
+        TENTH(10);
+
+        private final int value;
+
+        NodeEnum(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
     public enum HTMLTag {
         A,
         ABBR,

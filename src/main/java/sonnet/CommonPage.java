@@ -377,6 +377,16 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
+    public void traverse(int index) {
+        selectFollowingSibling(index);
+    }
+
+    @Override
+    public void traverse(Enum.NodeEnum index) {
+        selectFollowingSibling(index.getValue());
+    }
+
+    @Override
     public void log(String message) {
         logger.log(message);
     }
@@ -474,6 +484,15 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             found = false;
         }
         return found;
+    }
+
+    private void selectFollowingSibling(int index) {
+        try {
+            logger.log("traverse() ", "Following Sibling - Index: " +index);
+            currentElement = currentElement.locator("xpath=./following-sibling::*[" + index + "]");
+        } catch (PlaywrightException pe) {
+            logger.log("traverse to following sibling failed");
+        }
     }
 
     private void setTimeout(int seconds) {

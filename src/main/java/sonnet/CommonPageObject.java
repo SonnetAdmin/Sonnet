@@ -177,6 +177,18 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return this;
     }
 
+    public CommonPageObject traverse(int index){
+        commonPage.traverse(index);
+        return this;
+    }
+
+    public CommonPageObject traverse(Enum.NodeEnum index){
+        commonPage.traverse(index);
+        return this;
+    }
+
+
+
     public String retrieve(String key) {
         return commonPage.retrieve(key);
     }

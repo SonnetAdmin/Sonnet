@@ -187,6 +187,16 @@ public interface CommonPageInterface {
     void scroll(Enum.Scroll direction);
 
     /**
+     * Finds the indexed sibling of the current element
+     */
+    void traverse(int index);
+
+    /**
+     * Finds the enumerated indexed sibling of the current element
+     */
+    void traverse(Enum.NodeEnum index);
+
+    /**
      * Removes the current highlight or active selection from the page.
      */
     void unbox();
