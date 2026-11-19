@@ -164,6 +164,19 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return this;
     }
 
+    public CommonPageObject scroll(){
+        commonPage.scroll();
+        return this;
+    }
+    public CommonPageObject scroll(Target target){
+        commonPage.scroll(target);
+        return this;
+    }
+    public CommonPageObject scroll(Enum.Scroll direction){
+        commonPage.scroll(direction);
+        return this;
+    }
+
     public String retrieve(String key) {
         return commonPage.retrieve(key);
     }

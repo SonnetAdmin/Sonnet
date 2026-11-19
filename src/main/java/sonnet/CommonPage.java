@@ -347,13 +347,43 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
+    public void scroll() {
+        if (!execute) return;
+        log("scroll()");
+        currentElement.scrollIntoViewIfNeeded();
+    }
+
+    @Override
+    public void scroll(Target target) {
+        if (!execute) return;
+        throwOnNull(target, "scroll Target");
+        logger.log("scroll()", target.getType().name(), target.getValue());
+        focus(target);
+        currentElement.scrollIntoViewIfNeeded();
+    }
+
+
+    @Override
+    public void scroll(Enum.Scroll direction) {
+        if (!execute) return;
+        throwOnNull(direction, "scroll direction");
+        logger.log("scroll()", direction.name());
+        switch (direction) {
+            case UP -> page.mouse().wheel(0, -1000);
+            case DOWN -> page.mouse().wheel(0, 1000);
+            case HOME -> page.mouse().wheel(0, -1000000000);
+            case END -> page.mouse().wheel(0, 1000000000);
+        };
+    }
+
+    @Override
     public void log(String message) {
         logger.log(message);
     }
 
-    /// ///////////////////////
+    //////////////////////////
     /// DIAGNOSTIC METHODS ///
-    /// ///////////////////////
+    //////////////////////////
 
     public void printElements() {
         logger.log("print elements");
