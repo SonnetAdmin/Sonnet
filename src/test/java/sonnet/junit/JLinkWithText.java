@@ -1,4 +1,4 @@
-package sonnet.junit.focus;
+package sonnet.junit;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
@@ -7,11 +7,12 @@ import sonnet.Target;
 import static org.junit.jupiter.api.Assertions.*;
 import static sonnet.Enum.Trait.*;
 import static sonnet.Enum.HTMLTag.*;
+import static sonnet.utils.Time.pause;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class LinkWithText extends CommonPageObject {
+public class JLinkWithText extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {
@@ -29,12 +30,11 @@ public class LinkWithText extends CommonPageObject {
     @Tag("linkwithtext")
     @DisplayName("h1")
     public void t1() {
-        Target target = linkText("LinkWithText");
+        Target target = linkWithText("with");
         Target targetID = tagContainsText(H1, "ID Test");
         focus(target).click();
         focus(targetID);
-        assertTrue(get(TEXT).equals("ID Test"));
-
+        assertEquals("ID Test", get(TEXT));
     }
 
 

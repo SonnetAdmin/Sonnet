@@ -45,8 +45,12 @@ public abstract class TargetFactory implements Targets {
         return new Target(placeholder ,PLACEHOLDER ,placeholder);
     }
 
-    public Target linkText(String text) {
+    public Target linkWithText(String text) {
         return new Target("a:text('" + text + "')" ,LINK_TEXT ,text);
+    }
+
+    public Target linkContainsText(String text) {
+        return new Target("//a[contains(normalize-space(text()), '" + text + "')]" ,LINK_TEXT ,text);
     }
 
     public Target label(String label) {
