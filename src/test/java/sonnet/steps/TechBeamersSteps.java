@@ -4,7 +4,6 @@ import io.cucumber.java.DataTableType;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import sonnet.dto.Interests;
-import sonnet.testenum.TestEnum;
 import sonnet.po.TechBeamers;
 
 import java.util.List;
@@ -71,11 +70,5 @@ public class TechBeamersSteps {
     public void iSelectTheFollowingInterests(List<Interests> interestList) {
             techBeamers.selectInterests(interestList.getFirst());
         }
-
-    @And("I have the following gender:")
-    public void iHaveTheFollowingGender(String gender) {
-        String genderCamel = toCamelCase(gender);
-        techBeamers.selectGender(TestEnum.Gender.valueOf(genderCamel));
-    }
 
 }

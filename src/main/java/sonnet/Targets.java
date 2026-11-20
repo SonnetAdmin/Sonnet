@@ -77,7 +77,15 @@ public interface Targets {
      * @param text The link text of the element.
      * @return A Target object for the specified link text.
      */
-    Target linkText(String text);
+    Target linkWithText(String text);
+
+    /**
+     * Returns a Target object representing an HTML element with the specified link text.
+     *
+     * @param text The link text of the element.
+     * @return A Target object for the specified link text.
+     */
+    Target linkContainsText(String text);
 
     /**
      * Returns a Target object representing an HTML element with the specified label.

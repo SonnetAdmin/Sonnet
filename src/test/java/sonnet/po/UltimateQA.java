@@ -3,7 +3,6 @@ package sonnet.po;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 import sonnet.dto.Interests;
-import sonnet.testenum.TestEnum;
 import sonnet.utils.Logger;
 
 import static sonnet.Enum.Trait.*;

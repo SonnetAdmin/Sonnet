@@ -3,7 +3,6 @@ package sonnet.po;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 import sonnet.dto.Interests;
-import sonnet.testenum.TestEnum;
 import sonnet.utils.Logger;
 
 import static sonnet.Enum.HTMLTag.*;
@@ -91,7 +90,4 @@ public class TechBeamers extends CommonPageObject {
         }
     }
 
-    public void selectGender(TestEnum.Gender gender) {
-        focus(label(gender.name())).click();
-    }
 }
