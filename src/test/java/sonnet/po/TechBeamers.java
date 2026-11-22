@@ -3,7 +3,6 @@ package sonnet.po;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 import sonnet.dto.Interests;
-import sonnet.utils.Logger;
 
 import static sonnet.Enum.HTMLTag.*;
 import static sonnet.utils.StringUtils.isTrue;
@@ -55,14 +54,14 @@ public class TechBeamers extends CommonPageObject {
 
     public void selectCountry(String country) {
         focus(COUNTRY).click();
-        collect(tag(OPTION));
+        assemble(tag(OPTION));
         choose(country);
         click();
     }
 
     public void selectLanguage(String language) {
         focus(LANGUAGES);
-        collect(tag(OPTION));
+        assemble(tag(OPTION));
         choose(language);
         click();
     }

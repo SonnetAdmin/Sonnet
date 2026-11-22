@@ -268,6 +268,7 @@ public class Enum {
         TEXT_TRIMMED,
         TITLE,
         TYPE,
+        URL,
         VALUE,
         VISIBLE,
         WIDTH,

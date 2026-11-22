@@ -16,7 +16,7 @@ import static sonnet.Enum.ListIndex.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class JCollect extends CommonPageObject {
+public class JAssemble extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {
@@ -36,7 +36,7 @@ public class JCollect extends CommonPageObject {
     public void t1() {
         Target target = id("seasons");
         focus(target).click();
-        collect(tag(OPTION));
+        assemble(tag(OPTION));
         choose("Spring");
         assertEquals("Spring", get(TEXT));
     }
@@ -46,7 +46,7 @@ public class JCollect extends CommonPageObject {
     @DisplayName("Choose Int test")
     public void t2() {
         focus(tag(SECTION));
-        collect(name("layer"));
+        assemble(name("layer"));
         assertThrows(IllegalArgumentException.class, () -> choose(0));
         choose(1);
         assertEquals("layer 1", get(TEXT));
@@ -58,7 +58,7 @@ public class JCollect extends CommonPageObject {
     @DisplayName("Choose Index test")
     public void t3() {
         focus(tag(SECTION));
-        collect(name("layer"));
+        assemble(name("layer"));
         assertThrows(IllegalArgumentException.class, () -> choose(0));
         choose(FIRST);
         assertEquals("layer 1", get(TEXT));
@@ -70,8 +70,8 @@ public class JCollect extends CommonPageObject {
     @DisplayName("Choose List test")
     public void t4() {
         focus(tag(OL));
-        collect(tag(LI));
-        assertEquals(4, size());
+        assemble(tag(LI));
+        assertEquals(4, assembled());
         choose(NOSE);
         assertEquals("Red", get(TEXT));
         choose(TAIL);
@@ -83,7 +83,7 @@ public class JCollect extends CommonPageObject {
     @DisplayName("Choose next / previous test")
     public void t5() {
         focus(tag(OL));
-        collect(tag(LI));
+        assemble(tag(LI));
         choose(NEXT);
         assertEquals("Blue", get(TEXT));
         choose(PREVIOUS);
@@ -95,7 +95,7 @@ public class JCollect extends CommonPageObject {
     @DisplayName("Choose next / previous after nose test")
     public void t6() {
         focus(tag(OL));
-        collect(tag(LI));
+        assemble(tag(LI));
         choose(NOSE);
         assertEquals("Red", get(TEXT));
         choose(NEXT);
@@ -109,7 +109,7 @@ public class JCollect extends CommonPageObject {
     @DisplayName("Choose next / previous after tail test")
     public void t7() {
         focus(tag(OL));
-        collect(tag(LI));
+        assemble(tag(LI));
         choose(TAIL);
         assertEquals("Yellow", get(TEXT));
         choose(NEXT);

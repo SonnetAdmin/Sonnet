@@ -82,7 +82,7 @@ public interface CommonPageInterface {
      *
      * @param target the target to collect data from
      */
-    void collect(Target target);
+    void assemble(Target target);
 
     /**
      * Sends a keyboard action to the currently focused element.
@@ -191,7 +191,7 @@ public interface CommonPageInterface {
      *
      * @return the size of the current collection or page context
      */
-    int size();
+    int assembled();
 
     /**
      * Stores a value associated with the provided key.
