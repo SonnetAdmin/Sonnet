@@ -7,6 +7,18 @@ package sonnet;
  * collecting data, and asserting page state.
  */
 public interface CommonPageInterface {
+
+    void ascend();
+
+    void ascend(int level);
+
+    void ascend(Enum.Index level);
+
+    void ascend(Enum.HTMLTag tag);
+
+    void ascend(Target target);
+
+
     /**
      * Highlights the specified target on the page.
      *
@@ -98,6 +110,16 @@ public interface CommonPageInterface {
      */
     void compose(String text);
 
+    void descend();
+// TODO review
+//    void descend(int level);
+//
+//    void descend(Enum.Index level);
+
+    void descend(Enum.HTMLTag tag);
+
+    void descend(Target target);
+
     /**
      * Ends the current interaction or context.
      */
@@ -136,6 +158,8 @@ public interface CommonPageInterface {
      * @param message the message to log
      */
     void log(String message);
+
+    void leaf();
 
     /**
      * Opens the page or starting state represented by this page object.

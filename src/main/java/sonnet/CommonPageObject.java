@@ -84,6 +84,23 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return this;
     }
 
+    public CommonPageObject descend() {
+        commonPage.descend();
+        return this;
+    }
+
+
+    public CommonPageObject descend(Enum.HTMLTag tag) {
+        commonPage.descend(tag);
+        return this;
+    }
+
+    public CommonPageObject descend(Target target) {
+        commonPage.descend(target);
+        return this;
+    }
+
+
     public CommonPageObject uncheck() {
         commonPage.uncheck();
         return this;
