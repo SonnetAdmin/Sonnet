@@ -1,8 +1,8 @@
 package sonnet;
 
-//import sonnet.reference.playwright.Enums;
-
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CommonPageObject extends TargetFactory implements DOMUtilsInterface {
     CommonPage commonPage;
@@ -63,9 +63,8 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         return this;
     }
 
-    public CommonPageObject collect(Target target) {
-        commonPage.collect(target);
-        commonPage.printElements();
+    public CommonPageObject assemble(Target target) {
+        commonPage.assemble(target);
         return this;
     }
 
@@ -208,202 +207,227 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
     ///////////////
 
     @Override
-    public CommonPageObject urlEquals(String url) {
-        return null;
+    public CommonPageObject urlEquals(String expectedUrl) {
+        String actualUrl = commonPage.get(Enum.Trait.URL);
+        assertEquals(expectedUrl, actualUrl);
+        return this;
     }
 
     @Override
-    public CommonPageObject urlContains(String url) {
-        return null;
+    public CommonPageObject urlContains(String expectedUrl) {
+        String actualUrl = commonPage.get(Enum.Trait.URL);
+        assertTrue(actualUrl.contains(expectedUrl), "actualUrl : " + actualUrl + " - expectedUrl : " + expectedUrl);
+        return this;
     }
 
     @Override
-    public CommonPageObject urlStartsWith(String url) {
-        return null;
+    public CommonPageObject urlStartsWith(String expectedUrl) {
+        String actualUrl = commonPage.get(Enum.Trait.URL);
+        assertTrue(actualUrl.startsWith(expectedUrl), "actualUrl : " + actualUrl + " - expectedUrl : " + expectedUrl);
+        return this;
     }
 
     @Override
-    public CommonPageObject urlEndsWith(String url) {
-        return null;
+    public CommonPageObject urlEndsWith(String expectedUrl) {
+        String actualUrl = commonPage.get(Enum.Trait.URL);
+        assertTrue(actualUrl.endsWith(expectedUrl), "actualUrl : " + actualUrl + " - expectedUrl : " + expectedUrl);
+        return this;
     }
 
     @Override
-    public CommonPageObject titleEquals(String title) {
-        return null;
+    public CommonPageObject titleEquals(String expectedTitle) {
+        String actualTitle = commonPage.get(Enum.Trait.TITLE);
+        assertEquals(expectedTitle, actualTitle);
+        return this;
     }
 
     @Override
-    public CommonPageObject titleContains(String title) {
-        return null;
+    public CommonPageObject titleContains(String expectedTitle) {
+        String actualTitle = commonPage.get(Enum.Trait.TITLE);
+        assertTrue(actualTitle.contains(expectedTitle), "actualTitle : " + actualTitle + " - expectedTitle : " + expectedTitle);
+        return this;
     }
 
     @Override
-    public CommonPageObject titleStartsWith(String title) {
-        return null;
+    public CommonPageObject titleStartsWith(String expectedTitle) {
+        String actualTitle = commonPage.get(Enum.Trait.TITLE);
+        assertTrue(actualTitle.startsWith(expectedTitle), "actualTitle : " + actualTitle + " - expectedTitle : " + expectedTitle);
+        return this;
     }
 
     @Override
-    public CommonPageObject titleEndsWith(String title) {
-        return null;
+    public CommonPageObject titleEndsWith(String expectedTitle) {
+        String actualTitle = commonPage.get(Enum.Trait.TITLE);
+        assertTrue(actualTitle.endsWith(expectedTitle), "actualTitle : " + actualTitle + " - expectedTitle : " + expectedTitle);
+        return this;
     }
 
     @Override
-    public CommonPageObject textEquals(String text) {
-        return null;
+    public CommonPageObject textEquals(String expectedText) {
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertEquals(expectedText, actualText);
+        return this;
     }
 
     @Override
-    public CommonPageObject textDiffers(String text) {
-        return null;
+    public CommonPageObject textDiffers(String expectedText) {
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertNotEquals(expectedText, actualText);
+        return this;
     }
 
     @Override
-    public CommonPageObject textContains(String text) {
-        return null;
+    public CommonPageObject textContains(String expectedText) {
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertTrue(actualText.contains(expectedText), "actualText : " + actualText + " - expectedText : " + expectedText);
+        return this;
     }
 
     @Override
-    public CommonPageObject textStartsWith(String text) {
-        return null;
+    public CommonPageObject textStartsWith(String expectedText) {
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertTrue(actualText.startsWith(expectedText), "actualText : " + actualText + " - expectedText : " + expectedText);
+        return this;
     }
 
     @Override
-    public CommonPageObject textEndsWith(String text) {
-        return null;
+    public CommonPageObject textEndsWith(String expectedText) {
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertTrue(actualText.endsWith(expectedText), "actualText : " + actualText + " - expectedText : " + expectedText);
+        return this;
     }
 
     @Override
     public CommonPageObject textPresent() {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject textPresent(String text) {
-        return null;
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertFalse(actualText.isEmpty());
+        return this;
     }
 
     @Override
     public CommonPageObject textNotPresent() {
-        return null;
+        String actualText = commonPage.get(Enum.Trait.TEXT);
+        assertTrue(actualText.isEmpty());
+        return this;
     }
 
     @Override
-    public CommonPageObject textNotPresent(String text) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject textHasLength(int length) {
-        return null;
+    public CommonPageObject textHasLength(int expectedLength) {
+        int actualLength = commonPage.get(Enum.Trait.TEXT).length();
+        assertEquals(actualLength, expectedLength, "actualLength : " + actualLength + " - expectedLength : " + expectedLength);
+        return this;
     }
 
 //    @Override
 //    public CommonPageObject attributeEquals(Enums.ElementTrait attribute, String value) {
-//        return null;
+//        return this;
 //    }
 //
 //    @Override
 //    public CommonPageObject attributeContains(Enums.ElementTrait attribute, String value) {
-//        return null;
+//        return this;
 //    }
 //
 //    @Override
 //    public CommonPageObject attributeStartsWith(Enums.ElementTrait attribute, String value) {
-//        return null;
+//        return this;
 //    }
 //
 //    @Override
 //    public CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value) {
-//        return null;
+//        return this;
+//    }
+
+//    @Override
+//    public CommonPageObject elementPresent(Target target) {
+//        return this;
+//    }                                                                             //REPLACED BY PEEK
+//
+//    @Override
+//    public CommonPageObject elementNotPresent(Target target) {
+//        return this;
 //    }
 
     @Override
-    public CommonPageObject elementPresent(Target target) {
-        return null;
+    public CommonPageObject assemblyPresent() {
+
+        return this;
     }
 
     @Override
-    public CommonPageObject elementNotPresent(Target target) {
-        return null;
+    public CommonPageObject assemblyNotPresent() {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionPresent() {
-        return null;
+    public CommonPageObject assemblySize(int expectedSize) {
+        int actualSize = commonPage.assembled();
+        assertEquals(actualSize, expectedSize, "actualSize : " + actualSize + " - expectedSize : " + expectedSize);
+        return this;
+    }
+
+    public int assembled() {
+        return commonPage.assembled();
     }
 
     @Override
-    public CommonPageObject collectionNotPresent() {
-        return null;
+    public CommonPageObject assemblyLargerThan(int size) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionHasSize(int size) {
-        return null;
-    }
-
-    public int size() {
-        return commonPage.size();
+    public CommonPageObject assemblySmallerThan(int size) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionLargerThan(int size) {
-        return null;
+    public CommonPageObject assemblyIs(List<String> expected) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionSmallerThan(int size) {
-        return null;
+    public CommonPageObject assemblyIs(List<String> expected, boolean strict) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionIs(List<String> expected) {
-        return null;
+    public CommonPageObject assemblyContains(String item) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionIs(List<String> expected, boolean strict) {
-        return null;
+    public CommonPageObject assemblyContains(List<String> items) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionContains(String item) {
-        return null;
+    public CommonPageObject assemblyDoesNotContain(String item) {
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionContains(List<String> items) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject collectionDoesNotContain(String item) {
-        return null;
-    }
-
-    @Override
-    public CommonPageObject collectionDoesNotContain(List<String> items) {
-        return null;
+    public CommonPageObject assemblyDoesNotContain(List<String> items) {
+        return this;
     }
 
 //    @Override
 //    public CommonPageObject tagIs(Enums.Tag tag) {
-//        return null;
+//        return this;
 //    }
 //
 //    @Override
 //    public CommonPageObject tagIsNot(Enums.Tag tag) {
-//        return null;
+//        return this;
 //    }
 
     @Override
     public CommonPageObject elementPrint() {
-        return null;
+        return this;
     }
 
     @Override
-    public CommonPageObject collectionPrint() {
-        return null;
+    public CommonPageObject assemblyPrint() {
+        return this;
     }
 
 }
