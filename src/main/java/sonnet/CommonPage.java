@@ -188,9 +188,9 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
-    public void collect(Target target) {
+    public void assemble(Target target) {
         if (!execute) return;
-        logger.log("collect()", target.getType().toString(), target.getValue());
+        logger.log("assemble()", target.getType().toString(), target.getValue());
         final int ITERATIONS = 5;
         final int STABLE_COUNT = 3;
         int stableCount = 0;
@@ -207,9 +207,9 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             }
             pause(1);
         }
-        logger.log("collect()", "Found: " + currentSize + " elements for target: ", target.toString());
+        logger.log("assemble()", "Found: " + currentSize + " elements for target: ", target.toString());
         if (stableCount < STABLE_COUNT)
-            throw new IllegalStateException("Failed to collect elements after " + ITERATIONS + " iterations");
+            throw new IllegalStateException("Failed to assemble elements after " + ITERATIONS + " iterations");
 
     }
 
@@ -322,7 +322,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         logger.log("get()\t", trait.name());
         return switch (trait) {
             case ALT, CLASS, CONTENT, HREF, ID, LANG,
-                 NAME, PLACEHOLDER, STYLE, TITLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
+                 NAME, PLACEHOLDER, STYLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
 //            case ATTRIBUTES -> getAllAttributes();
             case DISPLAYED -> String.valueOf(currentElement.isVisible());
             case ENABLED -> String.valueOf(currentElement.isEnabled());
@@ -332,6 +332,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             case TAG -> currentElement.evaluate("el => el.tagName").toString();
             case TEXT -> currentElement.textContent();
             case TEXT_TRIMMED -> currentElement.textContent().trim();
+            case TITLE -> page.title();
+            case URL -> page.url();
             case VALUE -> currentElement.getAttribute("value");
             case VISIBLE -> String.valueOf(currentElement.isVisible());
             case WIDTH -> String.valueOf(currentElement.boundingBox().width);
@@ -405,8 +407,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
-    public int size() {
-        logger.log("size()\t");
+    public int assembled() {
+        logger.log("assembled()\t");
         return currentElements.size();
     }
 
@@ -483,7 +485,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     //////////////////////////
 
     public void printElements() {
-        logger.log("print elements");
+        logger.log("Print Elements");
         for (Locator listElement : currentElements) {
             logger.log(listElement.textContent());
         }
@@ -491,7 +493,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     public void printElement() {
-        logger.log("print element");
+        logger.log("Print Element");
         BoundingBox box = currentElement.boundingBox();
         logger.log("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
         logger.log("Text: \t\t" + currentElement.textContent());

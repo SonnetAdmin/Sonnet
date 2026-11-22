@@ -33,11 +33,7 @@ public interface DOMUtilsInterface {
 
     CommonPageObject textPresent();
 
-    CommonPageObject textPresent(String text);
-
     CommonPageObject textNotPresent();
-
-    CommonPageObject textNotPresent(String text);
 
     CommonPageObject textHasLength(int length);
 
@@ -49,33 +45,33 @@ public interface DOMUtilsInterface {
 //
 //    CommonPageObject attributeEndsWith(Enums.ElementTrait attribute, String value);
 
-    CommonPageObject elementPresent(Target target);
+//    CommonPageObject elementPresent(Target target);
+//
+//    CommonPageObject elementNotPresent(Target target);
 
-    CommonPageObject elementNotPresent(Target target);
+    CommonPageObject assemblyPresent();
 
-    CommonPageObject collectionPresent();
+    CommonPageObject assemblyNotPresent();
 
-    CommonPageObject collectionNotPresent();
+    CommonPageObject assemblySize(int size);
 
-    CommonPageObject collectionHasSize(int size);
+    int assembled();
 
-    int size();
+    CommonPageObject assemblyLargerThan(int size);
 
-    CommonPageObject collectionLargerThan(int size);
+    CommonPageObject assemblySmallerThan(int size);
 
-    CommonPageObject collectionSmallerThan(int size);
+    CommonPageObject assemblyIs(List<String> expected);
 
-    CommonPageObject collectionIs(List<String> expected);
+    CommonPageObject assemblyIs(List<String> expected, boolean strict);
 
-    CommonPageObject collectionIs(List<String> expected, boolean strict);
+    CommonPageObject assemblyContains(String item);
 
-    CommonPageObject collectionContains(String item);
+    CommonPageObject assemblyContains(List<String> items);
 
-    CommonPageObject collectionContains(List<String> items);
+    CommonPageObject assemblyDoesNotContain(String item);
 
-    CommonPageObject collectionDoesNotContain(String item);
-
-    CommonPageObject collectionDoesNotContain(List<String> items);
+    CommonPageObject assemblyDoesNotContain(List<String> items);
 
 //    CommonPageObject tagIs(Enums.Tag tag);
 //
@@ -83,5 +79,5 @@ public interface DOMUtilsInterface {
 
     CommonPageObject elementPrint();
 
-    CommonPageObject collectionPrint();
+    CommonPageObject assemblyPrint();
 }
