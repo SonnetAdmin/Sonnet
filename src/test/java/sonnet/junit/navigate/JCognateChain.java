@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.navigate;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
@@ -16,7 +16,7 @@ public class JCognateChain extends CommonPageObject {
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\Cognate.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\navigate\\Cognate.html");
     }
 
     @AfterAll

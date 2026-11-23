@@ -1,7 +1,6 @@
-package sonnet.junit;
+package sonnet.junit.focus;
 
 import com.microsoft.playwright.options.AriaRole;
-import org.junit.Assert;
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
 import sonnet.Target;
@@ -10,13 +9,11 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static sonnet.Enum.Trait.*;
-import static sonnet.Enum.HTMLTag.LABEL;
-import static sonnet.Enum.HTMLTag.OPTION;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class JRole extends CommonPageObject {
+public class Role extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {

@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.navigate;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;

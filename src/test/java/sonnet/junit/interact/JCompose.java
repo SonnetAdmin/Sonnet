@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.interact;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
@@ -12,7 +12,7 @@ public class JCompose extends CommonPageObject {
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\Compose.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\interact\\Compose.html");
     }
 
     @AfterAll

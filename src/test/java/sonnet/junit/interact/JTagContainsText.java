@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.interact;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
@@ -18,7 +18,7 @@ public class JTagContainsText extends CommonPageObject {
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\TagContainsText.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\interact\\TagContainsText.html");
     }
 
     @AfterAll

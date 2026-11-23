@@ -1,23 +1,22 @@
-package sonnet.junit;
+package sonnet.junit.interact;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static sonnet.Enum.HTMLTag.H1;
-import static sonnet.Enum.Trait.TEXT;
+import static org.junit.jupiter.api.Assertions.*;
+import static sonnet.Enum.Trait.*;
+import static sonnet.Enum.HTMLTag.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class JLinkContainsText extends CommonPageObject {
+public class JLinkWithText extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\LinkContainsText.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\interact\\LinkWithText.html");
     }
 
     @AfterAll
@@ -27,10 +26,10 @@ public class JLinkContainsText extends CommonPageObject {
     public void setUp() {}
 
     @Test
-    @Tag("linkcontainstext")
+    @Tag("linkwithtext")
     @DisplayName("h1")
     public void t1() {
-        Target target = linkContainsText("this text");
+        Target target = linkWithText("with");
         Target targetID = tagContainsText(H1, "ID Test");
         focus(target).click();
         focus(targetID);

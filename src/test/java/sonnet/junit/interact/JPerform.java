@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.interact;
 
 
 import org.junit.jupiter.api.*;

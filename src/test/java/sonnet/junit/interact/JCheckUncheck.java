@@ -1,11 +1,10 @@
-package sonnet.junit;
+package sonnet.junit.interact;
 
 import org.junit.jupiter.api.*;
 import sonnet.CommonPageObject;
 import sonnet.Target;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static sonnet.Enum.Trait.*;
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -15,7 +14,7 @@ public class JCheckUncheck extends CommonPageObject {
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\CheckUncheck.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\interact\\CheckUncheck.html");
     }
 
     @AfterAll

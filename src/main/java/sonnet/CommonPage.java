@@ -373,7 +373,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void focus(Target target) {
         if (!execute) return;
-        logger.log("focus()", target.getType().toString()+"", target.getValue());
+        logger.log("focus()", target.getType().toString(), target.getValue());
         decode(target, true);
 
     }
@@ -402,7 +402,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                 case YPOS -> String.valueOf(currentElement.boundingBox().y);
             };
         } finally {
-            logger.log("get()", trait.name()+"", "found: ", result);
+            logger.log("get()", trait.name()+"", "result: ", result);
         }
 
 

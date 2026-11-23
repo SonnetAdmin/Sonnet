@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.focus;
 
 
 import org.junit.jupiter.api.*;
@@ -12,7 +12,7 @@ import static sonnet.Enum.Trait.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
-public class JAttributes extends CommonPageObject {
+public class Attributes extends CommonPageObject {
 
     @BeforeAll
     public void setUpAll() {

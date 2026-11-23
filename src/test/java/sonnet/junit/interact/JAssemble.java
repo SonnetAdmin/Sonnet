@@ -1,4 +1,4 @@
-package sonnet.junit;
+package sonnet.junit.interact;
 
 
 import org.junit.jupiter.api.*;
@@ -21,7 +21,7 @@ public class JAssemble extends CommonPageObject {
     @BeforeAll
     public void setUpAll() {
         String home = System.getProperty("user.dir");
-        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\focus\\Collect.html");
+        open().go(home + "\\src\\test\\java\\sonnet\\junit\\html\\interact\\Assemble.html");
     }
 
     @AfterAll
