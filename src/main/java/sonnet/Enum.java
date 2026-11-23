@@ -237,7 +237,8 @@ public class Enum {
         WBR,
         XMP,
         SVG,
-        G;
+        G,
+        FITH;
     }
 
     public enum Browser {

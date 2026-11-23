@@ -111,10 +111,10 @@ public interface CommonPageInterface {
     void compose(String text);
 
     void descend();
-// TODO review
-//    void descend(int level);
-//
-//    void descend(Enum.Index level);
+
+    void descend(int level);
+
+    void descend(Enum.Index level);
 
     void descend(Enum.HTMLTag tag);
 

@@ -23,6 +23,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     private final Logger logger = new Logger(); // This is the logger from sonnet.utils
     private final int DEFAULT_TIMEOUT = 30;
     private final int DEFAULT_PROBE_TIMEOUT = 5;
+    private String result = "";
     private Page page;
     private Locator currentElement;
     private List<Locator> currentElements;
@@ -39,27 +40,62 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public void ascend() {
-
+        try {
+            logger.log("ascend() ", "first ancestor");
+            currentElement = currentElement.locator("xpath=./ancestor::*[1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("ascend to first ancestor failed");
+        }
     }
 
     @Override
     public void ascend(int level) {
-
+        try {
+            logger.log("ascend() ", "ancestor ", ""+level);
+            currentElement = currentElement.locator("xpath=./ancestor::*["+level+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("ascend to ancestor "+level+" failed");
+        }
     }
 
     @Override
     public void ascend(Enum.Index level) {
-
+        try {
+            int levelIndex = level.ordinal()+1;
+            logger.log("ascend() ", "ancestor ", ""+level);
+            currentElement = currentElement.locator("xpath=./ancestor::*["+levelIndex+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("ascend to "+level+" ancestor failed");
+        }
     }
 
     @Override
     public void ascend(Enum.HTMLTag tag) {
-
+        logger.log("ascend() ", "first: ", ""+tag);
+        try {
+            currentElement = currentElement.locator("xpath=./ancestor::"+tag.name().toLowerCase()+"[1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe){
+            throw new SonnetException("ascend to "+tag+" ancestor failed");
+        }
     }
 
     @Override
     public void ascend(Target target) {
-
+        logger.log("ascend() ", "first: ", ""+target);
+        String targetString = target.toString();
+        int i = targetString.indexOf(':');
+        String attribute = "@"+targetString.substring(0, i).toLowerCase();
+        String value = targetString.substring(i+2);
+        try {
+            currentElement = currentElement.locator("xpath=./ancestor::*["+attribute+"='"+value+"'][1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe){
+            throw new SonnetException("ascend to "+target+" ancestor failed");
+        }
     }
 
     //TODO Box methods need to be implemented. They are currently just placeholders.
@@ -238,8 +274,8 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void descend() {
         try {
-            logger.log("descend() ", "first child");
-            currentElement = currentElement.locator("xpath=./*").first();
+            logger.log("descend() ", "first descendant");
+            currentElement = currentElement.locator("xpath=./descendant::*[1]");
             currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
         } catch (PlaywrightException pe) {
             throw new SonnetException("descend to first child failed");
@@ -247,13 +283,36 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
+    public void descend(int level) {
+        try {
+            logger.log("descend() ", "descendant ", ""+level);
+            currentElement = currentElement.locator("xpath=./descendant::*["+level+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("descend to descendant "+level+" failed");
+        }
+    }
+
+    @Override
+    public void descend(Enum.Index level) {
+        int levelIndex = level.ordinal()+1;
+        try {
+            logger.log("descend() ", "descendant ", ""+level);
+            currentElement = currentElement.locator("xpath=./descendant::*["+levelIndex+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("descend to descendant "+level+" failed");
+        }
+    }
+
+    @Override
     public void descend(Enum.HTMLTag tag) {
         try {
-            logger.log("descend() ", "first "+tag);
+            logger.log("descend() ", "first: ", ""+tag);
             currentElement = currentElement.locator(tag.name().toLowerCase()).first();
             currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
         } catch (PlaywrightException pe) {
-            throw new SonnetException("descend to first child failed");
+            throw new SonnetException("descend to first "+tag+" descendant failed");
         }
     }
 
@@ -263,8 +322,10 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         logger.log("descend()", target.getType().toString(), target.getValue());
         try{
             decode(target, false);
-        } catch (PlaywrightException pe) {
-            throw new SonnetException("descend to first child failed");
+        } catch (NoSuchElementException nsee) {
+            throw new SonnetException("descend to first "+target+" descendant failed");
+        } catch (PlaywrightException pe){
+
         }
     }
 
@@ -312,34 +373,39 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void focus(Target target) {
         if (!execute) return;
-        logger.log("focus()\t", target.getType().toString(), target.getValue());
+        logger.log("focus()\t", target.getType().toString()+"\t", target.getValue());
         decode(target, true);
 
     }
 
     @Override
     public String get(Enum.Trait trait) {
-        logger.log("get()\t", trait.name());
-        return switch (trait) {
-            case ALT, CLASS, CONTENT, HREF, ID, LANG,
-                 NAME, PLACEHOLDER, STYLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
-//            case ATTRIBUTES -> getAllAttributes();
-            case DISPLAYED -> String.valueOf(currentElement.isVisible());
-            case ENABLED -> String.valueOf(currentElement.isEnabled());
-            case HEIGHT -> String.valueOf(currentElement.boundingBox().height);
-            case REQUIRED -> currentElement.getAttribute("required") != null ? "true" : "";
-            case SELECTED -> String.valueOf(currentElement.isChecked());
-            case TAG -> currentElement.evaluate("el => el.tagName").toString();
-            case TEXT -> currentElement.textContent();
-            case TEXT_TRIMMED -> currentElement.textContent().trim();
-            case TITLE -> page.title();
-            case URL -> page.url();
-            case VALUE -> currentElement.getAttribute("value");
-            case VISIBLE -> String.valueOf(currentElement.isVisible());
-            case WIDTH -> String.valueOf(currentElement.boundingBox().width);
-            case XPOS -> String.valueOf(currentElement.boundingBox().x);
-            case YPOS -> String.valueOf(currentElement.boundingBox().y);
-        };
+        try {
+            return result = switch (trait) {
+                case ALT, CLASS, CONTENT, HREF, ID, LANG,
+                     NAME, PLACEHOLDER, STYLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
+//              case ATTRIBUTES -> getAllAttributes();
+                case DISPLAYED -> String.valueOf(currentElement.isVisible());
+                case ENABLED -> String.valueOf(currentElement.isEnabled());
+                case HEIGHT -> String.valueOf(currentElement.boundingBox().height);
+                case REQUIRED -> currentElement.getAttribute("required") != null ? "true" : "";
+                case SELECTED -> String.valueOf(currentElement.isChecked());
+                case TAG -> currentElement.evaluate("el => el.tagName").toString();
+                case TEXT -> currentElement.textContent();
+                case TEXT_TRIMMED -> currentElement.textContent().trim();
+                case TITLE -> page.title();
+                case URL -> page.url();
+                case VALUE -> currentElement.getAttribute("value");
+                case VISIBLE -> String.valueOf(currentElement.isVisible());
+                case WIDTH -> String.valueOf(currentElement.boundingBox().width);
+                case XPOS -> String.valueOf(currentElement.boundingBox().x);
+                case YPOS -> String.valueOf(currentElement.boundingBox().y);
+            };
+        } finally {
+            logger.log("get()\t", trait.name()+"\t", "found: ", result);
+        }
+
+
     }
 
     @Override

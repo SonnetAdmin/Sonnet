@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThrows;
 public class URL extends CommonPageObject {
     String home = System.getProperty("user.dir");
     final String URL = home + "\\src\\test\\java\\sonnet\\junit\\html\\dom\\Url.html";
+    final String URL_FORMAT = "file:///"+URL.replace("\\", "/");
 
     @BeforeAll
     public void setUpAll() {
@@ -30,10 +31,10 @@ public class URL extends CommonPageObject {
     @DisplayName("Equals Url Test")
     public void t1() {
         //true
-        urlEquals("file:///C:/Users/tyler.MSI/IdeaProjects/Sonnet/src/test/java/sonnet/junit/html/dom/Url.html");
+        urlEquals(URL_FORMAT); // file:///+home+/src/test/java/sonnet/junit/html/dom/Url.html
         //false
         assertThrows(AssertionFailedError.class, () ->
-                urlEquals("file:///C:/Users/tyler.MSI/IdeaProjects/Sonnet/src/test/java/sonnet/junit/html/focus/Alt.html"));
+                urlEquals(URL_FORMAT.replace("Url", "Alt"))); // file:///+home+/src/test/java/sonnet/junit/html/dom/Alt.html
     }
 
     @Test
@@ -73,7 +74,7 @@ public class URL extends CommonPageObject {
     @Tag("url")
     @DisplayName("Chained Url Test")
     public void t5() {
-        urlEquals("file:///C:/Users/tyler.MSI/IdeaProjects/Sonnet/src/test/java/sonnet/junit/html/dom/Url.html")
+        urlEquals(URL_FORMAT)
                 .urlContains("Url.html")
                 .urlStartsWith("file:///")
                 .urlEndsWith("html");
