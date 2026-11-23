@@ -8,21 +8,33 @@ package sonnet;
  */
 public interface CommonPageInterface {
 
+    /**
+     * Ascends to the closest child.
+     */
     void ascend();
 
+    /**
+     * Ascends to indexed child.
+     */
     void ascend(int level);
 
+    /**
+     * Ascends to enumerated indexed child.
+     */
     void ascend(Enum.Index level);
 
+    /**
+     * Ascends to the closest child with inputed tag.
+     */
     void ascend(Enum.HTMLTag tag);
 
+    /**
+     * Ascends to the target.
+     */
     void ascend(Target target);
-
 
     /**
      * Highlights the specified target on the page.
-     *
-     * @param target the element or area to highlight
      */
     void box(Target target);
 
@@ -110,14 +122,29 @@ public interface CommonPageInterface {
      */
     void compose(String text);
 
+    /**
+     * Descends to the closest child.
+     */
     void descend();
 
+    /**
+     * Descends to indexed child.
+     */
     void descend(int level);
 
+    /**
+     * Descends to enumerated indexed child.
+     */
     void descend(Enum.Index level);
 
+    /**
+     * Descends to the closest child with inputed tag.
+     */
     void descend(Enum.HTMLTag tag);
 
+    /**
+     * Descends to a target.
+     */
     void descend(Target target);
 
     /**
