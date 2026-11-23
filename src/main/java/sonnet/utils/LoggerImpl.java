@@ -12,13 +12,6 @@ public class LoggerImpl {
 
     private static Logger logger = null;
 
-    public static synchronized LoggerImpl getInstance() {
-        if (instance == null) {
-            instance = new LoggerImpl();
-        }
-        return instance;
-    }
-
     public LoggerImpl() {
         super();
         logger = Logger.getLogger(this.getClass().getName());
@@ -26,6 +19,13 @@ public class LoggerImpl {
         handler.setFormatter(new SimpleFormatter());
         logger.addHandler(handler);
         logger.setUseParentHandlers(false);
+    }
+
+    public static synchronized LoggerImpl getInstance() {
+        if (instance == null) {
+            instance = new LoggerImpl();
+        }
+        return instance;
     }
 
     public void log(String... args) {
@@ -42,13 +42,24 @@ public class LoggerImpl {
 
 
     private void info(String... args) {
-        if (args != null && args.length > 0) {
-            logger.info(GREEN + args[0] + RESET + TAB +
-                    (args.length > 1 ? MAGENTA_BOLD + args[1] : "") + RESET + TAB +
-                    (args.length > 2 ? BLUE + args[2] : "") + RESET + TAB +
-                    (args.length > 3 ? YELLOW_BOLD + args[3] : "") + RESET + TAB +
-                    (args.length > 4 ? CYAN + args[4] : "" + RESET));
+        if (args == null || args.length == 0) {
+            return;
         }
+
+        String a0 = args[0] != null ? args[0] : "";
+        String a1 = args.length > 1 && args[1] != null ? args[1] : "";
+        String a2 = args.length > 2 && args[2] != null ? args[2] : "";
+        String a3 = args.length > 3 && args[3] != null ? args[3] : "";
+        String a4 = args.length > 4 && args[4] != null ? args[4] : "";
+
+        logger.info(String.format(
+                        GREEN        + "%-12s" + RESET +
+                        MAGENTA_BOLD + "%-24s" + RESET +
+                        BLUE         + "%-12s" + RESET +
+                        YELLOW_BOLD  + "%-30s" + RESET +
+                        CYAN         + "%s"    + RESET,
+                a0, a1, a2, a3, a4
+        ));
     }
 
     private void info(Colours color, String text) {

@@ -109,21 +109,21 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void box() {
         if (!execute) return;
-        logger.log("box()\t");
+        logger.log("box()");
         boxed = true;
     }
 
     @Override
     public void unbox() {
         if (!execute) return;
-        logger.log("unbox()\t");
+        logger.log("unbox()");
         boxed = false;
     }
 
     @Override
     public void click() {
         if (!execute) return;
-        logger.log("click()\t");
+        logger.log("click()");
         currentElement.click();
     }
 
@@ -243,7 +243,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             }
             pause(1);
         }
-        logger.log("assemble()", "Found: " + currentSize + " elements for target: ", target.toString());
+        logger.log("Found() ", currentSize + " elements for target: ", target.toString());
         if (stableCount < STABLE_COUNT)
             throw new IllegalStateException("Failed to assemble elements after " + ITERATIONS + " iterations");
 
@@ -365,7 +365,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public void end() {
-        logger.log("end()\t");
+        logger.log("end()");
         execute = true;
 
     }
@@ -373,7 +373,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void focus(Target target) {
         if (!execute) return;
-        logger.log("focus()\t", target.getType().toString()+"\t", target.getValue());
+        logger.log("focus()", target.getType().toString()+"", target.getValue());
         decode(target, true);
 
     }
@@ -402,7 +402,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
                 case YPOS -> String.valueOf(currentElement.boundingBox().y);
             };
         } finally {
-            logger.log("get()\t", trait.name()+"\t", "found: ", result);
+            logger.log("get()", trait.name()+"", "found: ", result);
         }
 
 
@@ -410,7 +410,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public void go(String url) {
-        logger.log("go()\t", url);
+        logger.log("go()", url);
         page.navigate(url);
         if (url.contains("http")){
             this.page.waitForURL(url);
@@ -421,7 +421,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void go(Enum.Direction direction) {
         throwOnNull(direction, "Direction");
-        logger.log("go()\t", direction.name());
+        logger.log("go()", direction.name());
         switch (direction){
             case BACK:
                 if(page.goBack() == null){
@@ -441,7 +441,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public void open() {
-        logger.log("open()\t", "Chrome");
+        logger.log("open()", "Chrome");
         try {
             Playwright playwright = Playwright.create();
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
@@ -455,7 +455,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public void probe(Target target) {
-        logger.log("probe()\t", target.getType().toString(), target.getValue());
+        logger.log("probe()", target.getType().toString(), target.getValue());
         setTimeout(DEFAULT_PROBE_TIMEOUT);
         if (!decode(target, true)) execute = false;
         setTimeout(DEFAULT_TIMEOUT);
@@ -474,7 +474,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
 
     @Override
     public int assembled() {
-        logger.log("assembled()\t");
+        logger.log("assembled()");
         return currentElements.size();
     }
 
@@ -482,7 +482,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void submit() {
         if (!execute) return;
-        logger.log("submit()\t");
+        logger.log("submit()");
 
     }
 
@@ -561,12 +561,12 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void printElement() {
         logger.log("Print Element");
         BoundingBox box = currentElement.boundingBox();
-        logger.log("Tag: \t\t" + currentElement.evaluate("el => el.tagName").toString());
-        logger.log("Text: \t\t" + currentElement.textContent());
-        logger.log("Enabled: \t" + currentElement.isEnabled());
-        logger.log("Visible: \t" + currentElement.isVisible());
-//        logger.log("Location: \t " + box.x + " " + box.y);
-//        logger.log("Dimensions: \t" + box.width + " " + box.height);
+        logger.log("Tag: " + currentElement.evaluate("el => el.tagName").toString());
+        logger.log("Text: " + currentElement.textContent());
+        logger.log("Enabled: " + currentElement.isEnabled());
+        logger.log("Visible: " + currentElement.isVisible());
+//        logger.log("Location:  " + box.x + " " + box.y);
+//        logger.log("Dimensions: " + box.width + " " + box.height);
 
     }
 
