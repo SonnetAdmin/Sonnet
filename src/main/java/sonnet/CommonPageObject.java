@@ -11,6 +11,31 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         commonPage = CommonPage.getInstance();
     }
 
+    public CommonPageObject ascend() {
+        commonPage.ascend();
+        return this;
+    }
+
+    public CommonPageObject ascend(int level) {
+        commonPage.ascend(level);
+        return this;
+    }
+
+    public CommonPageObject ascend(Enum.Index level) {
+        commonPage.ascend(level);
+        return this;
+    }
+
+    public CommonPageObject ascend(Enum.HTMLTag tag) {
+        commonPage.ascend(tag);
+        return this;
+    }
+
+    public CommonPageObject ascend(Target target) {
+        commonPage.ascend(target);
+        return this;
+    }
+
     public CommonPageObject box(Target target) {
         commonPage.box(target);
         return this;
@@ -82,6 +107,33 @@ public class CommonPageObject extends TargetFactory implements DOMUtilsInterface
         commonPage.check();
         return this;
     }
+
+    public CommonPageObject descend() {
+        commonPage.descend();
+        return this;
+    }
+
+    public CommonPageObject descend(int level) {
+        commonPage.descend(level);
+        return this;
+    }
+
+    public CommonPageObject descend(Enum.Index level) {
+        commonPage.descend(level);
+        return this;
+    }
+
+
+    public CommonPageObject descend(Enum.HTMLTag tag) {
+        commonPage.descend(tag);
+        return this;
+    }
+
+    public CommonPageObject descend(Target target) {
+        commonPage.descend(target);
+        return this;
+    }
+
 
     public CommonPageObject uncheck() {
         commonPage.uncheck();

@@ -8,8 +8,10 @@ import sonnet.utils.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static sonnet.utils.Checks.throwOnNull;
 import static sonnet.utils.Checks.throwOnZeroOrMinus;
 import static sonnet.utils.Time.pause;
@@ -21,6 +23,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     private final Logger logger = new Logger(); // This is the logger from sonnet.utils
     private final int DEFAULT_TIMEOUT = 30;
     private final int DEFAULT_PROBE_TIMEOUT = 5;
+    private String result = "";
     private Page page;
     private Locator currentElement;
     private List<Locator> currentElements;
@@ -33,6 +36,66 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             commonPage = new CommonPage();
         }
         return commonPage;
+    }
+
+    @Override
+    public void ascend() {
+        try {
+            logger.log("ascend() ", "first ancestor");
+            currentElement = currentElement.locator("xpath=./ancestor::*[1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("ascend to first ancestor failed");
+        }
+    }
+
+    @Override
+    public void ascend(int level) {
+        try {
+            logger.log("ascend() ", "ancestor ", ""+level);
+            currentElement = currentElement.locator("xpath=./ancestor::*["+level+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("ascend to ancestor "+level+" failed");
+        }
+    }
+
+    @Override
+    public void ascend(Enum.Index level) {
+        try {
+            int levelIndex = level.ordinal()+1;
+            logger.log("ascend() ", "ancestor ", ""+level);
+            currentElement = currentElement.locator("xpath=./ancestor::*["+levelIndex+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("ascend to "+level+" ancestor failed");
+        }
+    }
+
+    @Override
+    public void ascend(Enum.HTMLTag tag) {
+        logger.log("ascend() ", "first: ", ""+tag);
+        try {
+            currentElement = currentElement.locator("xpath=./ancestor::"+tag.name().toLowerCase()+"[1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe){
+            throw new SonnetException("ascend to "+tag+" ancestor failed");
+        }
+    }
+
+    @Override
+    public void ascend(Target target) {
+        logger.log("ascend() ", "first: ", ""+target);
+        String targetString = target.toString();
+        int i = targetString.indexOf(':');
+        String attribute = "@"+targetString.substring(0, i).toLowerCase();
+        String value = targetString.substring(i+2);
+        try {
+            currentElement = currentElement.locator("xpath=./ancestor::*["+attribute+"='"+value+"'][1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe){
+            throw new SonnetException("ascend to "+target+" ancestor failed");
+        }
     }
 
     //TODO Box methods need to be implemented. They are currently just placeholders.
@@ -156,7 +219,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void cognate(Target origin, Target destination) {
         if (!execute) return;
         logger.log("cognate()", origin.getType().toString(), origin.getValue(), destination.getType().toString(), destination.getValue());
-        decode(origin);
+        decode(origin, true);
         cognate(destination);
     }
 
@@ -209,6 +272,64 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     }
 
     @Override
+    public void descend() {
+        try {
+            logger.log("descend() ", "first descendant");
+            currentElement = currentElement.locator("xpath=./descendant::*[1]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("descend to first child failed");
+        }
+    }
+
+    @Override
+    public void descend(int level) {
+        try {
+            logger.log("descend() ", "descendant ", ""+level);
+            currentElement = currentElement.locator("xpath=./descendant::*["+level+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("descend to descendant "+level+" failed");
+        }
+    }
+
+    @Override
+    public void descend(Enum.Index level) {
+        int levelIndex = level.ordinal()+1;
+        try {
+            logger.log("descend() ", "descendant ", ""+level);
+            currentElement = currentElement.locator("xpath=./descendant::*["+levelIndex+"]");
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("descend to descendant "+level+" failed");
+        }
+    }
+
+    @Override
+    public void descend(Enum.HTMLTag tag) {
+        try {
+            logger.log("descend() ", "first: ", ""+tag);
+            currentElement = currentElement.locator(tag.name().toLowerCase()).first();
+            currentElement.waitFor(new Locator.WaitForOptions().setTimeout(1000));
+        } catch (PlaywrightException pe) {
+            throw new SonnetException("descend to first "+tag+" descendant failed");
+        }
+    }
+
+    @Override
+    public void descend(Target target) {
+        if (!execute) return;
+        logger.log("descend()", target.getType().toString(), target.getValue());
+        try{
+            decode(target, false);
+        } catch (NoSuchElementException nsee) {
+            throw new SonnetException("descend to first "+target+" descendant failed");
+        } catch (PlaywrightException pe){
+
+        }
+    }
+
+    @Override
     public void check() {
         currentElement.check();
         logger.log("check()");
@@ -252,34 +373,39 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     @Override
     public void focus(Target target) {
         if (!execute) return;
-        logger.log("focus()\t", target.getType().toString(), target.getValue());
-        decode(target);
+        logger.log("focus()\t", target.getType().toString()+"\t", target.getValue());
+        decode(target, true);
 
     }
 
     @Override
     public String get(Enum.Trait trait) {
-        logger.log("get()\t", trait.name());
-        return switch (trait) {
-            case ALT, CLASS, CONTENT, HREF, ID, LANG,
-                 NAME, PLACEHOLDER, STYLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
-//            case ATTRIBUTES -> getAllAttributes();
-            case DISPLAYED -> String.valueOf(currentElement.isVisible());
-            case ENABLED -> String.valueOf(currentElement.isEnabled());
-            case HEIGHT -> String.valueOf(currentElement.boundingBox().height);
-            case REQUIRED -> currentElement.getAttribute("required") != null ? "true" : "";
-            case SELECTED -> String.valueOf(currentElement.isChecked());
-            case TAG -> currentElement.evaluate("el => el.tagName").toString();
-            case TEXT -> currentElement.textContent();
-            case TEXT_TRIMMED -> currentElement.textContent().trim();
-            case TITLE -> page.title();
-            case URL -> page.url();
-            case VALUE -> currentElement.getAttribute("value");
-            case VISIBLE -> String.valueOf(currentElement.isVisible());
-            case WIDTH -> String.valueOf(currentElement.boundingBox().width);
-            case XPOS -> String.valueOf(currentElement.boundingBox().x);
-            case YPOS -> String.valueOf(currentElement.boundingBox().y);
-        };
+        try {
+            return result = switch (trait) {
+                case ALT, CLASS, CONTENT, HREF, ID, LANG,
+                     NAME, PLACEHOLDER, STYLE, TYPE -> currentElement.getAttribute(trait.name().toLowerCase());
+//              case ATTRIBUTES -> getAllAttributes();
+                case DISPLAYED -> String.valueOf(currentElement.isVisible());
+                case ENABLED -> String.valueOf(currentElement.isEnabled());
+                case HEIGHT -> String.valueOf(currentElement.boundingBox().height);
+                case REQUIRED -> currentElement.getAttribute("required") != null ? "true" : "";
+                case SELECTED -> String.valueOf(currentElement.isChecked());
+                case TAG -> currentElement.evaluate("el => el.tagName").toString();
+                case TEXT -> currentElement.textContent();
+                case TEXT_TRIMMED -> currentElement.textContent().trim();
+                case TITLE -> page.title();
+                case URL -> page.url();
+                case VALUE -> currentElement.getAttribute("value");
+                case VISIBLE -> String.valueOf(currentElement.isVisible());
+                case WIDTH -> String.valueOf(currentElement.boundingBox().width);
+                case XPOS -> String.valueOf(currentElement.boundingBox().x);
+                case YPOS -> String.valueOf(currentElement.boundingBox().y);
+            };
+        } finally {
+            logger.log("get()\t", trait.name()+"\t", "found: ", result);
+        }
+
+
     }
 
     @Override
@@ -331,7 +457,7 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
     public void probe(Target target) {
         logger.log("probe()\t", target.getType().toString(), target.getValue());
         setTimeout(DEFAULT_PROBE_TIMEOUT);
-        if (!decode(target)) execute = false;
+        if (!decode(target, true)) execute = false;
         setTimeout(DEFAULT_TIMEOUT);
 
     }
@@ -405,6 +531,21 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         logger.log(message);
     }
 
+    @Override
+    public void leaf() {
+        if(!execute) return;
+        logger.log("leaf()");
+        while (true){
+            try{
+                currentElement = currentElement.locator("css=:first-child");
+            } catch (NoSuchElementException nsee){
+                break;
+            } catch (PlaywrightException pe){
+                logger.log("leaf() failed to find child");
+            }
+        }
+    }
+
     //////////////////////////
     /// DIAGNOSTIC METHODS ///
     //////////////////////////
@@ -453,39 +594,39 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
         return page;
     }
 
-    private boolean decode(Target target) {
+    private boolean decode(Target target, boolean fromRoot) {
         boolean found = true;
         try {
             switch (target.getType()) {
                 case PLACEHOLDER:
-                    currentElement = page.getByPlaceholder(target.getSelector());
+                    currentElement = fromRoot ? page.getByPlaceholder(target.getSelector()) : currentElement.getByPlaceholder(target.getSelector());
                     break;
 
                 case LABEL:
-                    currentElement = page.getByLabel(target.getValue(), new Page.GetByLabelOptions().setExact(true));
+                    currentElement = fromRoot ? page.getByLabel(target.getValue(), new Page.GetByLabelOptions().setExact(true)) : currentElement.getByLabel(target.getValue(), new Locator.GetByLabelOptions().setExact(true));
                     break;
 
                 case ALT:
-                    currentElement = page.getByAltText(target.getSelector());
+                    currentElement = fromRoot ? page.getByAltText(target.getSelector()) : currentElement.getByAltText(target.getSelector());
                     break;
 
                 case TITLE:
-                    currentElement = page.getByTitle(target.getSelector());
+                    currentElement = fromRoot ? page.getByTitle(target.getSelector()) : currentElement.getByTitle(target.getSelector());
                     break;
 
                 case ROLE:
-                    currentElement = page.getByRole(target.getAriaRole());
+                    currentElement = fromRoot ? page.getByRole(target.getAriaRole()) : currentElement.getByRole(target.getAriaRole());
                     break;
 
                 case ROLE_AND_LABEL:
-                    currentElement = page.getByRole(target.getAriaRole(), new Page.GetByRoleOptions().setName(target.getValue()));
+                    currentElement = fromRoot ? page.getByRole(target.getAriaRole(), new Page.GetByRoleOptions().setName(target.getValue())) : currentElement.getByRole(target.getAriaRole(), new Locator.GetByRoleOptions().setName(target.getValue()));
                     break;
 
                 case ATTRIBUTE, ATTRIBUTE_VALUE, CLASS, CLASSES, CSS, DATA, HREF, HTML_ATTRIBUTE_VALUE, ID, LEAF,
                      LINK_TEXT, NAME,
                      PARTIAL_LINK_TEXT, PARTIAL_TEXT, ROLE_LITERAL, ROOT, SPLICE, SRC, STYLE, TAG, TAG_CONTAINS_TEXT,
                      TAG_WITH_TEXT, TEST_ID, TEXT, TYPE, VALUE, XPATH:
-                    List<Locator> elements = page.locator(target.getSelector()).all();
+                    List<Locator> elements = fromRoot ? page.locator(target.getSelector()).all() : currentElement.locator(target.getSelector()).all();
                     currentElement = elements.getFirst();
                     break;
 
@@ -517,7 +658,6 @@ public class CommonPage extends TargetFactory implements CommonPageInterface {
             logger.log("reverse to preceding sibling failed");
         }
     }
-
 
     private void setTimeout(int seconds) {
         page.setDefaultTimeout(seconds * 1000);
